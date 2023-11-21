@@ -7,173 +7,180 @@
     <link rel="stylesheet" href="../css/adminstyle.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/styleslide.css">
+    <link rel="stylesheet" href="../css/styleuser.css">
 </head>
-<body onload="showMenu();checklogin2();	showCartTable();showBill()">
-    <header>
-        <!-- MOBILE MENU -->
-        <div class="mobile-menu bg-second">
-            <a href="#" class="mb-logo">DinoShop</a>
-            <span class="mb-menu-toggle" id="mb-menu-toggle">
-                    <i class='bx bx-menu'></i>
-                </span>
+<body onload="checklogin();showCartTable();showBill()">
+
+<header>
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu bg-second">
+        <a href="#" class="mb-logo">DinoShop</a>
+        <span class="mb-menu-toggle" id="mb-menu-toggle">
+                <i class='bx bx-menu'></i>
+            </span>
+    </div>
+    <!-- END MOBILE MENU -->
+    <div class="header-wrapper" id="header-wrapper">
+            <span class="mb-menu-toggle mb-menu-close" id="mb-menu-close">
+                <i class='bx bx-x'></i>
+            </span>
+        <!-- TOP HEADER -->
+        <div class="bg-second">
+            <div class="top-header container">
+                <ul class="icon-soccial">
+                    <li>
+                        <a href="#"><i class='bx bxl-facebook-circle'></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class='bx bxl-youtube' width="50px" height="50px"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class='bx bxl-instagram-alt'></i></a>
+                    </li>
+                </ul>
+                <ul class="devided">
+                    <li class="dropdown">
+                        <a href="">USD</a>
+                        <i class='bx bxs-chevron-down'></i>
+                        <ul class="dropdown-content">
+                            <li><a href="#">VND</a></li>
+                            <li><a href="#">EUR</a></li>
+                            <li><a href="#">CHF</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="">VIETNAMESE</a>
+                        <i class='bx bxs-chevron-down'></i>
+                        <ul class="dropdown-content">
+                            <li><a href="#">ENGLISH</a></li>
+                            <li><a href="#">SPANISH</a></li>
+                            <li><a href="#">JAPANESE</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <!-- END MOBILE MENU -->
-        <div class="header-wrapper" id="header-wrapper">
-                <span class="mb-menu-toggle mb-menu-close" id="mb-menu-close">
-                    <i class='bx bx-x'></i>
-                </span>
-            <!-- TOP HEADER -->
-            <div class="bg-second">
-                <div class="top-header container">
-                    <ul class="icon-soccial">
-                        <li>
-                            <a href="#"><i class='bx bxl-facebook-circle'></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class='bx bxl-youtube'></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class='bx bxl-twitter'></i></a>
-                        </li>
-                    </ul>
-                    <ul class="devided">
-                        <li class="dropdown">
-                            <a href="">USD</a>
-                            <i class='bx bxs-chevron-down'></i>
-                            <ul class="dropdown-content">
-                                <li><a href="#">VND</a></li>
-                                <li><a href="#">EUR</a></li>
-                                <li><a href="#">CHF</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="">VIETNAMESE</a>
-                            <i class='bx bxs-chevron-down'></i>
-                            <ul class="dropdown-content">
-                                <li><a href="#">ENGLISH</a></li>
-                                <li><a href="#">SPANISH</a></li>
-                                <li><a href="#">JAPANESE</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+        <!-- END TOP HEADER -->
+        <!-- MID HEADER -->
+        <div class="bg-main">
+            <div class="mid-header container">
+                <img src="../images/icon/logo.png" alt="logo">
+                <div class="search">
+                    <input type="text" placeholder="Serach">
+                    <i class='bx bx-search-alt'></i>
+                </div>
+                <div class="user-menu">
+                    <li>
+                        <button><i class='bx bx-bell'></i></button>
+                    </li>
+                    <li>
+                        <button onCLick="showform()"><i class='bx bx-user-circle'></i></button>
+                    </li>
+                    <li>
+                        <button onClick="location.href='cart.html'"><i class='bx bx-cart-alt'></i></button>
+                    </li>
+
                 </div>
             </div>
-            <!-- END TOP HEADER -->
-            <!-- MID HEADER -->
-            <div class="bg-main">
-                <div class="mid-header container">
-                    <img src="./images/icon/logo.png" alt="logo">
-                    <div class="search">
-                        <label>
-                            <input type="text" placeholder="Serach">
-                        </label>
-                        <i class='bx bx-search-alt'></i>
-                    </div>
-                    <div class="user-menu">
-                        <li>
-                            <button onCLick="showform()"><i class='bx bx-user-circle'></i></button>
-                        </li>
-                        <li>
-                            <button><i class='bx bx-bell'></i></button>
-                        </li>
-                        <li>
-                            <button onClick="location.href='cart.html'"><i class='bx bx-cart-alt'></i></button>
-                        </li>
-                    </div>
+        </div>
+        <!-- END MID HEADER -->
+        <!-- BOTTOM HEADR -->
+        <div class="bg-second">
+            <div class="bottom-header container">
+                <ul id="navmenu">
+                    <li class="navBtn"><a href="../index.html">TRANG CHỦ</a></li>
+                    <li class="navBtn" onclick="showBrandProducts('TOYOTA')"><a>TOYOTA</a></li>
+                    <li class="navBtn" onclick="showBrandProducts('LAMBORGHINI')"><a>LAMBORGHINI</a></li>
+                    <li class="navBtn" onclick="showBrandProducts('MCLAREN')"><a>MCLAREN</a></li>
+                    <li class="navBtn" onclick="showBrandProducts('PORSCHE')"><a>PORSCHE</a></li>
+                    <li class="navBtn" onclick="showBrandProducts('FERRARI')"><a>FERRARI</a></li>
+                </ul>
+            </div> <!--có navmenu của phần js để đẩy mấy sản phẩm -->
+        </div>
+        <!-- END BOTTOM HEADER -->
+    </div>
+    <!-- MAIN HEADER -->
+
+    <!-- END MAIN HEADER -->
+</header>
+<div id="user" class="modal">
+    <div id="login">
+        <form id="loginform">
+            <button type="button" class="close" onClick="closeform()">+</button>
+            <h2>ĐĂNG NHẬP</h2>
+            <div class="logininfo">
+                <div class="col">
+                    <label for="usernameLogin">Tên đăng nhập:</label>
+                    <input type="text" id="usernameLogin">
+                    <div id="usernameerror">Bạn chưa nhập tên đăng nhập</div>
+                    <label for="passwordLogin">Mật khẩu:</label>
+                    <input type="password" id="passwordLogin">
+                    <div id="passwordloginerror">Bạn chưa nhập mật khẩu</div>
                 </div>
             </div>
-            <!-- END MID HEADER -->
-            <!-- BOTTOM HEADR -->
-            <div class="bg-second">
-                <div class="bottom-header container">
-                    <ul id="navmenu">
-                    </ul>
-                </div> <!--có navmenu của phần js để đẩy mấy sản phẩm -->
+            <button type="submit" id="btnlogin">Login</button>
+            <p>Bạn chưa có tài khoản? <a href="#" onClick="showSignUp()">Đăng ký</a></p>
+        </form>
+    </div>
+    <div id="signup">
+        <form id="signupform">
+            <button type="button" class="close" onClick="closeform()">+</button>
+            <h2>ĐĂNG KÝ</h2>
+            <div class="signupinfo">
+                <div class="col">
+                    <label for="fullname">Họ và tên: </label>
+                    <input type="text" id="fullname">
+                    <div id="fullnameerror">Bạn chưa nhập họ tên</div>
+                    <label for="address">Địa chỉ: </label>
+                    <input type="text" id="address">
+                    <div id="addresserror">Bạn chưa địa chỉ</div>
+                    <label for="phone">Số điện thoại: </label>
+                    <input type="text" id="phone">
+                    <div id="phoneerror">Bạn chưa nhập số điện thoại</div>
+                </div>
+                <div class="col">
+                    <label for="usernameSignUp">Tên đăng nhập: </label>
+                    <input type="text" id="usernameSignUp">
+                    <div id="usererror">Bạn chưa nhập tên đăng nhập</div>
+                    <label for="passwordSignUp">Mật khẩu: </label>
+                    <input type="password" id="passwordSignUp">
+                    <div id="passworderror">Bạn chưa nhập mật khẩu</div>
+                    <label for="passwordSignUp2">Nhập lại mật khẩu: </label>
+                    <input type="password" id="passwordSignUp2">
+                    <div id="password2error">Mật khẩu không trùng khớp</div>
+                </div>
             </div>
-            <!-- END BOTTOM HEADER -->
-        </div>
-        <!-- MAIN HEADER -->
-    
-        <!-- END MAIN HEADER -->
-    </header>
-    <div id="user" class="modal">
-        <div id="login">
-            <form id="loginform">
-                <button type="button" class="close" onClick="closeform()">+</button>
-                <h2>ĐĂNG NHẬP</h2>
-                <div class="logininfo">
-                    <div class="col">
-                        <label for="usernameLogin">Tên đăng nhập:</label>
-                        <input type="text" id="usernameLogin">
-                        <div id="usernameerror">Bạn chưa nhập tên đăng nhập</div>
-                        <label for="passwordLogin">Mật khẩu:</label>
-                        <input type="password" id="passwordLogin">
-                        <div id="passwordloginerror">Bạn chưa nhập mật khẩu</div>
-                    </div>
-                </div>
-                <button type="submit" id="btnlogin">Login</button>
-                <p>Bạn chưa có tài khoản? <a href="#" onClick="showSignUp()">Đăng ký</a></p>
-            </form>
-        </div>
-        <div id="signup">
-            <form id="signupform">
-                <button type="button" class="close" onClick="closeform()">+</button>
-                <h2>ĐĂNG KÝ</h2>
-                <div class="signupinfo">
-                    <div class="col">
-                        <label for="fullname">Họ và tên: </label>
-                        <input type="text" id="fullname">
-                        <div id="fullnameerror">Bạn chưa nhập họ tên</div>
-                        <label for="address">Địa chỉ: </label>
-                        <input type="text" id="address">
-                        <div id="addresserror">Bạn chưa địa chỉ</div>
-                        <label for="phone">Số điện thoại: </label>
-                        <input type="text" id="phone">
-                        <div id="phoneerror">Bạn chưa nhập số điện thoại</div>
-                    </div>
-                    <div class="col">
-                        <label for="usernameSignUp">Tên đăng nhập: </label>
-                        <input type="text" id="usernameSignUp">
-                        <div id="usererror">Bạn chưa nhập tên đăng nhập</div>
-                        <label for="passwordSignUp">Mật khẩu: </label>
-                        <input type="password" id="passwordSignUp">
-                        <div id="passworderror">Bạn chưa nhập mật khẩu</div>
-                        <label for="passwordSignUp2">Nhập lại mật khẩu: </label>
-                        <input type="password" id="passwordSignUp2">
-                        <div id="password2error">Mật khẩu không trùng khớp</div>
-                    </div>
-                </div>
-                <button type="submit" id="btnsignup">Đăng ký</button>
-                <p>Trở về trang <a href="#" onClick="showLogin()">Đăng nhập</a></p>
-            </form>
+            <button type="submit" id="btnsignup">Đăng ký</button>
+            <p>Trở về trang <a href="#" onClick="showLogin()">Đăng nhập</a></p>
+        </form>
+    </div>
+</div>
+
+<div id="cart">
+    <div id="title">
+        <div class="container">
+            <h1>Giỏ hàng</h1>
         </div>
     </div>
+    <div class="container">
+        <div id="contain">
+            <div id="bill"></div>
+            <table id="carttable"></table>
+            <div class="total">Thành tiền: <span id="totalPrice"></span></div>
+            <button onclick="deleteCart()">Xóa tất cả</button>
+            <button onclick="Buy()">Mua hàng</button>
 
-    <div id="cart">
-		<div id="title">
-			<div class="container">
-				<h1>Giỏ hàng</h1>
-			</div>
-		</div>
-		<div class="container">
-			<div id="contain">
-				<div id="bill"></div>
-				<table id="carttable"></table>
-				<div class="total">Thành tiền: <span id="totalPrice"></span></div>
-				<button onclick="deleteCart()">Xóa tất cả</button>
-				<button onclick="Buy()">Mua hàng</button>
 
-				
-			</div>
-		</div>
-	</div>
+        </div>
+    </div>
+</div>
 
-    <div id="custom_alert"></div>
+<div id="custom_alert"></div>
 
-    <script src="../js/javascript.js"></script>
-    <script src="../js/productjs.js"></script>
-    <script src="../js/cartjs.js"></script>
-    <script src="../js/adminjs.js"></script>
+<script src="../js/javascript.js"></script>
+<script src="../js/productjs.js"></script>
+<script src="../js/cartjs.js"></script>
+<script src="../js/adminjs.js"></script>
 
 
 </body>

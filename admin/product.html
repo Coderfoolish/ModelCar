@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CMS Admin</title>
-
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="icon" type="image/png" href="../images/icon/logo.png"/>
 
@@ -16,9 +17,9 @@
             rel="stylesheet">
     <!-- End import lib -->
 
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/adminstyle.css">
 </head>
-<body class="overlay-scrollbar" onload="hello()">
+<body class="overlay-scrollbar">
 <!-- navbar -->
 <div class="navbar">
     <!-- nav left -->
@@ -55,10 +56,10 @@
                     <li  class="dropdown-menu-item">
                         <a class="dropdown-menu-link">
                             <div>
-                                <i class='bx bx-log-out' ></i>
+                                <i class='bx bx-log-out' onclick="logout()"></i>
                             </div>
                             <span>
-                                <p onclick="logout()">Logout</p>
+                                <p onclick="logout()">Đăng xuất </p>
                             </span>
                         </a>
                     </li>
@@ -78,7 +79,7 @@
                 <div>
                     <i class='bx bx-line-chart'></i>
                 </div>
-                <span>Statistical</span>
+                <span>Thống kê </span>
             </a>
         </li>
         <li  class="sidebar-nav-item">
@@ -86,23 +87,23 @@
                 <div>
                     <i class='bx bxs-package'></i>
                 </div>
-                <span>Items</span>
+                <span>Sản phẩm </span>
             </a>
         </li>
         <li  class="sidebar-nav-item">
-            <a href="#" class="sidebar-nav-link">
+            <a href="../admin/user.html" class="sidebar-nav-link">
                 <div>
                     <i class='bx bx-group'></i>
                 </div>
-                <span>Users</span>
+                <span>Khách hàng</span>
             </a>
         </li>
         <li  class="sidebar-nav-item">
-            <a href="#" class="sidebar-nav-link">
+            <a href="../admin/bill.html" class="sidebar-nav-link">
                 <div>
                     <i class='bx bx-list-ul'></i>
                 </div>
-                <span>Oders</span>
+                <span>Đơn hàng</span>
             </a>
         </li>
     </ul>
@@ -313,24 +314,9 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12 col-m-12 col-sm-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3>
-                        REVENUE CHART FROM 2022 TO 2023
-                    </h3>
-                </div>
-                <div class="card-content">
-                    <canvas id="myChart"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <!-- end main content -->
 <!-- import script -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 <script src="../js/adminjs.js"></script>
 <!-- end import script -->
 </body>

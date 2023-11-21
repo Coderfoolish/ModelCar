@@ -1,13 +1,20 @@
+const primaryColor = '#4834d4'
+const warningColor = '#f0932b'
+const successColor = '#6ab04c'
+const dangerColor = '#eb4d4b'
 
+const themeCookieName = 'theme'
+const themeDark = 'dark'
+const themeLight = 'light'
+
+function utf8(str) {
+    return str.replace(/\r\n/g, '\n').replace(/\t/g, '    ').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
+}
 function currency(num) {
 
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') + ' VND';
 }
 /*ADMIN*/
-function hello(){
-    var user = JSON.parse(localStorage.getItem('userlogin'));
-    document.getElementById('hello')+ '<button onclick="logout()">Logout</button>';
-}
 function logout(){
     localStorage.removeItem('userlogin');
     localStorage.removeItem('cart');
@@ -24,7 +31,7 @@ function showbilllist(){
     var s='<tr><th>NGÀY</th><th>KHÁCH HÀNG</th><th>GIÁ</th><th>TRẠNG THÁI</th></tr>';
     var billArray = JSON.parse(localStorage.getItem('bill'));
     for(var i=0;i<billArray.length;i++){
-        if(billArray[i].status=='Chưa xử lý'){
+        if (billArray[i].status == 'Chưa xử lý') {
             s+='<tr onClick="showinfobill('+billArray[i].id+')">'+
                 '<td>'+billArray[i].date+'</td>'+
                 '<td>'+billArray[i].customer.fullname+'</td>'+
@@ -131,30 +138,31 @@ function changeStatus(checkbox,id){
     localStorage.setItem('bill',JSON.stringify(billArray));
     showbilllist();
 }
-// function showProductList(vitri){
-//     var productArray = JSON.parse(localStorage.getItem('product'));
-//     var s='<tr><th>#ID</th><th>Ảnh</th><th>TÊN SẢN PHẨM</th><th>THƯƠNG HIỆU</th><th>GIÁ</th><th></th></tr>';
-//     var dem = 0;
-//     for(var i=vitri;i<productArray.length;i++){
-//         s+='<tr>'+
-//             '<td>'+productArray[i].productId+'</td>'+
-//             '<td><img src="../'+productArray[i].img+'"></td>'+
-//             '<td>'+productArray[i].name+'</td>'+
-//             '<td>'+productArray[i].brand.toUpperCase()+'</td>'+
-//             '<td>'+currency(productArray[i].price)+'</td>'+
-//             '<td>'+
-//             '<button class="delete" onClick="deleteproduct(\''+productArray[i].productId+'\')">&times;</div>'+
-//             '<button class="change" onClick="showchangeproductbox(\''+productArray[i].productId+'\')">Sửa</div>'+
-//             '</td>'+
-//             '</tr>';
-//         dem++;
-//         if(dem==10){
-//             break;
-//         }
-//     }
-//     document.getElementById('productlist').innerHTML=s;
-//     setPagination();
-// }
+
+function showProductList(vitri) {
+    var productArray = JSON.parse(localStorage.getItem('product'));
+    var s = '<tr><th>#ID</th><th>Ảnh</th><th>TÊN SẢN PHẨM</th><th>THƯƠNG HIỆU</th><th>GIÁ</th><th></th></tr>';
+    var dem = 0;
+    for (var i = vitri; i < productArray.length; i++) {
+        s += '<tr>' +
+            '<td>' + productArray[i].productId + '</td>' +
+            '<td><img src="../' + productArray[i].img + '"></td>' +
+            '<td>' + productArray[i].name + '</td>' +
+            '<td>' + productArray[i].brand.toUpperCase() + '</td>' +
+            '<td>' + currency(productArray[i].price) + '</td>' +
+            '<td>' +
+            '<button class="delete" onClick="deleteproduct(\'' + productArray[i].productId + '\')">&times;</div>' +
+            '<button class="change" onClick="showchangeproductbox(\'' + productArray[i].productId + '\')">Sửa</div>' +
+            '</td>' +
+            '</tr>';
+        dem++;
+        if (dem == 10) {
+            break;
+        }
+    }
+    document.getElementById('productlist').innerHTML = s;
+    setPagination();
+}
 function changeimg(input){
     var reader = new FileReader();
     reader.onload = function (e) {
@@ -187,7 +195,13 @@ function addProduct(){
         customAlert('Giá không hợp lệ','warning');
         return false;
     }
-    var producttemp = {productId: productid, brand: brand.value, img:'images/product/temp.jpg', name: productname.value, price: price.value};
+    var producttemp = {
+        productId: productid,
+        brand: brand.value,
+        img: '../images/product/temp.jpg',
+        name: productname.value,
+        price: price.value
+    };
     productArray.unshift(producttemp);
     localStorage.setItem('product',JSON.stringify(productArray));
     showProductList(0);
@@ -219,14 +233,6 @@ function deleteuser(usernamedelete){
     localStorage.setItem('user',JSON.stringify(userArray));
     showUserList();
 }
-const primaryColor = '#4834d4'
-const warningColor = '#f0932b'
-const successColor = '#6ab04c'
-const dangerColor = '#eb4d4b'
-
-const themeCookieName = 'theme'
-const themeDark = 'dark'
-const themeLight = 'light'
 
 const body = document.getElementsByTagName('body')[0]
 
@@ -303,34 +309,3 @@ function openCloseDropdown(event) {
         }
     }
 }
-
-var ctx = document.getElementById('myChart')
-ctx.height = 500
-ctx.width = 500
-var data = {
-    labels: ['January', 'February', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-    datasets: [{
-        fill: false,
-        label: '2023',
-        borderColor: successColor,
-        data: [120, 115, 130, 100, 123, 88, 99, 66, 120, 52, 59],
-        borderWidth: 2,
-        lineTension: 0,
-    }, {
-        fill: false,
-        label: '2022',
-        borderColor: dangerColor,
-        data: [66, 44, 12, 48, 99, 56, 78, 23, 100, 22, 47],
-        borderWidth: 2,
-        lineTension: 0,
-    }]
-}
-
-var lineChart = new Chart(ctx, {
-    type: 'line',
-    data: data,
-    options: {
-        maintainAspectRatio: false,
-        bezierCurve: false,
-    }
-})
