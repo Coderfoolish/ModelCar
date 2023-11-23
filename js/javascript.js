@@ -316,6 +316,12 @@ function openCloseDropdown(event) {
 }
 
 //Cart
+
+function fixNum(num,precision){
+  precision = Math.pow(10,precision);
+  return parseFloat((Math.ceil(num*precision)/precision).toFixed(2));
+}
+
 function addToCart(productid1) {
   var quantity = document.getElementById("quantity_number");
   var productArray = JSON.parse(localStorage.getItem("product"));
@@ -323,6 +329,7 @@ function addToCart(productid1) {
   for (var i = 0; i < productArray.length; i++) {
       if (productArray[i].productID == productid1) {
           producttmp = productArray[i];
+          break;
       }
   }
 
@@ -330,15 +337,22 @@ function addToCart(productid1) {
   if (cartArray == null) {
       var cartArray = [];
       producttmp.quantity = quantity.value;
-      var totalPricetmp = Number(quantity.value * producttmp.price);
-      producttmp.totalPrice = totalPricetmp.toFixed(2);
       cartArray.unshift(producttmp);
       localStorage.setItem("cart", JSON.stringify(cartArray));
   } else {
-      producttmp.quantity = quantity.value;
-      var totalPricetmp = Number(quantity.value * producttmp.price);
-      producttmp.totalPrice = totalPricetmp.toFixed(2);
-      cartArray.unshift(producttmp);
+      var flag=false;
+      for(var i=0; i<cartArray.length; i++){
+        if(cartArray[i].productID==producttmp.productID){
+          cartArray[i].quantity=Number(cartArray[i].quantity)+Number(quantity.value);
+          flag = true;
+          break;
+        }
+        
+      }
+      if(flag==false){
+        producttmp.quantity = quantity.value;
+        cartArray.unshift(producttmp);
+      }
       localStorage.setItem("cart", JSON.stringify(cartArray));
   }
   closeProductInfo();
@@ -369,12 +383,12 @@ function showCartTable() {
           }" onchange="updateCart('${cartArray[i].productID}')">
         <button onclick="increaseQuantity('${cartArray[i].productID}')">+</button>
         </td>
-        <td>${(cartArray[i].price * cartArray[i].quantity).toFixed(2)}</td>
+        <td>${fixNum(cartArray[i].price*cartArray[i].quantity,2)}</td>
         <td><button onclick="deleteCart_Item('${
               cartArray[i].productID
           }')">&times;</buttom></td>
       </tr>`;
-          totalprice += (cartArray[i].price * cartArray[i].quantity).toFixed(2);
+          totalprice += fixNum(cartArray[i].price*cartArray[i].quantity,2);
       }
       document.getElementById("carttable").innerHTML = s;
       document.getElementById("totalPrice").innerHTML = totalprice;
@@ -386,6 +400,7 @@ function deleteCart_Item(id) {
   for (var i = 0; i < cartArray.length; i++) {
       if (cartArray[i].productID == id) {
           cartArray.splice(i, 1);
+          break;
       }
   }
   localStorage.setItem("cart", JSON.stringify(cartArray));
@@ -403,8 +418,7 @@ function updateCart(id) {
   for (var i = 0; i < cartArray.length; i++) {
       if (cartArray[i].productID == id) {
           cartArray[i].quantity = quantity.value;
-          var totalPricetmp = Number(cartArray[i].quantity * cartArray[i].price);
-          cartArray[i].totalPrice = totalPricetmp.toFixed(2);
+          break;
       }
   }
   localStorage.setItem("cart", JSON.stringify(cartArray));
@@ -416,6 +430,7 @@ function increaseQuantity(id) {
   for (var i = 0; i < cartArray.length; i++) {
       if (cartArray[i].productID == id) {
           cartArray[i].quantity++;
+          break;
       }
   }
   localStorage.setItem("cart", JSON.stringify(cartArray));
@@ -428,6 +443,7 @@ function decreaseQuantity(id) {
       if (cartArray[i].productID == id) {
           if (cartArray[i].quantity > 1) {
               cartArray[i].quantity--;
+              break;
           }
       }
   }
@@ -453,7 +469,7 @@ function Buy() {
   for (var i = 0; i < cartArray.length; i++) {
       info +=
           '"' + cartArray[i].productName + "*" + cartArray[i].quantity + '" ; ';
-      totalprice += (cartArray[i].price * cartArray[i].quantity).toFixed(2);
+      totalprice += (fixNum(cartArray[i].price*cartArray[i].quantity,2));
   }
           
   var user = JSON.parse(localStorage.getItem("userlogin"));
@@ -542,7 +558,6 @@ function deleteBill(id) {
   for (var i = 0; i < billArray.length; i++) {
       if (billArray[i].ID == id && billArray[i].Status=='unprocessed') {
           billArray.splice(i, 1);
-          break;
       }
   }
   localStorage.setItem("bill", JSON.stringify(billArray));
