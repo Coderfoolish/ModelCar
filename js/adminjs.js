@@ -23,28 +23,27 @@ function logout(){
 
 function showbilllist(){
     if(localStorage.getItem('bill')===null){
-        var s='<tr><th>NGÀY</th><th>KHÁCH HÀNG</th><th>GIÁ</th><th>TRẠNG THÁI</th></tr>'+
-            '<tr><td colspan=4>Không có đơn hàng nào</td></tr>';
+        s='<tr><td>Khong co don hang nao</td></tr>'
         document.getElementById('billlist').innerHTML=s;
         return false;
     }
     var s='<tr><th>NGÀY</th><th>KHÁCH HÀNG</th><th>GIÁ</th><th>TRẠNG THÁI</th></tr>';
     var billArray = JSON.parse(localStorage.getItem('bill'));
     for(var i=0;i<billArray.length;i++){
-        if (billArray[i].status == 'Chưa xử lý') {
-            s+='<tr onClick="showinfobill('+billArray[i].id+')">'+
-                '<td>'+billArray[i].date+'</td>'+
-                '<td>'+billArray[i].customer.fullname+'</td>'+
-                '<td>'+currency(billArray[i].totalprice)+'</td>'+
-                '<td style="color: red">'+billArray[i].status+'</td>'+
+        if (billArray[i].Status == 'unprocessed') {
+            s+='<tr onclick="showinfobill(\''+billArray[i].ID+'\')">'+
+                '<td>'+billArray[i].Date+'</td>'+
+                '<td>'+billArray[i].Ctmusername+'</td>'+
+                '<td>'+currency(billArray[i].Totalprice)+'</td>'+
+                '<td style="color: red">'+billArray[i].Status+'</td>'+
                 '</tr>';
         }
         else {
-            s+='<tr onClick="showinfobill('+billArray[i].id+')">'+
-                '<td>'+billArray[i].date+'</td>'+
-                '<td>'+billArray[i].customer.fullname+'</td>'+
-                '<td>'+currency(billArray[i].totalprice)+'</td>'+
-                '<td style="color: blue">'+billArray[i].status+'</td>'+
+            s+='<tr onclick="showinfobill(\''+billArray[i].ID+'\')">'+
+                '<td>'+billArray[i].Date+'</td>'+
+                '<td>'+billArray[i].Ctmusername+'</td>'+
+                '<td>'+currency(billArray[i].Totalprice)+'</td>'+
+                '<td style="color: blue">'+billArray[i].Status+'</td>'+
                 '</tr>';
         }
     }
