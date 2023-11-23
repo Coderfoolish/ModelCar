@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản li đơn hàng</title>
-    <meta name="viewport"
-          content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Quản lý khách hàng</title>
     <link rel="icon" type="image/png" href="../images/icon/logo.png"/>
 
     <!-- Import lib -->
@@ -20,8 +18,7 @@
 
     <link rel="stylesheet" type="text/css" href="../css/adminstyle.css">
 </head>
-<body class="overlay-scrollbar" onload="showbilllist()">
-<!-- navbar -->
+<body class="overlay-scrollbar" onLoad="showProductList(0)">
 <div class="navbar">
     <!-- nav left -->
     <ul class="navbar-nav">
@@ -79,7 +76,7 @@
             </a>
         </li>
         <li class="sidebar-nav-item">
-            <a href="./goods.html" class="sidebar-nav-link">
+            <a href="./goods.html" class="sidebar-nav-link active">
                 <div>
                     <i class='bx bxs-package'></i>
                 </div>
@@ -95,7 +92,7 @@
             </a>
         </li>
         <li class="sidebar-nav-item">
-            <a href="../admin/bill.html" class="sidebar-nav-link active">
+            <a href="../admin/bill.html" class="sidebar-nav-link">
                 <div>
                     <i class='bx bx-list-ul'></i>
                 </div>
@@ -108,42 +105,69 @@
     <div class="row">
         <div class="col-8 col-m-12 col-sm-12">
             <div id="content">
-                <div id="leftsection">
-                    <div id="maintable">
-                        <h3>QUẢN LÝ ĐƠN HÀNG</h3>
-                        <table id="billlist">
-                            <tr>
-                            </tr>
-                        </table>
-                    </div>
+            <div id="leftsection">
+                <div id="maintable">
+                    <h1>DANH SÁCH SẢN PHẨM</h1>
+                    <table id="productlist">
+                    </table>
+                    <div id="pagination"></div>
                 </div>
-                <div id="modal1" class="modal">
-                    <div id="info">
-                    </div>
-                </div>
+            </div>
             </div>
         </div>
         <div class="col-4 col-m-12 col-sm-12">
             <div class="card">
                 <div class="card-header">
                     <h3>
-                        TÌM KIẾM KHÁCH HÀNG
+                        TÌM KIẾM SẢN PHẨM
                     </h3>
                     <i class='bx bxs-user-detail'></i>
                 </div>
-                <div class="rightsection">
+                <div class="card-content">
+                    <div class="subsection">
+                        <form onkeyup="searchproduct()" onchange="searchproduct()">
+                            <label for="searchproductname">Tên sản phẩm</label>
+                            <input type="text" id="searchproductname">
+                            <label for="searchproductbrand">Thương hiệu</label>
+                            <select id="searchproductbrand">
+                                <option value="all" selected>TẤT CẢ</option>
+                                <option value="ferrari">FERRARI</option>
+                                <option value="toyota">TOYOTA</option>
+                                <option value="lamborghini">LAMBORGHINI</option>
+                                <option value="mclaren">MCLAREN</option>
+                                <option value="porsche">PORSCHE</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3>
+                        THÊM SẢN PHẨM
+                    </h3>
+                    <i class='bx bx-cart-add'></i>
+                </div>
+                <div class="card-content">
                     <div class="subsection">
                         <form>
-                            <label for="name">Tên khách hàng</label>
-                            <input type="text" id="name">
-                            <label for="date">Ngày</label>
-                            <input type="date" id="date">
-                            <label for="status">Trạng thái</label>
-                            <select id="statussearch">
-                                <option value="Chưa xử lý">Chưa xử lý</option>
-                                <option value="Đã xử lý">Đã xử lý</option>
-                            </select>
-                            <button type="button" onclick="searchBill()">Tìm</button>
+                            <label for="productname">Tên sản phẩm</label>
+                            <input type="text" id="productname">
+                            <label for="brand">Thương hiệu:</label>
+                            <select id="brand">
+                                <option value="ferrari">FERRARI</option>
+                                <option value="toyota">TOYOTA</option>
+                                <option value="lamborghini">LAMBORGHINI</option>
+                                <option value="mclaren">MCLAREN</option>
+                                <option value="porsche">PORSCHE</option>
+                            </select><br>
+                            <label for="productprice">Giá</label>
+                            <input type="text" id="productprice">
+                            <img id="imgadd" src="../images/icon/temp2.jpg">
+                            <label >Ảnh</label>
+                            <input type="file" onchange="changeimgadd(this)"><br>
+                            <button type="reset">Xóa</button>
+                            <button type="button" onClick="addProduct()">Thêm</button>
                         </form>
                     </div>
                 </div>
@@ -152,6 +176,5 @@
     </div>
 </div>
 <script src="../js/adminjs.js"></script>
-<!-- end import script -->
 </body>
 </html>

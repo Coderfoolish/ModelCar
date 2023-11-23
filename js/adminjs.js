@@ -138,7 +138,8 @@ function changeStatus(checkbox,id){
     localStorage.setItem('bill',JSON.stringify(billArray));
     showbilllist();
 }
-
+//BILL
+//PRODUCT
 function showProductList(vitri) {
     var productArray = JSON.parse(localStorage.getItem('product'));
     var s = '<tr><th>#ID</th><th>Ảnh</th><th>TÊN SẢN PHẨM</th><th>THƯƠNG HIỆU</th><th>GIÁ</th><th></th></tr>';
@@ -146,7 +147,7 @@ function showProductList(vitri) {
     for (var i = vitri; i < productArray.length; i++) {
         s += '<tr>' +
             '<td>' + productArray[i].productId + '</td>' +
-            '<td><img src="../' + productArray[i].img + '"></td>' +
+            '<td><img src="../images/product/' + productArray[i].img + '"></td>' +
             '<td>' + productArray[i].name + '</td>' +
             '<td>' + productArray[i].brand.toUpperCase() + '</td>' +
             '<td>' + currency(productArray[i].price) + '</td>' +
@@ -162,6 +163,30 @@ function showProductList(vitri) {
     }
     document.getElementById('productlist').innerHTML = s;
     setPagination();
+}
+function deleteproduct(productiddelete){
+    var productArray = JSON.parse(localStorage.getItem('product'));
+    var vitri;
+    for(var i=0;i<productArray.length;i++){
+        if(productArray[i].productId == productiddelete){
+            if(confirm('Bạn có muốn xóa sản phẩm này?')){
+                productArray.splice(i, 1);
+            }
+            vitri=(Math.floor(i/10)*10);
+        }
+    }
+    localStorage.setItem('product',JSON.stringify(productArray));
+    showProductList(vitri);
+}
+function setPagination(){
+    var productArray = JSON.parse(localStorage.getItem('product'));
+    var sotrang=Math.ceil(productArray.length/10);
+    var button='';
+    for(var i = 1;i<=sotrang;i++){
+        vitri=(i-1)*10;
+        button += '<button class="pageNumber" onClick="showProductList('+vitri+')">'+i+'</button>';
+    }
+    document.getElementById('pagination').innerHTML = button;
 }
 function changeimg(input){
     var reader = new FileReader();
@@ -207,8 +232,54 @@ function addProduct(){
     showProductList(0);
     customAlert('Thêm sản phẩm thành công','success');
 }
-
-
+function searchproduct(){
+    var productArray = JSON.parse(localStorage.getItem('product'));
+    var name = document.getElementById('searchproductname').value.toLowerCase();
+    var brand = document.getElementById('searchproductbrand').value.toLowerCase();
+    var s='<tr><th>#ID</th><th>Ảnh</th><th>TÊN SẢN PHẨM</th><th>THƯƠNG HIỆU</th><th>GIÁ</th><th>Xóa</th></tr>';
+    if (brand=='all') {
+        if(!name){
+            showProductList(0);
+        }
+        else {
+            for(var i = 0; i < productArray.length; i++) {
+                if (productArray[i].name.toLowerCase().search(name) >=0) {
+                    s+='<tr>'+
+                        '<td>'+productArray[i].productId+'</td>'+
+                        '<td><img src="../'+productArray[i].img+'"></td>'+
+                        '<td>'+productArray[i].name+'</td>'+
+                        '<td>'+productArray[i].brand+'</td>'+
+                        '<td>'+currency(productArray[i].price)+'</td>'+
+                        '<td>'+
+                        '<button class="delete" onClick="deleteproduct(\''+productArray[i].productId+'\')">&times;</div>'+
+                        '<button class="change" onClick="showchangeproductbox(\''+productArray[i].productId+'\')">Sửa</div>'+
+                        '</td>'+
+                        '</tr>';
+                }
+            }
+            document.getElementById('productlist').innerHTML=s;
+        }
+    }
+    else{
+        for(var i = 0; i < productArray.length; i++) {
+            if (productArray[i].name.toLowerCase().search(name)  >=0  && productArray[i].brand==brand) {
+                s+='<tr>'+
+                    '<td>'+productArray[i].productId+'</td>'+
+                    '<td><img src="../'+productArray[i].img+'"></td>'+
+                    '<td>'+productArray[i].name+'</td>'+
+                    '<td>'+productArray[i].brand+'</td>'+
+                    '<td>'+currency(productArray[i].price)+'</td>'+
+                    '<td>'+
+                    '<button class="delete" onClick="deleteproduct(\''+productArray[i].productId+'\')">&times;</div>'+
+                    '<button class="change" onClick="showchangeproductbox(\''+productArray[i].productId+'\')">Sửa</div>'+
+                    '</td>'+
+                    '</tr>';
+            }
+        }
+        document.getElementById('productlist').innerHTML=s;
+    }
+}
+//PRODUCT
 //user
 function showUserList(){
     if(localStorage.getItem('user')===null){
@@ -309,3 +380,5 @@ function openCloseDropdown(event) {
         }
     }
 }
+
+

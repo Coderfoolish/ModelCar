@@ -227,7 +227,7 @@ ul.devided > li:last-child {
 	margin: 0 auto;
 	animation: bottomup 0.5s;
 	z-index: 100;
-	transform: translate3d(50px, 10px, 0);
+	transform: translate3d(50px , 10px , 0);
 }
 .mid-header  .user-menu li:hover > #btnlogout{
 	display: block;
@@ -258,17 +258,19 @@ ul.devided > li:last-child {
 	text-transform: uppercase;
 }
 
-#setting-admin {
-	transform: translate3d(80px, 30px, 0);
+ #setting-admin {
+	transform: translate3d(80px , 30px , 0);
 	background-color: var(--red);
 }
 
-.mid-header .user-menu #user-admin {
+ span#user-admin{
+	 color: white;
+ }
+.mid-header .user-menu #user-admin{
 	padding-left: 100px;
 	height: 50%;
 }
-
-.mid-header .user-menu #user-member {
+.mid-header .user-menu #user-member{
 	padding-left: 100px;
 	height: 50%;
 }

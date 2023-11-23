@@ -74,14 +74,14 @@
                 <img src="./images/icon/logo.png" alt="logo">
                 <div class="search">
                     <label>
-                        <input type="text" placeholder="Serach">
+                        <input type="text" placeholder="Serach" id="search" onKeyUp="search()">
                     </label>
                     <i class='bx bx-search-alt'></i>
                 </div>
                 <div class="user-menu">
-                    <li>
-                        <button onCLick="showform()"><i class='bx bx-user-circle'></i></button>
-                    </li>
+                        <li>
+                            <button onCLick="showform()"><i class='bx bx-user-circle'></i></button>
+                        </li>
                     <li>
                         <button onClick="location.href='./file/cart.html'"><i class='bx bx-cart-alt'></i></button>
                     </li>
@@ -180,9 +180,8 @@
     <div class="productList-container">
         <ul class="specialProducts-list">
         </ul>
-
+        </div>
     </div>
-</div>
 <div class="productInfor-container" id="productInfor-container">
 </div>
 
@@ -388,8 +387,8 @@
 <!--        </footer>-->
 <!--    </div>-->
 <!--    &lt;!&ndash;FOOTER&ndash;&gt;-->
-<!--    <div id="customalert"></div>-->
 
+<div id="customalert"></div>
 <script src="js/javascript.js"></script>
 <script src="js/main-footer.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

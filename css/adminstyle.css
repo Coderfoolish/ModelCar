@@ -769,73 +769,62 @@ table th {
 }
 
 
-#content {
-    width: 100%;
+#content{
+    width: 150%;
     min-height: calc(100vh - 70px);
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
 }
-
-#content #leftsection {
+#content #leftsection{
     width: 65%;
-    padding: 40px 40px 0px;
+    /*padding: 40px 40px 0px;*/
 }
-
-#content #leftsection #maintable {
+#content #leftsection #maintable{
     width: 100%;
     min-height: 830px;
-    background-color: #fff;
-    box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.5);
+    background-color: var(--main-bg-color);
+    border-radius: 20px;
+    box-shadow: 0 0 20px 2px rgba(0,0,0,0.2);
     padding: 30px 50px 10px;
     overflow-x: auto;
 }
-
-#content #leftsection #maintable h1 {
+#content #leftsection #maintable h1{
     text-align: center;
     margin-bottom: 20px;
 }
-
-#content #leftsection #maintable table, th, td {
-    border: 1px solid rgba(0, 0, 0, 0.4);
+#content #leftsection #maintable table,th,td{
+    border: 1px solid rgba(0,0,0,0.4);
 }
-
-#content #leftsection #maintable table {
+#content #leftsection #maintable table{
     width: 100%;
     border-collapse: collapse;
 }
-
-#content #leftsection #maintable table#billlist tr:not(:first-child) {
+#content #leftsection #maintable table#billlist tr:not(:first-child){
     cursor: pointer;
 }
-
-#content #leftsection #maintable table#billlist tr:not(:first-child):hover {
+#content #leftsection #maintable table#billlist tr:not(:first-child):hover{
     background-color: #ced6e0;
 }
-
-#content #leftsection #maintable th {
-    background-color: #ff4700;
+#content #leftsection #maintable th{
+    background-color: var(--red);
     color: white;
     height: 35px;
     padding: 0 5px;
 }
-
-#content #leftsection #maintable td {
+#content #leftsection #maintable td{
     height: 30px;
     line-height: 30px;
     padding: 0px 10px;
 }
-
-#content #leftsection #maintable img {
+#content #leftsection #maintable img{
     height: 60px;
     margin: 5px;
 }
-
-#content #leftsection #maintable td:last-child {
+#content #leftsection #maintable td:last-child{
     text-align: center;
 }
-
-#content #leftsection #maintable td .delete {
+#content #leftsection #maintable td .delete{
     background-color: #c0392b;
     font-size: 18pt;
     color: #fff;
@@ -848,8 +837,7 @@ table th {
     vertical-align: middle;
     display: block;
 }
-
-#content #leftsection #maintable td .change {
+#content #leftsection #maintable td .change{
     background-color: #2980b9;
     font-size: 12pt;
     color: #fff;
@@ -863,20 +851,18 @@ table th {
     vertical-align: middle;
     display: block;
 }
-
-#content #leftsection #maintable #pagination {
+#content #leftsection #maintable #pagination{
     margin-top: 20px;
     width: 100%;
     height: 25px;
     display: flex;
     justify-content: center;
 }
-
-#content #leftsection #maintable #pagination .pageNumber {
+#content #leftsection #maintable #pagination .pageNumber{
     width: 25px;
     height: 25px;
-    background-color: #ff4700;
-    border: 2px solid #ff4700;
+    background-color: var(--purle-color2);
+    border: 2px solid var(--third-bg-color);
     text-decoration: none;
     text-align: center;
     line-height: 20px;
@@ -884,73 +870,62 @@ table th {
     margin-right: 10px;
     cursor: pointer;
 }
-
-#content #leftsection #maintable #pagination .pageNumber:hover {
+#content #leftsection #maintable #pagination .pageNumber:hover{
     background-color: #fff;
     color: #ff4700;
 }
-
-#content #rightsection {
+#content #rightsection{
     width: 35%;
     display: flex;
     flex-wrap: wrap;
     padding: 40px 40px 0px;
 }
-
-#content #rightsection .subsection {
+#content #rightsection .subsection{
     width: 100%;
     background-color: #fff;
-    box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px 2px rgba(0,0,0,0.5);
     margin-bottom: 40px;
     padding: 20px 50px;
 }
-
-#content #rightsection .subsection h1 {
+#content #rightsection .subsection h1{
     text-align: center;
     margin-bottom: 20px;
 }
-
-#content #rightsection .subsection form {
+#content #rightsection .subsection form{
     width: 300px;
     margin: 0 auto;
 }
-
-#content #rightsection .subsection label {
+#content #rightsection .subsection label{
     font-size: 14pt;
     cursor: pointer;
 }
-
-#content #rightsection .subsection input {
+#content #rightsection .subsection input{
     display: block;
     width: 300px;
     height: 30px;
     line-height: 30px;
     font-size: 13pt;
-    border: 1px solid rgba(0, 0, 0, .2);
+    border: 1px solid rgba(0,0,0,.2);
     border-bottom: 2px solid #000;
     margin: 5px 0 20px 0px;
 }
-
-#content #rightsection .subsection input:focus {
+#content #rightsection .subsection input:focus{
     outline: none;
     border-bottom: 2px solid #ff4700
 }
-
-#content #rightsection .subsection select {
+#content #rightsection .subsection select{
     height: 30px;
     width: 173px;
-    border: 1px solid rgba(0, 0, 0, .2);
+    border: 1px solid rgba(0,0,0,.2);
     border-bottom: 2px solid #000;
     margin: 5px 0 20px 20px;
 }
-
-#content #rightsection .subsection #imgadd {
+#content #rightsection .subsection #imgadd{
     width: 150px;
     margin: 0 auto;
     display: block;
 }
-
-#content #rightsection .subsection button {
+#content #rightsection .subsection button{
     background-color: #fff;
     border: 2px solid #000;
     width: 80px;
@@ -958,14 +933,12 @@ table th {
     color: #000;
     font-size: 14pt;
     cursor: pointer;
-    box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.3);
 }
-
-#content #rightsection .subsection button:hover {
+#content #rightsection .subsection button:hover{
     border: 2px solid #ff4700;
     color: #ff4700;
 }
-
 /*END Quản lí đơn hàng*/
 #modal1 #info .close {
     position: absolute;
