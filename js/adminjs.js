@@ -40,7 +40,7 @@ function showbilllist(){
         }
         else {
             s+='<tr onclick="showinfobill(\''+billArray[i].ID+'\')">'+
-                '<td>'+billArray[i].Date+'</td>'+
+                '<td>'+billArray[i].date+'</td>'+
                 '<td>'+billArray[i].Ctmusername+'</td>'+
                 '<td>'+currency(billArray[i].Totalprice)+'</td>'+
                 '<td style="color: blue">'+billArray[i].Status+'</td>'+
@@ -53,20 +53,20 @@ function showinfobill(id){
     document.getElementById('modal1').style.display = 'block';
     var billArray = JSON.parse(localStorage.getItem('bill'));
     var s='<button class="close" onClick="closeinfobill()">&times;</button>';
-    for (var i = 0; i < billArray.length; i++) {
+    for (var i = 0; i <billArray.length; i++) {
         if(billArray[i].id==id){
             s +='<h4>Thông tin đơn hàng:</h4>'+
-                '<p>'+billArray[i].info+'</p>'+
+                '<p>'+billArray[i].Info+'</p>'+
                 '<h4>Ngày tạo đơn hàng:</h4>'+
-                '<p>'+billArray[i].date+'</p>'+
+                '<p>'+billArray[i].Date+'</p>'+
                 '<h4>Tên khách hàng:</h4>'+
-                '<p>'+billArray[i].customer.fullname+'</p>'+
+                '<p>'+billArray[i].Ctmusername+'</p>'+
                 '<h4>Địa chỉ:</h4>'+
-                '<p>'+billArray[i].customer.address+'</p>'+
+                '<p>'+billArray[i].Ctmaddress+'</p>'+
                 '<h4>Số điện thoại liên lạc:</h4>'+
-                '<p>'+billArray[i].customer.phone+'</p>'+
+                '<p>'+billArray[i].Ctmphone+'</p>'+
                 '<h4>Tổng giá tiền:</h4>'+
-                '<p>'+currency(billArray[i].totalprice)+'</p>';
+                '<p>'+currency(billArray[i].Totalprice)+'</p>';
             if (billArray[i].status=="Chưa xử lý") {
                 s+='<h4>Tình trạng:</h4>'+
                     '<div><span id="status" style="color:red">'+billArray[i].status+'</span><label><input type="checkbox" onchange="changeStatus(this,'+billArray[i].id+')" ><span class="slider"></span></label></div>';

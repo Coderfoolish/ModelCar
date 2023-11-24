@@ -940,92 +940,172 @@ table th {
     color: #ff4700;
 }
 /*END Quản lí đơn hàng*/
-#modal1 #info .close {
-    position: absolute;
-    right: 15px;
-    top: 0px;
-    font-size: 40pt;
-    background: none;
-    outline: none;
-    cursor: pointer;
+.modal{
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0,0,0,0.6);
+	position: fixed;
+	top:0;
+	left: 0;
+	display: none;
+	z-index: 10;
 }
-
-#modal1 #info h4 {
-    font-size: 14pt;
-    margin-top: 20px;
+#modal1 #changeproduct{
+	width: 60%;
+	height: auto;
+	background-color: #fff;
+	margin: 50px auto;
+	position: relative;
+	padding: 10px;
+	animation: topdown 0.5s;
 }
-
-#modal1 #info p {
-    font-size: 14pt;
-    margin-top: 5px;
+#modal1 #changeproduct .close{
+	position: absolute;
+	right: 15px;
+	top: 0px;
+	font-size: 40pt;
+	background: none;
+	outline: none;
+	cursor: pointer;
 }
-
-#modal1 #info #status {
-    display: inline-block;
-    font-size: 14pt;
-    height: 34px;
-    line-height: 34px;
-    width: 200px;
+#modal1 #changeproduct .close:hover{
+	color: #ff4700;
 }
-
-#modal1 #info label {
-    margin-left: 50px;
-    cursor: pointer;
-    display: inline-block;
-    height: 34px;
-    position: relative;
-    width: 60px;
-    vertical-align: middle;
+#modal1 #changeproduct .image{
+	margin-top: 50px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-around;
 }
-
-#modal1 #info label input {
-    display: none;
+#modal1 #changeproduct .image img{
+	width: 40%;
+	padding: 20px;
+	border:  1px solid #000;
+	border-radius: 10px;
 }
-
+#modal1 #changeproduct .info{
+	width: 700px;
+	margin: 50px auto 0;
+}
+#modal1 #changeproduct .info label{
+	width: 200px;
+	font-size: 14pt;
+	font-weight: bold;
+	display: inline-block;
+	margin-bottom: 10px;
+}
+#modal1 #changeproduct .info input{
+	font-size: 13pt;
+	width: 400px;
+	border-bottom: 2px solid #000;
+	margin-bottom: 10px;
+}
+#modal1 #changeproduct .info #fileimg{
+	font-size: 13pt;
+	width: 400px;
+	border: 2px solid #000;
+	margin-left: 202px;
+	cursor: pointer;
+}
+#modal1 #changeproduct button#save{
+	font-size: 16pt;
+	width: 200px;
+	padding: 10px;
+	margin: 30px auto;
+	border: 3px solid #ff4700;
+	background-color: #ff4700;
+	color: #fff;
+	display: block;
+	cursor: pointer;
+}
+#modal1 #changeproduct button#save:hover{
+	background-color: #fff;
+	color: #ff4700;
+}
+#modal1 #info{
+	width: 500px;
+	height: 600px;
+	background-color: #fff;
+	margin: 120px auto;
+	position: relative;
+	padding: 20px;
+}
+#modal1 #info .close{
+	position: absolute;
+	right: 2px;
+	top: 0px;
+	font-size: 30pt;
+	background: none;
+	outline: none;
+	cursor: pointer;
+}
+#modal1 #info h4{
+	font-size: 14pt;
+	margin-top: 20px;
+}
+#modal1 #info p{
+	font-size: 14pt;
+	margin-top: 5px;
+}
+#modal1 #info #status{
+	display: inline-block;
+	font-size: 14pt;
+	height: 34px;
+	line-height: 34px;
+	width: 200px;
+}
+#modal1 #info label{
+	margin-left: 50px;
+	cursor: pointer;
+	display: inline-block;
+  	height: 34px;
+  	position: relative;
+ 	width: 60px;
+ 	vertical-align: middle;
+}
+#modal1 #info label input{
+	display: none;
+}
 #modal1 #info label .slider {
-    background-color: #ccc;
-    width: 100%;
-    height: 100%;
-    bottom: 0;
-    left: 0;
-    cursor: pointer;
-    position: absolute;
-    transition: 0.4s;
-    border-radius: 999px;
+	background-color: #ccc;
+	width: 100%;
+	height: 100%;
+	bottom: 0;
+	left: 0;
+	cursor: pointer;
+	position: absolute;
+	transition: 0.4s;
+	border-radius: 999px;
 }
-
 #modal1 #info label .slider:before {
-    content: "";
-    background-color: #fff;
-    height: 26px;
-    bottom: 4px;
-    left: 4px;
-    position: absolute;
-    transition: 0.4s;
-    width: 26px;
-    border-radius: 999px;
+	content: "";
+	background-color: #fff;
+	height: 26px;
+	bottom: 4px;
+	left: 4px;
+	position: absolute;
+	transition: 0.4s;
+	width: 26px;
+	border-radius: 999px;
 }
-
 #modal1 #info label input:checked + .slider {
-    background-color: #ff4700;
+  	background-color: #ff4700;
 }
 
 #modal1 #info label input:checked + .slider:before {
-    left: 30px;
+  	left: 30px;
 }
-
-#modal1 #info .printbtn {
-    width: 100px;
-    background-color: #000;
-    color: #fff;
-    height: 25px;
-    border: 2px solid #000;
-    line-height: 25px;
-    margin-top: 10px;
-    cursor: pointer;
+#modal1 #info .printbtn{
+	width: 100px;
+	background-color: #000;
+	color: #fff;
+	height: 25px;
+	border: 2px solid #000;
+	line-height: 25px;
+	margin-top: 10px;
+	cursor: pointer;
 }
-
-#modal1 #info .printbtn:hover {
-    background-color: #fff;
-    color: #000;
+#modal1 #info .printbtn:hover{
+	background-color: #fff;
+	color: #000;
 }
