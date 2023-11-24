@@ -202,7 +202,7 @@ ul.devided > li:last-child {
 
 
 
-#advancedsearch{
+#searchsection{
 	width: 140%;
 	left: -20%;
 	top: -40px;
@@ -212,7 +212,7 @@ ul.devided > li:last-child {
 	position: relative;
 	z-index: 10;
 }
-#advancedsearch #buttonclose{
+#searchsection #buttonclose{
 	position: absolute;
 	right: 10px;
 	width:	30px;
@@ -224,17 +224,17 @@ ul.devided > li:last-child {
 	border-radius: 8px;
 }
 
-#advancedsearch #buttonclose:hover{
+#searchsection #buttonclose:hover{
 	background-color: var(--red);
 	color: white;
 }
 
-#advancedsearch #buttonclose:active{
+#searchsection #buttonclose:active{
 	background-color: white;
 	color: var(--red);
 }
 
-#advancedsearch #searchtext2{
+#searchsection #searchtext2{
 	position: absolute;
 	width:	80%;
 	left: 10%;
@@ -246,12 +246,12 @@ ul.devided > li:last-child {
 	border-radius: 8px;
 }
 
-#advancedsearch #searchBrand{
+#searchsection #searchBrand{
 	position: absolute;
 	top: 37px;
 	left: 20px;
 }
-#advancedsearch #searchBrand select{
+#searchsection #searchBrand select{
 	width:	175px;
 	padding: 3px 8px;
 	font-size: 18px;
@@ -261,12 +261,12 @@ ul.devided > li:last-child {
 	border-radius: 8px;
 }
 
-#advancedsearch #searchPrice{
+#searchsection #searchPrice{
 	position: absolute;
 	top: 37px;
 	right: 20px;
 }
-#advancedsearch #searchPrice input{
+#searchsection #searchPrice input{
 	width:	175px;
 	padding: 3px 8px;	
 	font-size: 18px;
@@ -275,12 +275,12 @@ ul.devided > li:last-child {
 	border: 1px solid black;
 	border-radius: 8px;
 }
-#advancedsearch #searchPrice button{
+#searchsection #searchPrice button{
 	width: 20px;
 }
 
 @media screen and (max-width: 900px) {
-	#advancedsearch #searchPrice{
+	#searchsection #searchPrice{
 		top: 74px;
 		left: 20px;
 		right: 0;
@@ -867,6 +867,7 @@ li.product {
 	display: block;
 	margin: 0px auto;
 	flex-shrink: 0;
+	z-index: -10;
 	/*không cho phép phần tử đó co lại*/
 
 }

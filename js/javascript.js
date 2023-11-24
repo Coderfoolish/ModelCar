@@ -276,11 +276,24 @@ function automaticSlideshow() {
 
 //search
 function showSearch(){
-  document.getElementById("advancedsearch").style.display="block";
+  document.getElementById("searchsection").style.display="block";
+  document.getElementById("searchtext2").focus();
+  document.getElementById("searchtext2").value=document.getElementById("searchtext").value;
 }
 function closeSearch(){
-  document.getElementById("advancedsearch").style.display="none";
+  document.getElementById("searchsection").style.display="none";
+  document.getElementById("searchtext").value=document.getElementById("searchtext2").value;
 }
+
+function search(){
+  var productArray = JSON.parse(localStoragee.getitem("product"));
+  var advanced = document.getElementById("advancedsearch");
+  if(advanced.className=""){
+
+  }
+}
+
+
 
 
 
@@ -1133,7 +1146,7 @@ function showProductInfo(productID) {
   var str2 = "";
   str2 += `<div id="productInfor">
                             <div class="image-container">
-                                <img src="../images/product/${productArray[i].productIMG}" class="product-img">
+                            <img src="images/product/${productArray[i].productIMG}" alt="" class="product-img">
                             </div>
                             <div class="close-button" onclick="closeProductInfo()">
                                 <p>+</p>
@@ -1159,7 +1172,7 @@ function showSpecialProducts(productType) {
     if (productArray[i].type == productType) {
       str += `<li class= "product" id="${productArray[i].productID}" onclick="showProductInfo('${productArray[i].productID}')">
                             <div class="product-img-container">
-                                <img src="../images/product/${productArray[i].productIMG}" alt="" class="product-img">
+                                <img src="images/product/${productArray[i].productIMG}" alt="" class="product-img">
                                 <div class="product-botton" >
                                     <div class="icon"><ion-icon name="cart"></ion-icon></div>
                                     <div class="view-botton">view</div>
@@ -1200,7 +1213,7 @@ function showBrandProducts(Pbrand) {
     if (productArray[i].brand.toLowerCase() == Pbrand) {
       str += `<li class= "product" id="${productArray[i].productID}" onclick="showProductInfo('${productArray[i].productID}')">
                             <div class="product-img-container">
-                                <img src="./images/product/${productArray[i].productIMG}" alt="" class="product-img">
+                                <img src="images/product/${productArray[i].productIMG}" alt="" class="product-img">
                                 <div class="product-botton" >
                                     <div class="icon"><ion-icon name="cart"></ion-icon></div>
                                     <div class="view-botton">view</div>
@@ -1243,7 +1256,7 @@ function search(){
     for(var i = 0; i<productArray.length; i++){
       if ((productArray[i].name.toLowerCase().search(productsearch) != -1 || productArray[i].brand.toLowerCase().search(productsearch) != -1) && productsearch != '') {
         s+='<div class="card">'+
-            '<img src="'+productArray[i].img+'">'+
+            '<img src="images/product/'+productArray[i].productIMG+'">'+
             '<p>' + productArray[i].name + '</p>'+
             '<p> Giá: ' + currency(productArray[i].price) +'</p>' +
             '<button class="btn" onClick="showProductInfo('+productArray[i].productId+')">Chi tiết</button></div>';
