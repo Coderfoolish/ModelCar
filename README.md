@@ -1,3 +1,3 @@
 # ModelCar
 
-[](./images/icon/Screenshot%202023-10-25%20135616.png)
+[](./images/banner/Screenshot%202023-11-24%20144528.png)
