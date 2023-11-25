@@ -79,10 +79,11 @@
                     <i class='bx bx-search-alt'></i>
                     <div id="searchsection">
                         <button onclick="closeSearch()" id="buttonclose">x</button>
-                        <input type="text" id="searchtext2" onchange="search()" placeholder="Tìm kiếm">
-                        <div id="advancedsearch" class="brand">
+                        <label for="searchtext2"><i class='bx bx-search-alt'></i></label>
+                        <input type="text" id="searchtext2" onchange="searching()" value="" placeholder="Tìm kiếm">
+                        <div id="advancedsearch">
                             <div id="searchBrand">
-                                <select name="brand" onchange="search()">
+                                <select id="brand" name="brand" onchange="searching()">
                                     <option value="all" selected>ALL</option>
                                     <option value="Ferrari">Ferrari</option>
                                     <option value="Toyota">Toyota</option>
@@ -93,13 +94,17 @@
                             </div>
                             
                             <div id="searchPrice">
-                                <input type="text" class="searchprice" onchange="search()" value="" id="pricefrom" placeholder="giá từ"> 
-                                <input type="text" class="searchprice" onchange="search()" value="" id="priceto" placeholder="đến">
+                                <input type="text" class="searchprice" onchange="searching()" value="" id="pricefrom" placeholder="giá từ"> 
+                                <input type="text" class="searchprice" onchange="searching()" value="" id="priceto" placeholder="đến">
                                 <button onclick=""><img src="images/icon/arrow.svg" alt=""></button>
                             </div>
                         </div>
                     
-                        <div id="searchresult"></div>
+                        <div id="searchresult">
+                            <ul>
+                            </ul>
+                            <div id="searchPage"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="user-menu">
@@ -178,13 +183,13 @@
         </form>
     </div>
 </div>
-<div class="bannerSection " id="banner">
+<div id="banner">
     <div>
         <img class="slideShow" src="images/banner/Autoart_Banner_with_logo.png">
         <img class="slideShow" src="images/banner/Bburago_Banner.png">
         <img class="slideShow" src="images/banner/F1_Carousel_Banner.png">
         <img class="slideShow" src="images/banner/Maisto_Banner_Bike_V2.png">
-        <img class="slideShow" src="images/banner/Banner_Modelcars.jpg">
+        <!-- <img class="slideShow" src="images/banner/Banner_Modelcars.jpg"> -->
     </div>
 </div>
 <!--    Product-->

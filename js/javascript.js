@@ -285,12 +285,58 @@ function closeSearch(){
   document.getElementById("searchtext").value=document.getElementById("searchtext2").value;
 }
 
-function search(){
-  var productArray = JSON.parse(localStoragee.getitem("product"));
-  var advanced = document.getElementById("advancedsearch");
-  if(advanced.className=""){
-
+  
+var searchArray=[];
+function searching(){
+  var searchArray1=[];
+  var text=document.getElementById("searchtext2").value.toLowerCase();
+  var productArray = JSON.parse(localStorage.getItem("product"));
+  var brand=document.getElementById("brand").value;
+  var priceform=document.getElementById("pricefrom").value;
+  if(priceform==''){priceform=0}
+  var priceto=document.getElementById("priceto").value;
+  if(priceto==''){
+    priceto=9999;
   }
+  for(var i=0; i<productArray.length; i++){
+      if((productArray[i].productName.toLowerCase().search(text)>-1
+      ||productArray[i].productID.toLowerCase().search(text)>-1
+      ||productArray[i].brand.toLowerCase().search(text)>-1)
+      &&compare(brand,productArray[i].brand)
+      &&(Number(productArray[i].price)>=Number(priceform) && Number(productArray[i].price)<=Number(priceto))){
+        searchArray1.unshift(productArray[i]);
+      }
+  }
+  searchArray=searchArray1;
+  showSearchResult(0);
+}
+
+function compare(brand1, brand2){
+  if(brand1=='all'){
+    return true;
+  }
+  return brand1==brand2;
+}
+
+var numProduct=9;
+
+function showSearchResult(selectPage){
+  var result='';
+  var numPage=Math.ceil(searchArray.length/numProduct);
+  var reSultPage='<ul>';
+  for(var i=numProduct*selectPage; i<numProduct*(selectPage+1)&&i<searchArray.length; i++){
+    result+=  `<li><div class="card" onclick="showProductInfo('${searchArray[i].productID}')">
+                        <div class="img-container"><img src="images/product/${searchArray[i].productIMG}"></div>
+                        <p class="name">${searchArray[i].productName}</p>
+                        <p class="price"> Giá:${searchArray[i].price}$</p>
+                        </div>
+                    </li>`;
+  }
+  for(var i=0; i<numPage; i++){
+    reSultPage+='<li><button onclick="showSearchResult('+i+')">'+(i+1)+'</button></li>';
+  }
+  document.getElementById("searchPage").innerHTML=reSultPage;
+  document.querySelector("#searchresult ul").innerHTML=result;
 }
 
 
