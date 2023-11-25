@@ -25,6 +25,9 @@ function showform() {
   userform.style.display = "block";
 }
 
+function showSearch() {
+    document.getElementById('searchsection').style.display = 'block';
+}
 function closeform() {
   var userform = document.getElementById("user");
   userform.style.display = "none";

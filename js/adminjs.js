@@ -33,7 +33,7 @@ function showbilllist(){
         if (billArray[i].Status == 'unprocessed') {
             s+='<tr onclick="showinfobill(\''+billArray[i].ID+'\')">'+
                 '<td>'+billArray[i].Date+'</td>'+
-                '<td>'+billArray[i].Ctmusername+'</td>'+
+                '<td>' + billArray[i].Ctmfullname + '</td>' +
                 '<td>'+currency(billArray[i].Totalprice)+'</td>'+
                 '<td style="color: red">Chưa xử lý</td>'+
                 '</tr>';
@@ -41,7 +41,7 @@ function showbilllist(){
         else {
             s+='<tr onclick="showinfobill(\''+billArray[i].ID+'\')">'+
                 '<td>'+billArray[i].Date+'</td>'+
-                '<td>'+billArray[i].Ctmusername+'</td>'+
+                '<td>' + billArray[i].Ctmfullname + '</td>' +
                 '<td>'+currency(billArray[i].Totalprice)+'</td>'+
                 '<td style="color: blue">Đã xử lý</td>'+
                 '</tr>';
