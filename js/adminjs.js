@@ -12,7 +12,7 @@ function utf8(str) {
 }
 function currency(num) {
 
-    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') + ' VND';
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') + ' $';
 }
 /*ADMIN*/
 function logout(){
@@ -35,15 +35,15 @@ function showbilllist(){
                 '<td>'+billArray[i].Date+'</td>'+
                 '<td>'+billArray[i].Ctmusername+'</td>'+
                 '<td>'+currency(billArray[i].Totalprice)+'</td>'+
-                '<td style="color: red">'+billArray[i].Status+'</td>'+
+                '<td style="color: red">Chưa xử lý</td>'+
                 '</tr>';
         }
         else {
             s+='<tr onclick="showinfobill(\''+billArray[i].ID+'\')">'+
-                '<td>'+billArray[i].date+'</td>'+
+                '<td>'+billArray[i].Date+'</td>'+
                 '<td>'+billArray[i].Ctmusername+'</td>'+
                 '<td>'+currency(billArray[i].Totalprice)+'</td>'+
-                '<td style="color: blue">'+billArray[i].Status+'</td>'+
+                '<td style="color: blue">Đã xử lý</td>'+
                 '</tr>';
         }
     }
@@ -67,13 +67,13 @@ function showinfobill(id){
                 '<p>'+billArray[i].Ctmphone+'</p>'+
                 '<h4>Tổng giá tiền:</h4>'+
                 '<p>'+currency(billArray[i].Totalprice)+'</p>';
-            if (billArray[i].Status=="Chưa xử lý") {
+            if (billArray[i].Status=="unprocessed") {
                 s+='<h4>Tình trạng:</h4>'+
-                    '<div><span id="status" style="color:red">'+billArray[i].Status+'</span><label><input type="checkbox" onchange="changeStatus(this,'+billArray[i].ID+')" ><span class="slider"></span></label></div>';
+                    '<div><span id="status" style="color:red">Chưa xử lý</span><label><input type="checkbox" onchange="changeStatus(this,'+billArray[i].ID+')" ><span class="slider"></span></label></div>';
             }
             else {
                 s+='<h4>Tình trạng:</h4>'+
-                    '<div><span id="status" style="color:blue">'+billArray[i].Status+'</span><label><input type="checkbox" checked onchange="changeStatus(this,'+billArray[i].ID+')" ><span class="slider"></span></label></div>';
+                    '<div><span id="status" style="color:blue">Đã xử lý</span><label><input type="checkbox" checked onchange="changeStatus(this,'+billArray[i].ID+')" ><span class="slider"></span></label></div>';
             }
             s+='<button class="printbtn" onClick="window.print()">In đơn hàng</button>';
         }
@@ -89,26 +89,26 @@ function searchBill(){
     var name =document.getElementById('name').value.toLowerCase();
     var billArrayTemp = [];
     for (var i = 0; i < billArray.length; i++) {
-        if(status==billArray[i].status && billArray[i].customer.fullname.toLowerCase().search(name) >= 0) {
+        if(status==billArray[i].Status && billArray[i].Ctmfullname.toLowerCase().search(name) >= 0) {
             billArrayTemp.push(billArray[i]);
         }
     }
     var s='<th>NGÀY</th><th>KHÁCH HÀNG</th><th>GIÁ</th><th>TRẠNG THÁI</th>';
     for(var i=0;i<billArrayTemp.length;i++){
-        if(billArrayTemp[i].status=='Chưa xử lý'){
-            s+='<tr onClick="showinfobill('+billArrayTemp[i].id+')">'+
-                '<td>'+billArrayTemp[i].date+'</td>'+
-                '<td>'+billArrayTemp[i].customer.fullname+'</td>'+
-                '<td>'+currency(billArrayTemp[i].totalprice)+'</td>'+
-                '<td style="color: red">'+billArrayTemp[i].status+'</td>'+
+        if(billArrayTemp[i].Status=='unprocessed'){
+            s+='<tr onClick="showinfobill('+billArrayTemp[i].ID+')">'+
+                '<td>'+billArrayTemp[i].Date+'</td>'+
+                '<td>'+billArrayTemp[i].Ctmfullname+'</td>'+
+                '<td>'+currency(billArrayTemp[i].Totalprice)+'</td>'+
+                '<td style="color: red">'+billArrayTemp[i].Status+'</td>'+
                 '</tr>';
         }
         else {
-            s+='<tr onClick="showinfobill('+billArrayTemp[i].id+')">'+
-                '<td>'+billArrayTemp[i].date+'</td>'+
-                '<td>'+billArrayTemp[i].customer.fullname+'</td>'+
-                '<td>'+currency(billArrayTemp[i].totalprice)+'</td>'+
-                '<td style="color: blue">'+billArrayTemp[i].status+'</td>'+
+            s+='<tr onClick="showinfobill('+billArrayTemp[i].ID+')">'+
+                '<td>'+billArrayTemp[i].Date+'</td>'+
+                '<td>'+billArrayTemp[i].Ctmfullname+'</td>'+
+                '<td>'+currency(billArrayTemp[i].Totalprice)+'</td>'+
+                '<td style="color: blue">'+billArrayTemp[i].Status+'</td>'+
                 '</tr>';
         }
     }
@@ -118,16 +118,16 @@ function changeStatus(checkbox,id){
     var billArray = JSON.parse(localStorage.getItem('bill'));
     if (checkbox.checked==true) {
         for (var i = 0; i < billArray.length; i++) {
-            if(billArray[i].id==id){
-                billArray[i].status = 'Đã xử lý';
+            if(billArray[i].ID==id){
+                billArray[i].Status = 'processed';
             }
         }
         document.getElementById('status').innerHTML="Đã xử lý";
         document.getElementById('status').style.color = 'blue';
     }else {
         for (var i = 0; i < billArray.length; i++) {
-            if(billArray[i].id==id){
-                billArray[i].status = 'Chưa xử lý';
+            if(billArray[i].ID==id){
+                billArray[i].Status = 'unprocessed';
             }
         }
         document.getElementById('status').innerHTML="Chưa xử lý";
