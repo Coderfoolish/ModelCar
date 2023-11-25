@@ -144,14 +144,14 @@ function showProductList(vitri) {
     var dem = 0;
     for (var i = vitri; i < productArray.length; i++) {
         s += '<tr>' +
-            '<td>' + productArray[i].productId + '</td>' +
-            '<td><img src="../images/product/' + productArray[i].img + '"></td>' +
-            '<td>' + productArray[i].name + '</td>' +
+            '<td>' + productArray[i].productID + '</td>' +
+            '<td><img src="../images/product/' + productArray[i].productIMG + '"></td>' +
+            '<td>' + productArray[i].productName + '</td>' +
             '<td>' + productArray[i].brand.toUpperCase() + '</td>' +
             '<td>' + currency(productArray[i].price) + '</td>' +
             '<td>' +
-            '<button class="delete" onClick="deleteproduct(\'' + productArray[i].productId + '\')">&times;</div>' +
-            '<button class="change" onClick="showchangeproductbox(\'' + productArray[i].productId + '\')">Sửa</div>' +
+            '<button class="delete" onClick="deleteproduct(\'' + productArray[i].productID + '\')">&times;</div>' +
+            '<button class="change" onClick="showchangeproductbox(\'' + productArray[i].productID + '\')">Sửa</div>' +
             '</td>' +
             '</tr>';
         dem++;
@@ -166,7 +166,7 @@ function deleteproduct(productiddelete){
     var productArray = JSON.parse(localStorage.getItem('product'));
     var vitri;
     for(var i=0;i<productArray.length;i++){
-        if(productArray[i].productId == productiddelete){
+        if(productArray[i].productID == productiddelete){
             if(confirm('Bạn có muốn xóa sản phẩm này?')){
                 productArray.splice(i, 1);
             }
@@ -206,7 +206,7 @@ function closechangebox(){
 }
 function addProduct(){
     var productArray = JSON.parse(localStorage.getItem('product'));
-    var productid = productArray[0].productId+1;
+    var productid = productArray[0].productID+1;
     var productname = document.getElementById('productname');
     var brand = document.getElementById('brand');
     var price = document.getElementById('productprice');
@@ -241,16 +241,16 @@ function searchproduct(){
         }
         else {
             for(var i = 0; i < productArray.length; i++) {
-                if (productArray[i].name.toLowerCase().search(name) >=0) {
+                if (productArray[i].productName.toLowerCase().search(name) >=0) {
                     s+='<tr>'+
-                        '<td>'+productArray[i].productId+'</td>'+
-                        '<td><img src="../'+productArray[i].img+'"></td>'+
-                        '<td>'+productArray[i].name+'</td>'+
+                        '<td>'+productArray[i].productID+'</td>'+
+                        '<td><img src="../'+productArray[i].productIMG+'"></td>'+
+                        '<td>'+productArray[i].productName+'</td>'+
                         '<td>'+productArray[i].brand+'</td>'+
                         '<td>'+currency(productArray[i].price)+'</td>'+
                         '<td>'+
-                        '<button class="delete" onClick="deleteproduct(\''+productArray[i].productId+'\')">&times;</div>'+
-                        '<button class="change" onClick="showchangeproductbox(\''+productArray[i].productId+'\')">Sửa</div>'+
+                        '<button class="delete" onClick="deleteproduct(\''+productArray[i].productID+'\')">&times;</div>'+
+                        '<button class="change" onClick="showchangeproductbox(\''+productArray[i].productID+'\')">Sửa</div>'+
                         '</td>'+
                         '</tr>';
                 }
@@ -260,16 +260,16 @@ function searchproduct(){
     }
     else{
         for(var i = 0; i < productArray.length; i++) {
-            if (productArray[i].name.toLowerCase().search(name)  >=0  && productArray[i].brand==brand) {
+            if (productArray[i].productName.toLowerCase().search(name)  >=0  && productArray[i].brand==brand) {
                 s+='<tr>'+
-                    '<td>'+productArray[i].productId+'</td>'+
-                    '<td><img src="../'+productArray[i].img+'"></td>'+
-                    '<td>'+productArray[i].name+'</td>'+
+                    '<td>'+productArray[i].productID+'</td>'+
+                    '<td><img src="../'+productArray[i].productIMG+'"></td>'+
+                    '<td>'+productArray[i].productName+'</td>'+
                     '<td>'+productArray[i].brand+'</td>'+
                     '<td>'+currency(productArray[i].price)+'</td>'+
                     '<td>'+
-                    '<button class="delete" onClick="deleteproduct(\''+productArray[i].productId+'\')">&times;</div>'+
-                    '<button class="change" onClick="showchangeproductbox(\''+productArray[i].productId+'\')">Sửa</div>'+
+                    '<button class="delete" onClick="deleteproduct(\''+productArray[i].productID+'\')">&times;</div>'+
+                    '<button class="change" onClick="showchangeproductbox(\''+productArray[i].productID+'\')">Sửa</div>'+
                     '</td>'+
                     '</tr>';
             }
