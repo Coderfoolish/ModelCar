@@ -64,7 +64,7 @@ function showinfobill(id){
                 '<h4>Địa chỉ:</h4>'+
                 '<p>'+billArray[i].Ctmaddress+'</p>'+
                 '<h4>Số điện thoại liên lạc:</h4>'+
-                '<p>'+billArray[i].Ctmphone+'</p>'+
+                '<p>'+billArray[i].Ctmphonet+'</p>'+
                 '<h4>Tổng giá tiền:</h4>'+
                 '<p>'+currency(billArray[i].Totalprice)+'</p>';
             if (billArray[i].status=="Chưa xử lý") {

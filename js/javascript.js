@@ -3,35 +3,7 @@ createAdmin();
 function currency(num) {
   return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.") + " VND";
 }
-
-function showMenu() {
-  var menuList = ["TOYOTA", "LAMBORGHINI", "MCLAREN", "PORSCHE", "FERRARI"];
-  var ul = document.getElementById("navmenu");
-  var li = '<li><a href="index.html">TRANG CHỦ</a></li>';
-  for (var i = 0; i < menuList.length; i++) {
-    li +=
-      '<li><a href="index.html?' +
-      menuList[i].toLowerCase() +
-      '&0">' +
-      menuList[i] +
-      "</a></li>";
-    ul.innerHTML = li;
-  }
-}
-
-function showMenuMobile() {
-  var btn = document.getElementById("btnmenu");
-  if (btn.className == "") {
-    document.getElementById("btnmenu").classList.add("show");
-    document.getElementById("btnmenu").innerHTML = "&times;";
-    document.getElementById("navmenu").classList.add("active");
-  } else {
-    document.getElementById("btnmenu").classList.remove("show");
-    document.getElementById("btnmenu").innerHTML = "&#9776;";
-    document.getElementById("navmenu").classList.remove("active");
-  }
-}
-
+//login
 function createAdmin() {
   if (localStorage.getItem("user") === null) {
     var userArray = [];
@@ -252,7 +224,7 @@ function checklogin() {
     }
   }
 }
-
+//login
 //banner slideshow begin
 var slideIndex = 0;
 automaticSlideshow();
