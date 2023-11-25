@@ -67,7 +67,7 @@ function showinfobill(id){
                 '<p>'+billArray[i].Ctmphone+'</p>'+
                 '<h4>Tổng giá tiền:</h4>'+
                 '<p>'+currency(billArray[i].Totalprice)+'</p>';
-            if (billArray[i].Status=="Chưa xử lý") {
+            if (billArray[i].Status=="unprocessed") {
                 s+='<h4>Tình trạng:</h4>'+
                     '<div><span id="status" style="color:red">'+billArray[i].Status+'</span><label><input type="checkbox" onchange="changeStatus(this,'+billArray[i].ID+')" ><span class="slider"></span></label></div>';
             }
@@ -127,10 +127,10 @@ function changeStatus(checkbox,id){
     }else {
         for (var i = 0; i < billArray.length; i++) {
             if(billArray[i].id==id){
-                billArray[i].status = 'Chưa xử lý';
+                billArray[i].status = 'unprocessed';
             }
         }
-        document.getElementById('status').innerHTML="Chưa xử lý";
+        document.getElementById('status').innerHTML="unprocessed";
         document.getElementById('status').style.color = 'red';
     }
     localStorage.setItem('bill',JSON.stringify(billArray));
