@@ -244,7 +244,7 @@ function searchproduct(){
                 if (productArray[i].productName.toLowerCase().search(name) >=0) {
                     s+='<tr>'+
                         '<td>'+productArray[i].productID+'</td>'+
-                        '<td><img src="../'+productArray[i].productIMG+'"></td>'+
+                        '<td><img src="../images/product/'+productArray[i].productIMG+'"></td>'+
                         '<td>'+productArray[i].productName+'</td>'+
                         '<td>'+productArray[i].brand+'</td>'+
                         '<td>'+currency(productArray[i].price)+'</td>'+
