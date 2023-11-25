@@ -130,7 +130,7 @@ function changeStatus(checkbox,id){
                 billArray[i].Status = 'unprocessed';
             }
         }
-        document.getElementById('status').innerHTML="Chưa xử lý";
+        document.getElementById('status').innerHTML="unprocessed";
         document.getElementById('status').style.color = 'red';
     }
     localStorage.setItem('bill',JSON.stringify(billArray));
@@ -244,7 +244,7 @@ function searchproduct(){
                 if (productArray[i].productName.toLowerCase().search(name) >=0) {
                     s+='<tr>'+
                         '<td>'+productArray[i].productID+'</td>'+
-                        '<td><img src="../'+productArray[i].productIMG+'"></td>'+
+                        '<td><img src="../images/product/'+productArray[i].productIMG+'"></td>'+
                         '<td>'+productArray[i].productName+'</td>'+
                         '<td>'+productArray[i].brand+'</td>'+
                         '<td>'+currency(productArray[i].price)+'</td>'+
@@ -260,10 +260,10 @@ function searchproduct(){
     }
     else{
         for(var i = 0; i < productArray.length; i++) {
-            if (productArray[i].productName.toLowerCase().search(name)  >=0  && productArray[i].brand==brand) {
-                s+='<tr>'+
+            if (productArray[i].productName.toLowerCase().search(name)>=0&&productArray[i].brand.toLowerCase()==brand) {
+                    s+='<tr>'+
                     '<td>'+productArray[i].productID+'</td>'+
-                    '<td><img src="../'+productArray[i].productIMG+'"></td>'+
+                    '<td><img src="../images/product/'+productArray[i].productIMG+'"></td>'+
                     '<td>'+productArray[i].productName+'</td>'+
                     '<td>'+productArray[i].brand+'</td>'+
                     '<td>'+currency(productArray[i].price)+'</td>'+

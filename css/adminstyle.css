@@ -1013,7 +1013,7 @@ table th {
 	padding: 10px;
 	margin: 30px auto;
 	border: 3px solid #ff4700;
-	background-color: #ff4700;
+	background-color: var(--red);
 	color: #fff;
 	display: block;
 	cursor: pointer;
@@ -1023,8 +1023,8 @@ table th {
 	color: #ff4700;
 }
 #modal1 #info{
-	width: 500px;
-	height: 600px;
+	width: 600px;
+	height: 700px;
 	background-color: #fff;
 	margin: 120px auto;
 	position: relative;

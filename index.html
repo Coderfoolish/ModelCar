@@ -78,26 +78,28 @@
                     </label>
                     <i class='bx bx-search-alt'></i>
                     <div id="searchsection">
-                        <button onclick="closeSearch()" id="buttonclose">x</button>
-                        <label for="searchtext2"><i class='bx bx-search-alt'></i></label>
-                        <input type="text" id="searchtext2" onchange="searching()" value="" placeholder="Tìm kiếm">
-                        <div id="advancedsearch">
-                            <div id="searchBrand">
-                                <select id="brand" name="brand" onchange="searching()">
-                                    <option value="all" selected>ALL</option>
-                                    <option value="Ferrari">Ferrari</option>
-                                    <option value="Toyota">Toyota</option>
-                                    <option value="Lamborghini">Lamborghini</option>
-                                    <option value="McLaren">McLaren</option>
-                                    <option value="Porsche">Porsche</option>
-                                </select>
-                            </div>
-                            
-                            <div id="searchPrice">
-                                <input type="text" class="searchprice" onchange="searching()" value="" id="pricefrom" placeholder="giá từ"> 
-                                <input type="text" class="searchprice" onchange="searching()" value="" id="priceto" placeholder="đến">
-                                <button onclick=""><img src="images/icon/arrow.svg" alt=""></button>
-                            </div>
+                        <form onkeyup="searching()" onchange="searching()">
+                            <button onclick="closeSearch()" id="buttonclose">x</button>
+                            <label for="searchtext2"><i class='bx bx-search-alt'></i></label>
+                            <input type="text" id="searchtext2" value="" placeholder="Tìm kiếm">
+                            <div id="advancedsearch">
+                                <div id="searchBrand">
+                                    <select id="brand" name="brand">
+                                        <option value="all" selected>ALL</option>
+                                        <option value="Ferrari">Ferrari</option>
+                                        <option value="Toyota">Toyota</option>
+                                        <option value="Lamborghini">Lamborghini</option>
+                                        <option value="McLaren">McLaren</option>
+                                        <option value="Porsche">Porsche</option>
+                                    </select>
+                                </div>
+                                
+                                <div id="searchPrice">
+                                    <input type="text" class="searchprice" value="" id="pricefrom" placeholder="giá từ"> 
+                                    <input type="text" class="searchprice" value="" id="priceto" placeholder="đến">
+                                    <button onclick=""><img src="images/icon/arrow.svg" alt=""></button>
+                                </div>
+                        </form>
                         </div>
                     
                         <div id="searchresult">
