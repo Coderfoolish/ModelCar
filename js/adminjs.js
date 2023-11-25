@@ -54,26 +54,26 @@ function showinfobill(id){
     var billArray = JSON.parse(localStorage.getItem('bill'));
     var s='<button class="close" onClick="closeinfobill()">&times;</button>';
     for (var i = 0; i <billArray.length; i++) {
-        if(billArray[i].id==id){
+        if(billArray[i].ID==id){
             s +='<h4>Thông tin đơn hàng:</h4>'+
                 '<p>'+billArray[i].Info+'</p>'+
                 '<h4>Ngày tạo đơn hàng:</h4>'+
                 '<p>'+billArray[i].Date+'</p>'+
                 '<h4>Tên khách hàng:</h4>'+
-                '<p>'+billArray[i].Ctmusername+'</p>'+
+                '<p>'+billArray[i].Ctmfullname+'</p>'+
                 '<h4>Địa chỉ:</h4>'+
                 '<p>'+billArray[i].Ctmaddress+'</p>'+
                 '<h4>Số điện thoại liên lạc:</h4>'+
-                '<p>'+billArray[i].Ctmphonet+'</p>'+
+                '<p>'+billArray[i].Ctmphone+'</p>'+
                 '<h4>Tổng giá tiền:</h4>'+
                 '<p>'+currency(billArray[i].Totalprice)+'</p>';
-            if (billArray[i].status=="Chưa xử lý") {
+            if (billArray[i].Status=="Chưa xử lý") {
                 s+='<h4>Tình trạng:</h4>'+
-                    '<div><span id="status" style="color:red">'+billArray[i].status+'</span><label><input type="checkbox" onchange="changeStatus(this,'+billArray[i].id+')" ><span class="slider"></span></label></div>';
+                    '<div><span id="status" style="color:red">'+billArray[i].Status+'</span><label><input type="checkbox" onchange="changeStatus(this,'+billArray[i].ID+')" ><span class="slider"></span></label></div>';
             }
             else {
                 s+='<h4>Tình trạng:</h4>'+
-                    '<div><span id="status" style="color:blue">'+billArray[i].status+'</span><label><input type="checkbox" checked onchange="changeStatus(this,'+billArray[i].id+')" ><span class="slider"></span></label></div>';
+                    '<div><span id="status" style="color:blue">'+billArray[i].Status+'</span><label><input type="checkbox" checked onchange="changeStatus(this,'+billArray[i].ID+')" ><span class="slider"></span></label></div>';
             }
             s+='<button class="printbtn" onClick="window.print()">In đơn hàng</button>';
         }
@@ -81,7 +81,6 @@ function showinfobill(id){
     document.getElementById('info').innerHTML = s;
 }
 function closeinfobill(){
-
     document.getElementById('modal1').style.display = 'none';
 }
 function searchBill(){
