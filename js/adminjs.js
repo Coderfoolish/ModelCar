@@ -14,6 +14,37 @@ function currency(num) {
 
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') + ' $';
 }
+// Gom
+function  showDeafault()
+{
+    document.getElementById("thongKeSideBar").style.display = 'block' ;
+    document.getElementById('productSideBar').style.display= 'none' ;
+    document.getElementById('userSideBar').style.display= 'none' ;
+    document.getElementById('billSideBar').style.display= 'none' ;
+
+
+}
+function showProductSideBar()
+{
+    document.getElementById('productSideBar').style.display= 'block' ;
+    document.getElementById("thongKeSideBar").style.display = 'none' ;
+    document.getElementById('userSideBar').style.display= 'none' ;
+    document.getElementById('billSideBar').style.display= 'none' ;
+}
+function showUserSideBar(){
+    document.getElementById('userSideBar').style.display= 'block' ;
+    document.getElementById('productSideBar').style.display= 'none' ;
+    document.getElementById("thongKeSideBar").style.display = 'none' ;
+    document.getElementById('billSideBar').style.display= 'none' ;
+}
+function showBillSideBar()
+{
+    document.getElementById('billSideBar').style.display= 'block' ;
+    document.getElementById('userSideBar').style.display= 'none' ;
+    document.getElementById('productSideBar').style.display= 'none' ;
+    document.getElementById("thongKeSideBar").style.display = 'none' ;
+}
+//END GOM
 /*ADMIN*/
 function logout(){
     localStorage.removeItem('userlogin');
@@ -185,6 +216,19 @@ function setPagination(){
         button += '<button class="pageNumber" onClick="showProductList('+vitri+')">'+i+'</button>';
     }
     document.getElementById('pagination').innerHTML = button;
+}
+function showchangeproductbox(productid){
+    document.getElementById('modal1').style.display = 'block';
+    var productArray = JSON.parse(localStorage.getItem('product'));
+    for(var i=0;i<productArray.length;i++){
+        if(productArray[i].productId == productid){
+            document.getElementById('imgbefore').src="../"+productArray[i].img;
+            document.getElementById('imgafter').src="../images/product/temp2.jpg";
+            document.getElementById('name').value=productArray[i].name;
+            document.getElementById('price').value=productArray[i].price;
+            document.getElementById('save').setAttribute('onClick', 'changeproduct('+productArray[i].productId+')');
+        }
+    }
 }
 function changeimg(input){
     var reader = new FileReader();
