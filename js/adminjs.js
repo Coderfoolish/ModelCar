@@ -11,8 +11,7 @@ function utf8(str) {
     return str.replace(/\r\n/g, '\n').replace(/\t/g, '    ').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
 }
 function currency(num) {
-
-    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') + ' $';
+    return num.toString().replace(/(\d{11})$/g, "");
 }
 // Gom
 function  showDeafault()
@@ -81,7 +80,7 @@ function showbilllist(){
     document.getElementById('billlist').innerHTML=s;
 }
 function showinfobill(id){
-    document.getElementById('modal1').style.display = 'block';
+    document.getElementById('billinfo').style.display = 'block';
     var billArray = JSON.parse(localStorage.getItem('bill'));
     var s='<button class="close" onClick="closeinfobill()">&times;</button>';
     for (var i = 0; i <billArray.length; i++) {
@@ -109,10 +108,10 @@ function showinfobill(id){
             s+='<button class="printbtn" onClick="window.print()">In đơn hàng</button>';
         }
     }
-    document.getElementById('info').innerHTML = s;
+    document.querySelector('#billinfo #info').innerHTML = s;
 }
 function closeinfobill(){
-    document.getElementById('modal1').style.display = 'none';
+    document.getElementById('billinfo').style.display = 'none';
 }
 function searchBill(){
     var billArray = JSON.parse(localStorage.getItem('bill'));
@@ -131,7 +130,7 @@ function searchBill(){
                 '<td>'+billArrayTemp[i].Date+'</td>'+
                 '<td>'+billArrayTemp[i].Ctmfullname+'</td>'+
                 '<td>'+currency(billArrayTemp[i].Totalprice)+'</td>'+
-                '<td style="color: red">'+billArrayTemp[i].Status+'</td>'+
+                '<td style="color: red">Chưa xử lý</td>'+
                 '</tr>';
         }
         else {
@@ -139,7 +138,7 @@ function searchBill(){
                 '<td>'+billArrayTemp[i].Date+'</td>'+
                 '<td>'+billArrayTemp[i].Ctmfullname+'</td>'+
                 '<td>'+currency(billArrayTemp[i].Totalprice)+'</td>'+
-                '<td style="color: blue">'+billArrayTemp[i].Status+'</td>'+
+                '<td style="color: blue">Đã xử lý</td>'+
                 '</tr>';
         }
     }
@@ -161,7 +160,7 @@ function changeStatus(checkbox,id){
                 billArray[i].Status = 'unprocessed';
             }
         }
-        document.getElementById('status').innerHTML="unprocessed";
+        document.getElementById('status').innerHTML="Chưa xử lý";
         document.getElementById('status').style.color = 'red';
     }
     localStorage.setItem('bill',JSON.stringify(billArray));
@@ -213,7 +212,7 @@ function setPagination(){
     var button='';
     for(var i = 1;i<=sotrang;i++){
         vitri=(i-1)*10;
-        button += '<button class="pageNumber" onClick="showProductList('+vitri+')">'+i+'</button>';
+        button += '<button class="pageNumber" onclick="showProductList('+vitri+')">'+i+'</button>';
     }
     document.getElementById('pagination').innerHTML = button;
 }
@@ -221,14 +220,31 @@ function showchangeproductbox(productid){
     document.getElementById('modal1').style.display = 'block';
     var productArray = JSON.parse(localStorage.getItem('product'));
     for(var i=0;i<productArray.length;i++){
-        if(productArray[i].productId == productid){
-            document.getElementById('imgbefore').src="../"+productArray[i].img;
-            document.getElementById('imgafter').src="../images/product/temp2.jpg";
-            document.getElementById('name').value=productArray[i].name;
-            document.getElementById('price').value=productArray[i].price;
-            document.getElementById('save').setAttribute('onClick', 'changeproduct('+productArray[i].productId+')');
+        if(productArray[i].productID == productid){
+            document.getElementById('imgbefore').src="../iamges/product/"+productArray[i].productIMG;
+            document.getElementById('imgafter').src="../images/product/tmp.jpg";
+            document.getElementById('change-product-name').value.value=productArray[i].productName;
+            document.getElementById('change-product-brand').value=productArray[i].brand;
+            document.getElementById('change-product-price').value.value=productArray[i].price;
+            document.getElementById('save').setAttribute('onclick', 'changeproduct('+productArray[i].productID+')');
         }
     }
+}
+function changeproduct(productid){
+	document.getElementById('modal1').style.display = 'none';
+	var productArray = JSON.parse(localStorage.getItem('product'));
+	var vitri;
+	for(var i=0;i<productArray.length;i++){
+		if(productArray[i].productID == productid){
+			productArray[i].productIMG=document.getElementById('imgafter').src;
+			productArray[i].productName=document.getElementById('change-product-name').value;
+			productArray[i].brand=document.getElementById('change-product-brand').value;
+			productArray[i].price=document.getElementById('change-product-price').value;
+			vitri = (Math.floor(i/10))*10;
+		}
+	}
+	localStorage.setItem('product', JSON.stringify(productArray));
+	showProductList(vitri);
 }
 function changeimg(input){
     var reader = new FileReader();
@@ -254,6 +270,7 @@ function addProduct(){
     var productname = document.getElementById('productname');
     var brand = document.getElementById('brand');
     var price = document.getElementById('productprice');
+
     if(!brand.value || !productname.value || !price.value){
         customAlert('Bạn chưa nhập đủ thông tin sản phẩm','warning');
         return false;
@@ -263,10 +280,10 @@ function addProduct(){
         return false;
     }
     var producttemp = {
-        productId: productid,
+        productID: productid,
         brand: brand.value,
-        img: '../images/product/temp.jpg',
-        name: productname.value,
+        productIMG: 'tmp.jpg',
+        productName: productname.value,
         price: price.value
     };
     productArray.unshift(producttemp);

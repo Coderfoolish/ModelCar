@@ -275,9 +275,6 @@ ul.devided > li:last-child {
 	border: 1px solid black;
 	border-radius: 8px;
 }
-#searchsection #searchPrice button{
-	width: 20px;
-}
 
 #searchresult{
 	width: 100%;

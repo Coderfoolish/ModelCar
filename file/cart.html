@@ -6,8 +6,6 @@
     <link rel="shortcut icon" href="../images/icon/favicon.ico">
     <link rel="stylesheet" href="../css/adminstyle.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/styleslide.css">
-    <link rel="stylesheet" href="../css/styleuser.css">
 </head>
 <body onload="checklogin();showCartTable();showBill()">
 
@@ -64,35 +62,41 @@
         <!-- MID HEADER -->
         <div class="bg-main">
             <div class="mid-header container">
-                <img src="../images/icon/logo.png" alt="logo">
+                <img src="../images/icon/logo.png" alt="logo" onclick="location.href='../index.html'">
                 <div class="search">
                     <label>
                         <input type="text" id="searchtext" onclick="showSearch()" placeholder="Tìm kiếm">
                     </label>
                     <i class='bx bx-search-alt'></i>
                     <div id="searchsection">
-                        <button onclick="closeSearch()" id="buttonclose">x</button>
-                        <input type="text" id="searchtext2" onchange="search()" placeholder="Tìm kiếm">
-                        <div id="advancedsearch" class="brand">
-                            <div id="searchBrand">
-                                <select name="brand" onchange="search()">
-                                    <option value="all" selected>ALL</option>
-                                    <option value="Ferrari">Ferrari</option>
-                                    <option value="Toyota">Toyota</option>
-                                    <option value="Lamborghini">Lamborghini</option>
-                                    <option value="McLaren">McLaren</option>
-                                    <option value="Porsche">Porsche</option>
-                                </select>
+                        <form onkeyup="searching()" onchange="searching()">
+                            <button onclick="closeSearch()" id="buttonclose">x</button>
+                            <label for="searchtext2"><i class='bx bx-search-alt'></i></label>
+                            <input type="text" id="searchtext2" value="" placeholder="Tìm kiếm">
+                            <div id="advancedsearch">
+                                <div id="searchBrand">
+                                    <select id="brand" name="brand">
+                                        <option value="all" selected>ALL</option>
+                                        <option value="Ferrari">Ferrari</option>
+                                        <option value="Toyota">Toyota</option>
+                                        <option value="Lamborghini">Lamborghini</option>
+                                        <option value="McLaren">McLaren</option>
+                                        <option value="Porsche">Porsche</option>
+                                    </select>
+                                </div>
+                                
+                                <div id="searchPrice">
+                                    <input type="text" class="searchprice" value="" id="pricefrom" placeholder="giá từ"> 
+                                    <input type="text" class="searchprice" value="" id="priceto" placeholder="đến">
+                                </div>
                             </div>
-                            
-                            <div id="searchPrice">
-                                <input type="text" class="searchprice" onchange="search()" value="" id="pricefrom" placeholder="giá từ"> 
-                                <input type="text" class="searchprice" onchange="search()" value="" id="priceto" placeholder="đến">
-                                <button onclick=""><img src="images/icon/arrow.svg" alt=""></button>
-                            </div>
+                        </form>
+
+                        <div id="searchresult">
+                            <ul>
+                            </ul>
+                            <div id="searchPage"></div>
                         </div>
-                    
-                        <div id="searchresult"></div>
                     </div>
                 </div>
                 <div class="user-menu">
@@ -129,6 +133,17 @@
 
     <!-- END MAIN HEADER -->
 </header>
+<div id="banner" style="display: none;">
+    <div>
+        <img class="slideShow" src="../images/banner/Autoart_Banner_with_logo.png">
+        <img class="slideShow" src="../images/banner/Bburago_Banner.png">
+        <img class="slideShow" src="../images/banner/F1_Carousel_Banner.png">
+        <img class="slideShow" src="../images/banner/Maisto_Banner_Bike_V2.png">
+        <!-- <img class="slideShow" src="images/banner/Banner_Modelcars.jpg"> -->
+    </div>
+</div>
+<div class="productInfor-container" id="productInfor-container">
+</div>
 <div id="user" class="modal">
     <div id="login">
         <form id="loginform">
@@ -202,8 +217,6 @@
 <div id="custom_alert"></div>
 
 <script src="../js/javascript.js"></script>
-<script src="../js/productjs.js"></script>
-<script src="../js/cartjs.js"></script>
 <script src="../js/adminjs.js"></script>
 
 

@@ -375,7 +375,7 @@
                                 <option value="Toyota">TOYOTA</option>
                                 <option value="Lamborghini">LAMBORGHINI</option>
                                 <option value="McLaren">MCLAREN</option>
-                                <option value="McLaren">PORSCHE</option>
+                                <option value="Porsche">PORSCHE</option>
                             </select><br>
                             <label for="productprice">Giá</label>
                             <input type="text" id="productprice">
@@ -383,11 +383,37 @@
                             <label >Ảnh</label>
                             <input type="file" onchange="changeimgadd(this)"><br>
                             <button type="reset">Xóa</button>
-                            <button type="button" onClick="addProduct()">Thêm</button>
+                            <button type="button" onclick="addProduct()">Thêm</button>
                         </form>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div id="modal1" class="madal">
+        <div id="changeproduct">
+            <button class="close" onclick="closechangebox()">x</button>
+            <div class="image">
+                <label for=""></label>
+                <img src="" alt="" id="imgbefore">
+            </div>
+            <div class="image">
+                <label for=""></label>
+                <input type="file" name="" id="imgafter">
+            </div>
+            <div class="info">
+                <label for=""></label>
+                <input type="text" id="change-product-name">
+            </div>
+            <div class="info">
+                <label for=""></label>
+                <input type="text" id="change-product-brand">
+            </div>
+            <div class="info">
+                <label for=""></label>
+                <input type="text" id="change-product-price">
+            </div>
+            <button id="save">Save</button>
         </div>
     </div>
 </div>
@@ -478,7 +504,7 @@
                 </div>
             </div>
         </div>
-        <div id="modal1" class="modal">
+        <div id="billinfo" class="modal">
             <div id="info">
             </div>
         </div>
