@@ -81,7 +81,7 @@ function showbilllist(){
     document.getElementById('billlist').innerHTML=s;
 }
 function showinfobill(id){
-    document.getElementById('modal1').style.display = 'block';
+    document.getElementById('billinfo').style.display = 'block';
     var billArray = JSON.parse(localStorage.getItem('bill'));
     var s='<button class="close" onClick="closeinfobill()">&times;</button>';
     for (var i = 0; i <billArray.length; i++) {
@@ -112,7 +112,7 @@ function showinfobill(id){
     document.getElementById('info').innerHTML = s;
 }
 function closeinfobill(){
-    document.getElementById('modal1').style.display = 'none';
+    document.getElementById('billinfo').style.display = 'none';
 }
 function searchBill(){
     var billArray = JSON.parse(localStorage.getItem('bill'));
@@ -213,7 +213,7 @@ function setPagination(){
     var button='';
     for(var i = 1;i<=sotrang;i++){
         vitri=(i-1)*10;
-        button += '<button class="pageNumber" onClick="showProductList('+vitri+')">'+i+'</button>';
+        button += '<button class="pageNumber" onclick="showProductList('+vitri+')">'+i+'</button>';
     }
     document.getElementById('pagination').innerHTML = button;
 }
@@ -221,12 +221,12 @@ function showchangeproductbox(productid){
     document.getElementById('modal1').style.display = 'block';
     var productArray = JSON.parse(localStorage.getItem('product'));
     for(var i=0;i<productArray.length;i++){
-        if(productArray[i].productId == productid){
-            document.getElementById('imgbefore').src="../"+productArray[i].img;
-            document.getElementById('imgafter').src="../images/product/temp2.jpg";
-            document.getElementById('name').value=productArray[i].name;
+        if(productArray[i].productID == productid){
+            document.getElementById('imgbefore').src="../iamges/product/"+productArray[i].productIMG;
+            document.getElementById('imgafter').src="../images/product/tmp.jpg";
+            document.getElementById('name').value=productArray[i].productName;
             document.getElementById('price').value=productArray[i].price;
-            document.getElementById('save').setAttribute('onClick', 'changeproduct('+productArray[i].productId+')');
+            document.getElementById('save').setAttribute('onclick', 'changeproduct('+productArray[i].productID+')');
         }
     }
 }
