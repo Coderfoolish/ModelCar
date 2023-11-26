@@ -861,7 +861,7 @@ table th {
 #content #leftsection #maintable #pagination .pageNumber{
     width: 25px;
     height: 25px;
-    background-color: var(--purle-color2);
+    background-color: var(--red);
     border: 2px solid var(--third-bg-color);
     text-decoration: none;
     text-align: center;
