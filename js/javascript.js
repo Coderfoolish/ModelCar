@@ -1,7 +1,7 @@
 createAdmin();
-// định dạng số tiền thành VND
+// định dạng số tiền thành $
 function currency(num) {
-  return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.") + " VND";
+    return num.toString().replace(/(\d{11})$/g, "");
 }
 //login
 function createAdmin() {
@@ -300,13 +300,23 @@ function showSearchResult(selectPage){
   var numPage=Math.ceil(searchArray.length/numProduct);
   var reSultPage='<ul>';
   for(var i=numProduct*selectPage; i<numProduct*(selectPage+1)&&i<searchArray.length; i++){
-    result+=  `<li><div class="card" onclick="showProductInfo('${searchArray[i].productID}')">
-                        <div class="img-container"><img src="images/product/${searchArray[i].productIMG}"></div>
-                        <p class="name">${searchArray[i].productName}</p>
-                        <p class="price"> Giá:${searchArray[i].price}$</p>
-                        </div>
-                    </li>`;
+    if(location.pathname=='/ModelCar/index.html'){
+      result+=  `<li><div class="card" onclick="showProductInfo('${searchArray[i].productID}')">
+                  <div class="img-container"><img src="images/product/${searchArray[i].productIMG}"></div>
+                  <p class="name">${searchArray[i].productName}</p>
+                  <p class="price"> Giá:${searchArray[i].price}$</p>
+                  </div>
+                </li>`;
+    } else {
+      result+=  `<li><div class="card" onclick="showProductInfo('${searchArray[i].productID}')">
+                  <div class="img-container"><img src="../images/product/${searchArray[i].productIMG}"></div>
+                  <p class="name">${searchArray[i].productName}</p>
+                  <p class="price"> Giá:${searchArray[i].price}$</p>
+                  </div>
+                </li>`;
+    }
   }
+  
   for(var i=0; i<numPage; i++){
     reSultPage+='<li><button onclick="showSearchResult('+i+')">'+(i+1)+'</button></li>';
   }
@@ -409,7 +419,7 @@ function showCartTable() {
           s += `<tr>
         <td><img src="../images/product/${cartArray[i].productIMG}"></td>
         <td><div>${cartArray[i].productName}</div></td>
-        <td>${cartArray[i].price}</td>
+        <td>${cartArray[i].price}$</td>
         <td>
         <button onclick="decreaseQuantity('${cartArray[i].productID}')">-</button>
         <input id="quantity" type="text" value="${
@@ -417,15 +427,16 @@ function showCartTable() {
           }" onchange="updateCart('${cartArray[i].productID}')">
         <button onclick="increaseQuantity('${cartArray[i].productID}')">+</button>
         </td>
-        <td>${fixNum(cartArray[i].price*cartArray[i].quantity,2)}</td>
+        <td>${currency(cartArray[i].price*cartArray[i].quantity)}$</td>
         <td><button onclick="deleteCart_Item('${
               cartArray[i].productID
           }')">&times;</buttom></td>
       </tr>`;
-          totalprice += fixNum(cartArray[i].price*cartArray[i].quantity,2);
+          totalprice += Number(currency(cartArray[i].price*cartArray[i].quantity));
       }
+      totalprice = currency(totalprice);
       document.getElementById("carttable").innerHTML = s;
-      document.getElementById("totalPrice").innerHTML = totalprice;
+      document.getElementById("totalPrice").innerHTML = totalprice+'$';
   }
 }
 
@@ -503,7 +514,7 @@ function Buy() {
   for (var i = 0; i < cartArray.length; i++) {
       info +=
           '"' + cartArray[i].productName + "*" + cartArray[i].quantity + '" ; ';
-      totalprice += (fixNum(cartArray[i].price*cartArray[i].quantity,2));
+      totalprice += Number(currency(cartArray[i].price*cartArray[i].quantity));
   }
           
   var user = JSON.parse(localStorage.getItem("userlogin"));
@@ -569,7 +580,7 @@ function showBill() {
                       "</div>" +
                       "<div>" +
                       billArray[i].Totalprice +
-                      "</div>" +
+                      "$</div>" +
                       "<div>" +
                       billArray[i].Date +
                       "</div>" +
@@ -1184,24 +1195,45 @@ function closeProductInfo() {
 function showProductInfo(productID) {
   var i = getIndex(productID)
   var str2 = "";
-  str2 += `<div id="productInfor">
-                            <div class="image-container">
-                            <img src="images/product/${productArray[i].productIMG}" alt="" class="product-img">
-                            </div>
-                            <div class="close-button" onclick="closeProductInfo()">
-                                <p>+</p>
-                            </div>
-                            <div class="infor-container">
-                                <h2 class="product-title">${productArray[i].productName}</h2>
-                                </h2>
-                                <h4 class="product-price">Price: ${productArray[i].price}</h4>
-                                <h4 class="quantity">quantity</h4>
-                                <button class="quantity-decrease" onclick="quantity_dec()">-</button>
-                                <input type="text" value="1" class="quantity-number" id="quantity_number">
-                                <button class="quantity-increase" onclick="quantity_inc()">+</button>
-                                <button class="addtocart" onclick="addToCart('${productArray[i].productID}')">Add to cart</button>
-                            </div>
-                        </div>`;
+  if(location.pathname=='/ModalCar/index.html'){
+    str2 += `<div id="productInfor">
+              <div class="image-container">
+              <img src="images/product/${productArray[i].productIMG}" alt="" class="product-img">
+              </div>
+              <div class="close-button" onclick="closeProductInfo()">
+                  <p>+</p>
+              </div>
+              <div class="infor-container">
+                  <h2 class="product-title">${productArray[i].productName}</h2>
+                  </h2>
+                  <h4 class="product-price">Price: ${productArray[i].price}</h4>
+                  <h4 class="quantity">quantity</h4>
+                  <button class="quantity-decrease" onclick="quantity_dec()">-</button>
+                  <input type="text" value="1" class="quantity-number" id="quantity_number">
+                  <button class="quantity-increase" onclick="quantity_inc()">+</button>
+                  <button class="addtocart" onclick="addToCart('${productArray[i].productID}')">Add to cart</button>
+              </div>
+          </div>`;
+  } else {
+    str2 += `<div id="productInfor">
+              <div class="image-container">
+              <img src="../images/product/${productArray[i].productIMG}" alt="" class="product-img">
+              </div>
+              <div class="close-button" onclick="closeProductInfo()">
+                  <p>+</p>
+              </div>
+              <div class="infor-container">
+                  <h2 class="product-title">${productArray[i].productName}</h2>
+                  </h2>
+                  <h4 class="product-price">Price: ${productArray[i].price}</h4>
+                  <h4 class="quantity">quantity</h4>
+                  <button class="quantity-decrease" onclick="quantity_dec()">-</button>
+                  <input type="text" value="1" class="quantity-number" id="quantity_number">
+                  <button class="quantity-increase" onclick="quantity_inc()">+</button>
+                  <button class="addtocart" onclick="addToCart('${productArray[i].productID}')">Add to cart</button>
+              </div>
+          </div>`;
+  }
   document.querySelector(".productInfor-container").innerHTML = str2;
   document.getElementById("productInfor-container").style.display = "block";
 }

@@ -10,10 +10,10 @@ const themeLight = 'light'
 function utf8(str) {
     return str.replace(/\r\n/g, '\n').replace(/\t/g, '    ').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
 }
-function currency(num) {
+// function currency(num) {
 
-    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') + ' $';
-}
+//     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') + ' $';
+// }
 // Gom
 function  showDeafault()
 {
