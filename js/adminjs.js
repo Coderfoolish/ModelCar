@@ -210,6 +210,7 @@ function addProduct(){
     var productname = document.getElementById('productname');
     var brand = document.getElementById('brand');
     var price = document.getElementById('productprice');
+
     if(!brand.value || !productname.value || !price.value){
         customAlert('Bạn chưa nhập đủ thông tin sản phẩm','warning');
         return false;
@@ -219,10 +220,10 @@ function addProduct(){
         return false;
     }
     var producttemp = {
-        productId: productid,
+        productID: productid,
         brand: brand.value,
-        img: '../images/product/temp.jpg',
-        name: productname.value,
+        productIMG: 'images/product/tmp.jpg',
+        productName: productname.value,
         price: price.value
     };
     productArray.unshift(producttemp);

@@ -263,18 +263,18 @@ function searching(){
   var searchArray1=[];
   var text=document.getElementById("searchtext2").value.toLowerCase();
   var productArray = JSON.parse(localStorage.getItem("product"));
-  var brand=document.getElementById("brand").value;
+  var brand=document.getElementById("brand").value.toLowerCase();
   var priceform=document.getElementById("pricefrom").value;
   if(priceform==''){priceform=0}
   var priceto=document.getElementById("priceto").value;
   if(priceto==''){
-    priceto=9999;
+    priceto=9999999999;
   }
   for(var i=0; i<productArray.length; i++){
       if((productArray[i].productName.toLowerCase().search(text)>-1
       ||productArray[i].productID.toLowerCase().search(text)>-1
       ||productArray[i].brand.toLowerCase().search(text)>-1)
-      &&compare(brand,productArray[i].brand)
+      &&compare(brand.toLowerCase(),productArray[i].brand.toLowerCase())
       &&(Number(productArray[i].price)>=Number(priceform) && Number(productArray[i].price)<=Number(priceto))){
         searchArray1.unshift(productArray[i]);
       }
@@ -1125,6 +1125,25 @@ var productArray = [
     type: "bestselling"
   },
 ];
+
+function shuffle(productArray){
+  var currentIndex = productArray.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (currentIndex>0) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = productArray[currentIndex];
+    productArray[currentIndex] = productArray[randomIndex];
+    productArray[randomIndex] = temporaryValue;
+  }
+  return productArray; 
+}
+productArray = shuffle(productArray);
 localStorage.setItem('product', JSON.stringify(productArray));
 
 
