@@ -131,7 +131,7 @@ function searchBill(){
                 '<td>'+billArrayTemp[i].Date+'</td>'+
                 '<td>'+billArrayTemp[i].Ctmfullname+'</td>'+
                 '<td>'+currency(billArrayTemp[i].Totalprice)+'</td>'+
-                '<td style="color: red">'+billArrayTemp[i].Status+'</td>'+
+                '<td style="color: red">Chưa xử lý</td>'+
                 '</tr>';
         }
         else {
@@ -139,7 +139,7 @@ function searchBill(){
                 '<td>'+billArrayTemp[i].Date+'</td>'+
                 '<td>'+billArrayTemp[i].Ctmfullname+'</td>'+
                 '<td>'+currency(billArrayTemp[i].Totalprice)+'</td>'+
-                '<td style="color: blue">'+billArrayTemp[i].Status+'</td>'+
+                '<td style="color: blue">Đã xử lý</td>'+
                 '</tr>';
         }
     }
@@ -161,7 +161,7 @@ function changeStatus(checkbox,id){
                 billArray[i].Status = 'unprocessed';
             }
         }
-        document.getElementById('status').innerHTML="unprocessed";
+        document.getElementById('status').innerHTML="Chưa xử lý";
         document.getElementById('status').style.color = 'red';
     }
     localStorage.setItem('bill',JSON.stringify(billArray));
