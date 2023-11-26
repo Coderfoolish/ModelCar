@@ -19,7 +19,7 @@
 
     <link rel="stylesheet" type="text/css" href="../css/adminstyle.css">
 </head>
-<body class="overlay-scrollbar">
+<body class="overlay-scrollbar" onload="showDeafault();showProductList(0);showUserList();showbilllist()">
 <!-- navbar -->
 <div class="navbar">
     <!-- nav left -->
@@ -74,32 +74,32 @@
 <!-- sidebar -->
 <div class="sidebar">
     <ul class="sidebar-nav">
-        <li class="sidebar-nav-item">
-            <a href="./product.html" class="sidebar-nav-link active">
+        <li class="sidebar-nav-item" onclick="showDeafault()">
+            <a href="#" class="sidebar-nav-link active">
                 <div>
                     <i class='bx bx-line-chart'></i>
                 </div>
                 <span>Thống kê </span>
             </a>
         </li>
-        <li  class="sidebar-nav-item">
-            <a href="./goods.html" class="sidebar-nav-link">
+        <li  class="sidebar-nav-item" onclick="showProductSideBar()">
+            <a href="#" class="sidebar-nav-link">
                 <div>
                     <i class='bx bxs-package'></i>
                 </div>
                 <span>Sản phẩm </span>
             </a>
         </li>
-        <li  class="sidebar-nav-item">
-            <a href="../admin/user.html" class="sidebar-nav-link">
+        <li  class="sidebar-nav-item" onclick="showUserSideBar()">
+            <a href="#" class="sidebar-nav-link">
                 <div>
                     <i class='bx bx-group'></i>
                 </div>
                 <span>Khách hàng</span>
             </a>
         </li>
-        <li  class="sidebar-nav-item">
-            <a href="../admin/bill.html" class="sidebar-nav-link">
+        <li  class="sidebar-nav-item" onclick="showBillSideBar()">
+            <a href="#" class="sidebar-nav-link">
                 <div>
                     <i class='bx bx-list-ul'></i>
                 </div>
@@ -110,7 +110,7 @@
 </div>
 <!-- end sidebar -->
 <!-- main content -->
-<div class="wrapper">
+<div class="wrapper" id="thongKeSideBar">
     <div class="row">
         <div class="col-4 col-m-6 col-sm-6">
             <div class="counter bg-primary">
@@ -315,6 +315,176 @@
         </div>
     </div>
 </div>
+<!--END TNONg KE-->
+<!--QUAN LI SAN PHAM-->
+<div class="wrapper" id="productSideBar">
+    <div class="row">
+        <div class="col-8 col-m-12 col-sm-12">
+            <div id="content">
+                <div id="leftsection">
+                    <div id="maintable">
+                        <h1>DANH SÁCH SẢN PHẨM</h1>
+                        <table id="productlist">
+                        </table>
+                        <div id="pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 col-m-12 col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3>
+                        TÌM KIẾM SẢN PHẨM
+                    </h3>
+                    <i class='bx bxs-user-detail'></i>
+                </div>
+                <div class="card-content">
+                    <div class="subsection">
+                        <form onkeyup="searchproduct()" onchange="searchproduct()">
+                            <label for="searchproductname">Tên sản phẩm</label>
+                            <input type="text" id="searchproductname">
+                            <label for="searchproductbrand">Thương hiệu</label>
+                            <select id="searchproductbrand">
+                                <option value="all" selected>TẤT CẢ</option>
+                                <option value="Ferrari">FERRARI</option>
+                                <option value="Toyota">TOYOTA</option>
+                                <option value="Lamborghini">LAMBORGHINI</option>
+                                <option value="McLaren">MCLAREN</option>
+                                <option value="Porsche">PORSCHE</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h3>
+                        THÊM SẢN PHẨM
+                    </h3>
+                    <i class='bx bx-cart-add'></i>
+                </div>
+                <div class="card-content">
+                    <div class="subsection">
+                        <form>
+                            <label for="productname">Tên sản phẩm</label>
+                            <input type="text" id="productname">
+                            <label for="brand">Thương hiệu:</label>
+                            <select id="brand">
+                                <option value="Ferrari">FERRARI</option>
+                                <option value="Toyota">TOYOTA</option>
+                                <option value="Lamborghini">LAMBORGHINI</option>
+                                <option value="McLaren">MCLAREN</option>
+                                <option value="McLaren">PORSCHE</option>
+                            </select><br>
+                            <label for="productprice">Giá</label>
+                            <input type="text" id="productprice">
+                            <img id="imgadd" src="../images/icon/temp2.jpg">
+                            <label >Ảnh</label>
+                            <input type="file" onchange="changeimgadd(this)"><br>
+                            <button type="reset">Xóa</button>
+                            <button type="button" onClick="addProduct()">Thêm</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END QUAN LI SAN PHAM-->
+<!--QUAN LI KHANH HANG-->
+<div class="wrapper" id="userSideBar">
+    <div class="row">
+        <div class="col-8 col-m-12 col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3>
+                        Table
+                    </h3>
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+                <div class="card-content">
+                    <table id="userlist">
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 col-m-12 col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3>
+                        TÌM KIẾM KHÁCH HÀNG
+                    </h3>
+                    <i class='bx bxs-user-detail'></i>
+                </div>
+                <div class="card-content">
+                    <div class="subsection">
+                        <form>
+                            <label for="username">Tên đăng nhập</label>
+                            <input type="text" id="username">
+                            <label for="fullname">Tên khách hàng</label>
+                            <input type="text" id="fullname">
+                            <label for="datesign">Ngày đăng ký</label>
+                            <input type="date" id="datesign">
+                            <button type="reset">Xóa</button>
+                            <button type="button">Tìm</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END QUAN LI KHANH HANG-->
+<!--QUAN LI DON HANG-->
+<div class="wrapper" id="billSideBar">
+    <div class="row">
+        <div class="col-8 col-m-12 col-sm-12">
+            <div id="content">
+                <div id="leftsection">
+                    <div id="maintable">
+                        <h3>QUẢN LÝ ĐƠN HÀNG</h3>
+                        <table id="billlist">
+                            <tr>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 col-m-12 col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3>
+                        TÌM KIẾM KHÁCH HÀNG
+                    </h3>
+                    <i class='bx bxs-user-detail'></i>
+                </div>
+                <div class="rightsection">
+                    <div class="subsection">
+                        <form>
+                            <label for="name">Tên khách hàng</label>
+                            <input type="text" id="name">
+                            <label for="date">Ngày</label>
+                            <input type="date" id="date">
+                            <label for="status">Trạng thái</label>
+                            <select id="statussearch">
+                                <option value="unprocessed">Chưa xử lý</option>
+                                <option value="processed">Đã xử lý</option>
+                            </select>
+                            <button type="button" onclick="searchBill()">Tìm</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal1" class="modal">
+            <div id="info">
+            </div>
+        </div>
+    </div>
+</div>
+<!--END QUAN LI DON HANG-->
 <!-- end main content -->
 <!-- import script -->
 <script src="../js/adminjs.js"></script>
