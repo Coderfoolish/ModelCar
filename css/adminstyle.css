@@ -872,7 +872,7 @@ table th {
 }
 #content #leftsection #maintable #pagination .pageNumber:hover{
     background-color: #fff;
-    color: #ff4700;
+    color: var(--red);
 }
 #content #rightsection{
     width: 35%;
@@ -911,7 +911,7 @@ table th {
 }
 #content #rightsection .subsection input:focus{
     outline: none;
-    border-bottom: 2px solid #ff4700
+    border-bottom: 2px solid var(--red);
 }
 #content #rightsection .subsection select{
     height: 30px;
@@ -936,8 +936,8 @@ table th {
     box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.3);
 }
 #content #rightsection .subsection button:hover{
-    border: 2px solid #ff4700;
-    color: #ff4700;
+    border: 2px solid var(--red);
+    color: var(--red);
 }
 /*END Quản lí đơn hàng*/
 .modal{
@@ -950,14 +950,17 @@ table th {
 	display: none;
 	z-index: 10;
 }
+#modal1{
+    display: none;
+}
 #modal1 #changeproduct{
-	width: 60%;
-	height: auto;
+	width: 600px;
+	height: 700px;
 	background-color: #fff;
-	margin: 50px auto;
+	margin: 70px auto;
 	position: relative;
-	padding: 10px;
-	animation: topdown 0.5s;
+    top: 0;
+	padding: 6px;
 }
 #modal1 #changeproduct .close{
 	position: absolute;
@@ -969,7 +972,7 @@ table th {
 	cursor: pointer;
 }
 #modal1 #changeproduct .close:hover{
-	color: #ff4700;
+	color: var(--red);
 }
 #modal1 #changeproduct .image{
 	margin-top: 50px;
@@ -1007,20 +1010,20 @@ table th {
 	margin-left: 202px;
 	cursor: pointer;
 }
-#modal1 #changeproduct button#save{
+#modal1 #changeproduct button #save{
 	font-size: 16pt;
 	width: 200px;
 	padding: 10px;
 	margin: 30px auto;
-	border: 3px solid #ff4700;
+	border: 3px solid var(--red);
 	background-color: var(--red);
 	color: #fff;
 	display: block;
 	cursor: pointer;
 }
-#modal1 #changeproduct button#save:hover{
+#modal1 #changeproduct button #save:hover{
 	background-color: #fff;
-	color: #ff4700;
+	color: var(--red);
 }
 #billinfo #info{
 	width: 600px;
