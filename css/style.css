@@ -1358,17 +1358,10 @@ button {
 /*FOOTER*/
 
 /* FOOTER TOP */
-.main-footer {
-	height: 3000px;
-	position: relative;
-}
 
 #footer {
-	position: absolute;
-	bottom: 0px;
-	left: 0px;
-	right: 0px;
-	/* font-weight:  150; */
+	position: relative;
+	bottom: -3000px;
 }
 
 .footer__top {
