@@ -17,8 +17,7 @@
     <title>CMS</title>
 </head>
 
-<body onload="loadproduct();showSpecialProducts('featured');checklogin()">
-<header>
+<body onload="loadproduct();pushspecialProduct();showSpecialProducts('featured',0);checklogin();setLocation('index')">
     <!-- MOBILE MENU -->
     <div class="mobile-menu bg-second">
         <a href="#" class="mb-logo">DinoShop</a>
@@ -204,13 +203,13 @@
 <div class="specialProducts" id="specialProducts">
     <ul class="specialProducts-tabs" id="closeNav">
         <li class="tab" id="featured">
-            <a class="tab-title" id="onload" onclick="showSpecialProducts('featured')">featured</a>
+            <a class="tab-title" id="onload" onclick="showSpecialProducts('featured',0)">featured</a>
         </li>
         <li class="tab" id="bestselling">
-            <a class="tab-title" onclick="showSpecialProducts('bestselling')">bestselling</a>
+            <a class="tab-title" onclick="showSpecialProducts('bestselling',0)">bestselling</a>
         </li>
         <li class="tab">
-            <a class="tab-title" onclick="showSpecialProducts('new')">new</a>
+            <a class="tab-title" onclick="showSpecialProducts('new',0)">new</a>
         </li>
     </ul>
     <div class="productList-container">

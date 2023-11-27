@@ -1132,10 +1132,8 @@ li.product {
 button.addtocart {
 	width: 160px;
 	height: 46px;
-	position: absolute;
-	bottom: 20%;
-	right: 0;
-	margin-bottom: 10px;
+	margin-left: 50px;
+	margin-bottom: 20px;
 	background-color: #C70039;
 	border: #000 solid 2px;
 }
