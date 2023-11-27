@@ -424,6 +424,7 @@ ul.devided > li:last-child {
 	font-weight: 600;
 	height: 100%;
 	text-transform: uppercase;
+	cursor: pointer;
 }
 
  #setting-admin {
