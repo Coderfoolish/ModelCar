@@ -24,10 +24,6 @@ function showform() {
   var userform = document.getElementById("user");
   userform.style.display = "block";
 }
-
-function showSearch() {
-    document.getElementById('searchsection').style.display = 'block';
-}
 function closeform() {
   var userform = document.getElementById("user");
   userform.style.display = "none";
@@ -106,13 +102,13 @@ function createUser(e) {
       document.getElementById("passworderror").style.display = "none";
     }
   }
-  if (password2.value != password.value) {
+    if (password2.value !== password.value) {
     document.getElementById("password2error").style.display = "block";
     flag = false;
   } else {
     document.getElementById("password2error").style.display = "none";
   }
-  if (flag == false) {
+    if (flag === false) {
     return false;
   }
   var d = new Date();
@@ -128,7 +124,7 @@ function createUser(e) {
   };
   var userArray = JSON.parse(localStorage.getItem("user"));
   for (var i = 0; i < userArray.length; i++) {
-    if (user.username == userArray[i].username) {
+      if (user.username === userArray[i].username) {
       document.getElementById("usererror").style.display = "block";
       document.getElementById("usererror").innerHTML =
           "Tên đăng nhập đã có người sử dụng";
@@ -143,10 +139,10 @@ function createUser(e) {
 }
 
 function customAlert(message, type) {
-  if (type == "success") {
+    if (type === "success") {
     document.getElementById("customalert").style.backgroundColor = "#4CAF50";
   }
-  if (type == "warning") {
+    if (type === "warning") {
     document.getElementById("customalert").style.backgroundColor = "#f44336";
   }
   document.getElementById("customalert").innerHTML = message;
