@@ -293,6 +293,12 @@ function compare(brand1, brand2){
   return brand1==brand2;
 }
 
+
+var loca;
+function setLocation(name){
+  loca=name;
+}
+
 var numProduct=9;
 
 function showSearchResult(selectPage){
