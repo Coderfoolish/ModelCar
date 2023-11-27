@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="../css/adminstyle.css">
     <link rel="stylesheet" href="../css/style.css">
 </head>
-<body onload="checklogin();showCartTable();showBill();setLocation('index')">
+<body onload="checklogin();showCartTable();showBill();setLocation('cart')">
 
 <header>
     <!-- MOBILE MENU -->
@@ -37,13 +37,13 @@
             <div class="top-header container">
                 <ul class="icon-soccial">
                     <li>
-                        <a href="#"><i class='bx bxl-facebook-circle'></i></a>
+                        <a href="https://www.facebook.com/"><i class='bx bxl-facebook-circle'></i></a>
                     </li>
                     <li>
-                        <a href="#"><i class='bx bxl-youtube' width="50px" height="50px"></i></a>
+                        <a href="https://www.youtube.com/"><i class='bx bxl-youtube'></i></a>
                     </li>
                     <li>
-                        <a href="#"><i class='bx bxl-instagram-alt'></i></a>
+                        <a href="https://twitter.com/home"><i class='bx bxl-twitter'></i></a>
                     </li>
                 </ul>
                 <ul class="devided">
@@ -111,15 +111,10 @@
                 </div>
                 <div class="user-menu">
                     <li>
-                        <button><i class='bx bx-bell'></i></button>
-                    </li>
-                    <li>
-                        <button onCLick="showform()"><i class='bx bx-user-circle'></i></button>
-                    </li>
-                    <li>
+
                         <button onClick="location.href='cart.html'"><i class='bx bx-cart-alt'></i></button>
                     </li>
-
+                    
                 </div>
             </div>
         </div>
@@ -129,11 +124,11 @@
             <div class="bottom-header container">
                 <ul id="navmenu">
                     <li class="navBtn"><a href="../index.html">TRANG CHỦ</a></li>
-                    <li class="navBtn" onclick="showBrandProducts('TOYOTA')"><a>TOYOTA</a></li>
-                    <li class="navBtn" onclick="showBrandProducts('LAMBORGHINI')"><a>LAMBORGHINI</a></li>
-                    <li class="navBtn" onclick="showBrandProducts('MCLAREN')"><a>MCLAREN</a></li>
-                    <li class="navBtn" onclick="showBrandProducts('PORSCHE')"><a>PORSCHE</a></li>
-                    <li class="navBtn" onclick="showBrandProducts('FERRARI')"><a>FERRARI</a></li>
+                    <li class="navBtn"><a href="../index.html">TOYOTA</a></li>
+                    <li class="navBtn"><a href="../index.html">LAMBORGHINI</a></li>
+                    <li class="navBtn"><a href="../index.html">MCLAREN</a></li>
+                    <li class="navBtn"><a href="../index.html">PORSCHE</a></li>
+                    <li class="navBtn"><a href="../index.html">FERRARI</a></li>
                 </ul>
             </div> <!--có navmenu của phần js để đẩy mấy sản phẩm -->
         </div>
