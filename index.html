@@ -17,7 +17,7 @@
     <title>CMS</title>
 </head>
 
-<body onload="loadproduct();showSpecialProducts('featured');checklogin()">
+<body onload="loadproduct();showSpecialProducts('featured',0);checklogin();setLocation('index')">
 <header>
     <!-- MOBILE MENU -->
     <div class="mobile-menu bg-second">
@@ -36,13 +36,13 @@
             <div class="top-header container">
                 <ul class="icon-soccial">
                     <li>
-                        <a href="#"><i class='bx bxl-facebook-circle'></i></a>
+                        <a href="https://www.facebook.com/"><i class='bx bxl-facebook-circle'></i></a>
                     </li>
                     <li>
-                        <a href="#"><i class='bx bxl-youtube'></i></a>
+                        <a href="https://www.youtube.com/"><i class='bx bxl-youtube'></i></a>
                     </li>
                     <li>
-                        <a href="#"><i class='bx bxl-twitter'></i></a>
+                        <a href="https://twitter.com/home"><i class='bx bxl-twitter'></i></a>
                     </li>
                 </ul>
                 <ul class="devided">
@@ -109,9 +109,9 @@
                     </div>
                 </div>
                 <div class="user-menu">
-                        <li>
-                            <button onCLick="showform()"><i class='bx bx-user-circle'></i></button>
-                        </li>
+                    <li>
+                        <button onCLick="showform()"><i class='bx bx-user-circle'></i></button>
+                    </li>
                     <li>
                         <button onClick="location.href='./file/cart.html'"><i class='bx bx-cart-alt'></i></button>
                     </li>
@@ -123,12 +123,6 @@
         <div class="bg-second">
             <div class="bottom-header container">
                 <ul id="navmenu">
-                    <li class="navBtn"><a href="index.html">TRANG CHỦ</a></li>
-                        <li class="navBtn" onclick="showBrandProducts('TOYOTA',0)"><a>TOYOTA</a></li>
-                        <li class="navBtn" onclick="showBrandProducts('LAMBORGHINI',0)"><a>LAMBORGHINI</a></li>
-                        <li class="navBtn" onclick="showBrandProducts('MCLAREN',0)"><a>MCLAREN</a></li>
-                        <li class="navBtn" onclick="showBrandProducts('PORSCHE',0)"><a>PORSCHE</a></li>
-                        <li class="navBtn" onclick="showBrandProducts('FERRARI',0)"><a>FERRARI</a></li>
                 </ul>
             </div> <!--có navmenu của phần js để đẩy mấy sản phẩm -->
         </div>

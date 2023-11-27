@@ -303,7 +303,7 @@ function showSearchResult(selectPage){
   var numPage=Math.ceil(searchArray.length/numProduct);
   var reSultPage='<ul>';
   for(var i=numProduct*selectPage; i<numProduct*(selectPage+1)&&i<searchArray.length; i++){
-    if(location.pathname=='/ModelCar/index.html'){
+    if(loca == 'index'){
       result+=  `<li><div class="card" onclick="showProductInfo('${searchArray[i].productID}')">
                   <div class="img-container"><img src="images/product/${searchArray[i].productIMG}"></div>
                   <p class="name">${searchArray[i].productName}</p>
@@ -321,7 +321,11 @@ function showSearchResult(selectPage){
   }
   
   for(var i=0; i<numPage; i++){
-    reSultPage+='<li><button onclick="showSearchResult('+i+')">'+(i+1)+'</button></li>';
+    if(i==selectPage){
+      reSultPage+='<li><button onclick="showSearchResult('+i+')" style="background-color: #C70039;color: #fff">'+(i+1)+'</button></li>';
+    } else {
+      reSultPage+='<li><button onclick="showSearchResult('+i+')">'+(i+1)+'</button></li>';
+    }
   }
   document.getElementById("searchPage").innerHTML=reSultPage;
   document.querySelector("#searchresult ul").innerHTML=result;
@@ -1149,15 +1153,11 @@ function loadproduct(){
 
 function shuffle(productArray){
   var currentIndex = productArray.length, temporaryValue, randomIndex;
-
-  // While there remain elements to shuffle...
   while (currentIndex>0) {
 
-    // Pick a remaining element...
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
 
-    // And swap it with the current element.
     temporaryValue = productArray[currentIndex];
     productArray[currentIndex] = productArray[randomIndex];
     productArray[randomIndex] = temporaryValue;
@@ -1167,7 +1167,7 @@ function shuffle(productArray){
 
 
 
-const specialButton = document.querySelectorAll('.specialProducts .specialProducts-tabs li a');
+var specialButton = document.querySelectorAll('.specialProducts .specialProducts-tabs li a');
 specialButton.forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelector('.clicked')?.classList.remove('clicked');
@@ -1203,7 +1203,7 @@ function showProductInfo(productID) {
   var productArray=JSON.parse(localStorage.getItem('product'));
   var i = getIndex(productID)
   var str2 = "";
-  if(location.pathname=='/ModelCar/index.html'){
+  if(loca=='index'){
     str2 += `<div id="productInfor">
               <div class="image-container">
               <img src="images/product/${productArray[i].productIMG}" alt="" class="product-img">
@@ -1246,50 +1246,162 @@ function showProductInfo(productID) {
   document.getElementById("productInfor-container").style.display = "block";
 }
 
-function showSpecialProducts(productType) {
-  var productArray=JSON.parse(localStorage.getItem('product'));
-  var str = "";
+function countProductsByBrand(productBrand) {
+  var count = 0;
   for (let i = 0; i < productArray.length; i++) {
-    if (productArray[i].type == productType) {
-      str += `<li class= "product" id="${productArray[i].productID}" onclick="showProductInfo('${productArray[i].productID}')">
-                            <div class="product-img-container">
-                                <img src="images/product/${productArray[i].productIMG}" alt="" class="product-img">
-                                <div class="product-botton" >
-                                    <div class="icon"><ion-icon name="cart"></ion-icon></div>
-                                    <div class="view-botton">view</div>
-                                </div>
-                            </div>
-                        </a>
-                        <div class="product-infor">
-                            <h4 class="product-title"><a href="">
-                                ${productArray[i].productName}
-                                </a>
-                            </h4>
-                            <p class="product-brand">${productArray[i].brand}</p>
-                            <p class="product-price">£${productArray[i].price}</p>
-                        </div>
-                </li >`;
-    }
-    document.querySelector(".specialProducts-list").innerHTML = str + `<div id="page">
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-    </div>;`
+      if (productArray[i].type == productBrand) {
+          count++;
+      }
   }
-  const specialButton = document.querySelectorAll('#onload');
-  specialButton.forEach(btn => {
-    document.querySelector('.clicked')?.classList.remove('clicked');
-    btn.classList.add('clicked');
-  });
+  return count;
 }
 
+function countSpecialProduct(productType) {
+  var count = 0;
+  for (let i = 0; i < productArray.length; i++) {
+      if (productArray[i].type == productType) {
+          count++;
+      }
+  }
+  return count;
+}
 
-function showBrandProducts(Pbrand) {
+let retrievedProductArray = JSON.parse(localStorage.getItem('product')) || [];
+
+
+// push special products into local storage----------------------------------------------------------------
+function pushspecialProduct() {
   var productArray=JSON.parse(localStorage.getItem('product'));
+  let featured = [];
+  let bestselling = [];
+  let newProduct = [];
+  let toyota = [];
+  let lamborghini = [];
+  let mclaren = [];
+  let porsche = [];
+  let ferrari = [];
+  for (let i = 0; i < productArray.length; i++) {
+      if (productArray[i].brand == 'Toyota') {
+          toyota.push(productArray[i]);
+      }
+      else if (productArray[i].brand == 'Lamborghini') {
+          lamborghini.push(productArray[i]);
+      }
+      else if (productArray[i].brand == 'McLaren') {
+          mclaren.push(productArray[i]);
+      }
+      else if (productArray[i].brand == 'Porsche'){
+          porsche.push(productArray[i]);
+      }
+      else if (productArray[i].brand == 'Ferrari'){
+          ferrari.push(productArray[i]);
+      }
+
+  }
+  for (let i = 0; i < productArray.length; i++) {
+      if (productArray[i].type == 'featured') {
+          featured.push(productArray[i]);
+      }
+      else if (productArray[i].type == 'bestselling') {
+          bestselling.push(productArray[i]);
+      }
+      else if (productArray[i].type == 'new') {
+          newProduct.push(productArray[i]);
+      }
+  }
+  localStorage.setItem('toyota', JSON.stringify(toyota));
+  localStorage.setItem('lamborghini', JSON.stringify(lamborghini));
+  localStorage.setItem('mclaren', JSON.stringify(mclaren));
+  localStorage.setItem('porsche', JSON.stringify(porsche));
+  localStorage.setItem('ferrari', JSON.stringify(ferrari));
+  localStorage.setItem('featuredProduct', JSON.stringify(featured));
+  localStorage.setItem('bestsellingProduct', JSON.stringify(bestselling));
+  localStorage.setItem('newProduct', JSON.stringify(newProduct));
+}
+
+//end push special product----------------------------------------------------------------
+
+let specialProductsPerPage = 12;
+let brandProductPerPage = 16;
+
+var featuredButton = document.querySelectorAll('#onload');
+featuredButton.forEach(btn => {
+  document.querySelector('.clicked')?.classList.remove('clicked');
+  btn.classList.add('clicked');
+});
+
+var specialButton = document.querySelectorAll('.tab-title');
+specialButton.forEach(btn => {
+  btn.addEventListener('click', () => {
+      document.querySelector('.clicked')?.classList.remove('clicked');
+      btn.classList.add('clicked');
+  });
+});
+
+
+var paginationButtons = document.querySelectorAll('button.pageButton');
+paginationButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+      document.querySelector('.pageButtonActive')?.classList.remove('pageButtonActive');
+      btn.classList.add('pageButtonActive');
+  });
+});
+
+var navButton = document.querySelectorAll('#navmenu li a');
+navButton.forEach(btn => {
+  btn.addEventListener('click', () => {
+      document.querySelector('.navBtn-click')?.classList.remove('navBtn-click');
+      btn.classList.add('navBtn-click');
+  });
+});
+
+
+function showBrandProducts(brand, index) {
   document.getElementById("closeNav").style.display = "none";
   document.getElementById("specialProducts").style.borderBottom = "0px";
   document.getElementById("banner").style.display = "none";
-  Pbrand = Pbrand.toLowerCase();
+  brand = brand.toLowerCase();
+  var brandProductArray = JSON.parse(localStorage.getItem(brand));
+  var count = 0;
+  var str = "";
+  for (var i = index; i < brandProductArray.length; i++) {
+      str += `<li class="product" onclick="showProductInfo('${brandProductArray[i].productID}')">
+          <div class="product-img-container">
+              <img src="./images/product/${brandProductArray[i].productIMG}" alt="" class="product-img">
+              <div class="product-botton" >
+                  <div class="icon"><ion-icon name="cart"></ion-icon></div>
+                  <div class="view-botton">view</div>
+              </div>
+          </div>
+          <div class="product-infor">
+              <h4 class="product-title"><a>${brandProductArray[i].productName}</a></h4>
+              <p class="product-brand">${brandProductArray[i].brand}</p>
+              <p class="product-price">${brandProductArray[i].price}$</p>
+          </div>
+      </li>`;
+      count++;
+      if (count == brandProductPerPage) break;
+  }
+  document.querySelector(".specialProducts-list").innerHTML = str + ` <div id="page">
+          </div>`;
+  brandPagination(brand);
+}
+
+function brandPagination(brand) {
+  brand = brand.toLowerCase();
+  var quantityOfPages = Math.ceil(JSON.parse(localStorage.getItem(brand)).length / brandProductPerPage);
+  var button = "";
+  for (var i = 1; i <= quantityOfPages; i++) {
+      index = (i - 1) * brandProductPerPage;
+      button += `<button class="pageButton" onclick="showBrandProducts('${brand}', ${index})">${i}</button>`
+  }
+  document.getElementById("page").innerHTML = button;
+}
+
+
+function showSpecialProducts(type, index) {
+  var specialProductArray = JSON.parse(localStorage.getItem(type + 'Product'));
+  var count = 0;
   var str = "";
   for (let i = 0; i < productArray.length; i++) {
     if (productArray[i].brand.toLowerCase() == Pbrand) {
@@ -1327,5 +1439,4 @@ navButton.forEach(btn => {
     btn.classList.add('navBtn-click');
   });
 });
-
 //END Product
