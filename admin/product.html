@@ -398,7 +398,8 @@
             </div>
             <div class="image">
                 <label for=""></label>
-                <input type="image" name="" id="imgafter">
+                <img src="" alt="" id="imgafter">
+                <input type="file" name="" id="imgaddchange" onchange="changeimg(this)">
             </div>
             <div class="info">
                 <label for=""></label>
@@ -412,6 +413,15 @@
                     <option value="Lamborghini">LAMBORGHINI</option>
                     <option value="McLaren">MCLAREN</option>
                     <option value="Porsche">PORSCHE</option>
+                </select>
+            </div>
+            <div class="info">
+                <label for=""></label>
+                <select name="" id="change-product-type">
+                    <option value="">None</option>
+                    <option value="featured">featured</option>
+                    <option value="bestselling">bestselling</option>
+                    <option value="new">new</option>>
                 </select>
             </div>
             <div class="info">

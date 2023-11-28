@@ -221,12 +221,13 @@ function showchangeproductbox(productid){
     var productArray = JSON.parse(localStorage.getItem('product'));
     for(var i=0;i<productArray.length;i++){
         if(productArray[i].productID == productid){
-            document.getElementById('imgbefore').src="../iamges/product/"+productArray[i].productIMG;
+            document.getElementById('imgbefore').src="../images/product/"+productArray[i].productIMG;
             document.getElementById('imgafter').src="../images/product/tmp.jpg";
-            document.getElementById('change-product-name').value.value=productArray[i].productName;
+            document.getElementById('change-product-name').value=productArray[i].productName;
             document.getElementById('change-product-brand').value=productArray[i].brand;
-            document.getElementById('change-product-price').value.value=productArray[i].price;
-            document.getElementById('save').setAttribute('onclick', 'changeproduct('+productArray[i].productID+')');
+            document.getElementById('change-product-type').value=productArray[i].type;
+            document.getElementById('change-product-price').value=productArray[i].price;
+            document.getElementById('save').setAttribute('onclick', 'changeproduct(\"'+productArray[i].productID+'\")');
         }
     }
 }
@@ -236,7 +237,7 @@ function changeproduct(productid){
 	var vitri;
 	for(var i=0;i<productArray.length;i++){
 		if(productArray[i].productID == productid){
-			productArray[i].productIMG=document.getElementById('imgafter').src;
+			productArray[i].productIMG=document.getElementById('imgaddchange').value;
 			productArray[i].productName=document.getElementById('change-product-name').value;
 			productArray[i].brand=document.getElementById('change-product-brand').value;
 			productArray[i].price=document.getElementById('change-product-price').value;
