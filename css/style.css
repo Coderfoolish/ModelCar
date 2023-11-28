@@ -1047,8 +1047,8 @@ li.product {
 }
 
 #productInfor {
-	width: 1000px;
-	height: 550px;
+	width: 57%;
+	height: 60%;
 	background-color: #ffffff;
 	position: fixed;
 	top: calc((100% - 550px) / 2);
