@@ -221,42 +221,67 @@ function showchangeproductbox(productid){
     var productArray = JSON.parse(localStorage.getItem('product'));
     for(var i=0;i<productArray.length;i++){
         if(productArray[i].productID == productid){
-            document.getElementById('imgbefore').src="../iamges/product/"+productArray[i].productIMG;
-            document.getElementById('imgafter').src="../images/product/tmp.jpg";
-            document.getElementById('change-product-name').value.value=productArray[i].productName;
+            document.getElementById('imgproduct').src="../images/product/"+productArray[i].productIMG;
+            document.getElementById('change-product-name').value=productArray[i].productName;
             document.getElementById('change-product-brand').value=productArray[i].brand;
-            document.getElementById('change-product-price').value.value=productArray[i].price;
-            document.getElementById('save').setAttribute('onclick', 'changeproduct('+productArray[i].productID+')');
+            document.getElementById('change-product-type').value=productArray[i].type;
+            document.getElementById('change-product-price').value=productArray[i].price;
+            document.getElementById('save').setAttribute('onclick', 'changeproduct(\"'+productArray[i].productID+'\")');
+            break;
         }
+        
     }
 }
 function changeproduct(productid){
-	document.getElementById('modal1').style.display = 'none';
-	var productArray = JSON.parse(localStorage.getItem('product'));
-	var vitri;
-	for(var i=0;i<productArray.length;i++){
-		if(productArray[i].productID == productid){
-			productArray[i].productIMG=document.getElementById('imgafter').src;
-			productArray[i].productName=document.getElementById('change-product-name').value;
-			productArray[i].brand=document.getElementById('change-product-brand').value;
-			productArray[i].price=document.getElementById('change-product-price').value;
-			vitri = (Math.floor(i/10))*10;
-		}
-	}
-	localStorage.setItem('product', JSON.stringify(productArray));
-	showProductList(vitri);
+    document.getElementById('modal1').style.display = 'none';
+
+    var productArray = JSON.parse(localStorage.getItem('product'));
+    for(var i=0;i<productArray.length;i++){
+        if(productArray[i].productID == productid){
+            var pdid=productArray[i].productID;
+            var productName=document.getElementById('change-product-name').value;
+            var brand=document.getElementById('change-product-brand').value;
+            var type=document.getElementById('change-product-type').value;
+            var price=document.getElementById('change-product-price').value;
+            if(document.getElementById('change-product-img').files[0]){
+                var productimg =document.getElementById('change-product-img').files[0];
+                var src;
+                var reader = new FileReader();
+                reader.onload = function(e){
+                   src = e.result;
+                }
+                reader.readAsDataURL(productimg);
+                productArray[i].productIMG=src;
+                productArray[i].brand= brand;
+                productArray[i].productName=productName;
+                productArray[i].price= price;
+                productArray[i].type= type;
+                localStorage.setItem('product',JSON.stringify(productArray));
+                showProductList(vitri);
+                
+            }else{
+                productArray[i].productName=productName;
+                productArray[i].brand= brand;
+                productArray[i].price= price;
+                productArray[i].type= type;
+                localStorage.setItem('product',JSON.stringify(productArray));
+                showProductList(vitri);
+            }
+
+        }
+    }
 }
-function changeimg(input){
+function changeimg(file){
     var reader = new FileReader();
-    reader.onload = function (e) {
-        document.getElementById('imgafter').src = e.target.result;
-    };
-    reader.readAsDataURL(input.files[0]);
+    reader.onload=()=>{
+        document.getElementById('imgproduct').src=reader.result;
+    }
+    reader.readAsDataURL(file.files[0]);
 }
 function changeimgadd(input){
     var reader = new FileReader();
     reader.onload = function (e) {
-        document.getElementById('imgadd').src = e.target.result;
+        document.getElementById('imgadd').src = reader.result;
     };
     reader.readAsDataURL(input.files[0]);
 }

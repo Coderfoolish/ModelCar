@@ -1,4 +1,12 @@
 createAdmin();
+
+
+// localStorage.removeItem('cart');
+// localStorage.removeItem('product');
+// localStorage.removeItem('bill');
+
+
+
 // định dạng số tiền thành $
 function currency(num) {
     return num.toString().replace(/(\d{11})$/g, "");
@@ -321,7 +329,11 @@ function showSearchResult(selectPage){
   }
   
   for(var i=0; i<numPage; i++){
-    reSultPage+='<li><button onclick="showSearchResult('+i+')">'+(i+1)+'</button></li>';
+    if(i==selectPage){
+      reSultPage+='<li><button onclick="showSearchResult('+i+')" style="background-color: #C70039;color: #fff">'+(i+1)+'</button></li>';
+    } else {
+      reSultPage+='<li><button onclick="showSearchResult('+i+')">'+(i+1)+'</button></li>';
+    }
   }
   document.getElementById("searchPage").innerHTML=reSultPage;
   document.querySelector("#searchresult ul").innerHTML=result;
@@ -616,7 +628,6 @@ function deleteBill(id) {
 
 //Product
 function loadproduct(){
-  localStorage.removeItem('product');
   if(localStorage.getItem('product')===null){
     var productArray = [
       {
@@ -717,7 +728,7 @@ function loadproduct(){
       },
       //dup
       {
-        productID: "P0013",
+        productID: "P0060",
         productName: "Bburago F1 Ferrari F1-75 #16 (Charles Leclerc) 2022 Formula 1 Model Car 1/43",
         productIMG: "ferrari/P0001.png",
         brand: "Ferrari",
@@ -725,7 +736,7 @@ function loadproduct(){
         type: "featured"
       },
       {
-        productID: "P0014",
+        productID: "P0061",
         productName: "Bburago Ferrari Race & Play F8 Tributo 1/43 B18-36054",
         productIMG: "ferrari/P0002.png",
         brand: "Ferrari",
@@ -733,7 +744,7 @@ function loadproduct(){
         type: "featured"
       },
       {
-        productID: "P0015",
+        productID: "P0062",
         productName: "Bburago Scuderia F1 Ferrari 2022 - SF21 #16 (Charles Leclerc) 2022 Model Car 1/43",
         productIMG: "ferrari/P0003.png",
         brand: "Ferrari",
@@ -741,7 +752,7 @@ function loadproduct(){
         type: "featured"
       },
       {
-        productID: "P0016",
+        productID: "P0063",
         productName: "Maisto Ferrari Enzo Kit 1/24",
         productIMG: "ferrari/P0004.png",
         brand: "Ferrari",
@@ -749,7 +760,7 @@ function loadproduct(){
         type: "featured"
       },
       {
-        productID: "P0017",
+        productID: "P0064",
         productName: "Bburago Ferrari Race And Play Monza Sp-1 1/43 Toy Car",
         productIMG: "ferrari/P0005.png",
         brand: "Ferrari",
@@ -757,7 +768,7 @@ function loadproduct(){
         type: "featured"
       },
       {
-        productID: "P0018",
+        productID: "P0065",
         productName: "Maisto Premium RC F1 Ferrari SF90 2019 Season Leclerc 1/24",
         productIMG: "ferrari/P0006.png",
         brand: "Ferrari",
@@ -765,7 +776,7 @@ function loadproduct(){
         type: "featured"
       },
       {
-        productID: "P0019",
+        productID: "P0066",
         productName: "Bburago Ferrari Racing 488 Challenge (Formula Ferrari Racing 2017) 1/24 Model Car",
         productIMG: "ferrari/P0007.png",
         brand: "Ferrari",
@@ -773,7 +784,7 @@ function loadproduct(){
         type: "featured"
       },
       {
-        productID: "P0020",
+        productID: "P0067",
         productName: "Bburago Ferrari Race & Play F12 Tdf 1/24",
         productIMG: "ferrari/P0008.png",
         brand: "Ferrari",
@@ -781,7 +792,7 @@ function loadproduct(){
         type: "featured"
       },
       {
-        productID: "P0021",
+        productID: "P0068",
         productName: "Bburago Ferrari Signature SF90 Stradale 1/18 Model Car ",
         productIMG: "ferrari/P0009.png",
         brand: "Ferrari",
@@ -789,7 +800,7 @@ function loadproduct(){
         type: "featured"
       },
       {
-        productID: "P0022",
+        productID: "P0069",
         productName: "Bburago Ferrari Race & Play 488 GTB 1/24 Model Car",
         productIMG: "ferrari/P0010.png",
         brand: "Ferrari",
@@ -797,7 +808,7 @@ function loadproduct(){
         type: "featured"
       },
       {
-        productID: "P0023",
+        productID: "P0070",
         productName: "Bburago Ferrari Race & Play Laferrari 1/24",
         productIMG: "ferrari/P0011.png",
         brand: "Ferrari",
@@ -805,7 +816,7 @@ function loadproduct(){
         type: "featured"
       },
       {
-        productID: "P0024",
+        productID: "P0071",
         productName: "Bburago Ferrari Race And Play 488 Pista 1/24 Model Car ",
         productIMG: "ferrari/P0012.png",
         brand: "Ferrari",

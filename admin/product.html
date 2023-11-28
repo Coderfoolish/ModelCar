@@ -394,18 +394,16 @@
         <div id="changeproduct">
             <button class="close" onclick="closechangebox()">x</button>
             <div class="image">
-                <img src="" alt="" id="imgbefore">
-            </div>
-            <div class="image">
-                <label for=""></label>
-                <input type="image" name="" id="imgafter">
+                <label for="change-product-img">Image</label>
+                <img src="" alt="" id="imgproduct">
+                <input type="file" name="" id="change-product-img" onchange="changeimg(this)">
             </div>
             <div class="info">
-                <label for=""></label>
+                <label for="change-product-name">Name</label>
                 <input type="text" id="change-product-name">
             </div>
             <div class="info">
-                <label for=""></label>
+                <label for="change-product-brand">Brand</label>
                 <select name="" id="change-product-brand">
                     <option value="Ferrari">FERRARI</option>
                     <option value="Toyota">TOYOTA</option>
@@ -415,7 +413,16 @@
                 </select>
             </div>
             <div class="info">
-                <label for=""></label>
+                <label for="change-product-type">Type</label>
+                <select name="" id="change-product-type">
+                    <option value="">None</option>
+                    <option value="featured">featured</option>
+                    <option value="bestselling">bestselling</option>
+                    <option value="new">new</option>>
+                </select>
+            </div>
+            <div class="info">
+                <label for="change-product-price">Price</label>
                 <input type="text" id="change-product-price">
             </div>
             <button id="save">Save</button>
