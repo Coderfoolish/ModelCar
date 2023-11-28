@@ -247,15 +247,11 @@ function changeproduct(productid){
                 var productimg =document.getElementById('change-product-img').files[0];
                 var reader = new FileReader();
                 reader.onload = ()=>{
-                    var productchange={
-                        productID: pdid,
-                        productName: productName,
-                        productIMG: reader.result,
-                        brand: brand,
-                        price: price,
-                        type: type
-                    }
-                    productArray[i]=productchange;
+                    productArray[i].productName=productName,
+                    productArray[i].productIMG= reader.result,
+                    productArray[i].brand= brand,
+                    productArray[i].price= price,
+                    productArray[i].type= type
                     localStorage.setItem('product',JSON.stringify(productArray));
                     showProductList(vitri);
                 }
@@ -263,18 +259,11 @@ function changeproduct(productid){
                 
                 
             }else{
-                var productimg =document.getElementById('imgproduct').src;
-                    var productchange={
-                        productID: productArray[i].productID == productid,
-                        productName: productName,
-                        productIMG: productimg,
-                        brand: brand,
-                        price: price,
-                        type: type
-                    }
-                productArray[i]=productchange;
+                productArray[i].productName=productName,
+                productArray[i].brand= brand,
+                productArray[i].price= price,
+                productArray[i].type= type
                 localStorage.setItem('product',JSON.stringify(productArray));
-                productchange.productIMG;
                 showProductList(vitri);
             }
 
