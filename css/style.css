@@ -362,6 +362,21 @@ ul.devided > li:last-child {
 		left: 20px;
 		right: 0;
 	}
+	#searchresult{
+		top: 120px;
+	}
+
+}
+
+@media screen and (max-width: 954px) {
+	#searchsection{
+		height: 1500px;
+	}
+}
+@media screen and (max-width: 775px) {
+	#searchsection{
+		height: 2500px;
+	}
 }
 .user-menu {
 	display: flex;

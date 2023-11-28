@@ -321,7 +321,11 @@ function showSearchResult(selectPage){
   }
   
   for(var i=0; i<numPage; i++){
-    reSultPage+='<li><button onclick="showSearchResult('+i+')">'+(i+1)+'</button></li>';
+    if(i==selectPage){
+      reSultPage+='<li><button onclick="showSearchResult('+i+')" style="background-color: #C70039;color: #fff">'+(i+1)+'</button></li>';
+    } else {
+      reSultPage+='<li><button onclick="showSearchResult('+i+')">'+(i+1)+'</button></li>';
+    }
   }
   document.getElementById("searchPage").innerHTML=reSultPage;
   document.querySelector("#searchresult ul").innerHTML=result;
