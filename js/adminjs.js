@@ -247,11 +247,11 @@ function changeproduct(productid){
                 var productimg =document.getElementById('change-product-img').files[0];
                 var reader = new FileReader();
                 reader.onload = ()=>{
-                    productArray[i].productName=productName,
-                    productArray[i].productIMG= reader.result,
-                    productArray[i].brand= brand,
-                    productArray[i].price= price,
-                    productArray[i].type= type
+                    productArray[i].productName=productName;
+                    productArray[i].productIMG= reader.result;
+                    productArray[i].brand= brand;
+                    productArray[i].price= price;
+                    productArray[i].type= type;
                     localStorage.setItem('product',JSON.stringify(productArray));
                     showProductList(vitri);
                 }
@@ -259,10 +259,10 @@ function changeproduct(productid){
                 
                 
             }else{
-                productArray[i].productName=productName,
-                productArray[i].brand= brand,
-                productArray[i].price= price,
-                productArray[i].type= type
+                productArray[i].productName=productName;
+                productArray[i].brand= brand;
+                productArray[i].price= price;
+                productArray[i].type= type;
                 localStorage.setItem('product',JSON.stringify(productArray));
                 showProductList(vitri);
             }
