@@ -986,7 +986,7 @@ li.product {
 .product:hover .product-botton {
 	background-color: #2d2626;
 	color: #fff;
-	bottom: auto;
+	bottom: 0;
 }
 
 .icon {
