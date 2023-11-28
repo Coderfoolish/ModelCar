@@ -245,18 +245,19 @@ function changeproduct(productid){
             var price=document.getElementById('change-product-price').value;
             if(document.getElementById('change-product-img').files[0]){
                 var productimg =document.getElementById('change-product-img').files[0];
+                var src;
                 var reader = new FileReader();
-                reader.onload = ()=>{
-                    productArray[i].productName=productName;
-                    productArray[i].productIMG= reader.result;
-                    productArray[i].brand= brand;
-                    productArray[i].price= price;
-                    productArray[i].type= type;
-                    localStorage.setItem('product',JSON.stringify(productArray));
-                    showProductList(vitri);
+                reader.onload = function(e){
+                   src = e.result;
                 }
                 reader.readAsDataURL(productimg);
-                
+                productArray[i].productIMG=src;
+                productArray[i].brand= brand;
+                productArray[i].productName=productName;
+                productArray[i].price= price;
+                productArray[i].type= type;
+                localStorage.setItem('product',JSON.stringify(productArray));
+                showProductList(vitri);
                 
             }else{
                 productArray[i].productName=productName;
