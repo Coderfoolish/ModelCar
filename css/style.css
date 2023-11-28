@@ -1052,11 +1052,11 @@ li.product {
 
 #productInfor {
 	width: 1000px;
-	height: 600px;
+	height: 550px;
 	background-color: #ffffff;
 	position: fixed;
-	top: calc((100% - 550px) / 2);
-	left: calc((100% - 1000px) / 2);
+	top: calc((100% - 550px)/2);
+	left: calc((100% - 1000px)/2);
 	border-radius: 16px;
 }
 
@@ -1180,7 +1180,7 @@ button {
 	text-align: center;
 	overflow: hidden;
 	border-top-right-radius: 16px;
-	line-height: 100%;
+	line-height: 110%;
 }
 
 .close-button p {
