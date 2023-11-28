@@ -1031,6 +1031,10 @@ li.product {
 	color: #b12704;
 	font-weight: 700;
 }
+.navBtn-click {
+	font-size: 18px !important;
+	color: #a50230 !important;
+}
 
 
 /* bấm nút view hiện box thông tin sản phẩm */
