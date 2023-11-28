@@ -1540,4 +1540,54 @@ function pagination(type) {
   }
   document.getElementById("page").innerHTML = button;
 }
+//post
+const preventDefaultLinks = document.querySelectorAll('.hoverimage');
+preventDefaultLinks.forEach(link => {
+  link.addEventListener('click', function(event) {
+    event.preventDefault();
+  });
+});
+
+var post = document.querySelector(".post-main__detail")
+var cancelButton = document.querySelector(".post-main__detail__bar__right")
+var imgMain = document.querySelector(".post-main-img")
+
+
+
+cancelButton.addEventListener('click',function(){
+    post.style.display = "none"
+});
+
+imgMain.addEventListener('click',function(){
+    post.style.display = "block";
+});
+
+var post1 = document.querySelector(".post-sub1__detail")
+var cancelButton1 = document.querySelector(".post-sub1__detail__bar__right")
+var imgMain1 = document.querySelector(".post-sub1-img")
+var postSub2Hide = document.querySelector(".post-sub2")
+
+
+cancelButton1.addEventListener('click',function(){
+    post1.style.display = "none"
+    postSub2Hide.style.display = "block";
+});
+
+imgMain1.addEventListener('click',function(){
+    post1.style.display = "block";
+    postSub2Hide.style.display = "none";
+});
+
+var post2 = document.querySelector(".post-sub2__detail")
+var cancelButton2 = document.querySelector(".post-sub2__detail__bar__right")
+var imgMain2 = document.querySelector(".post-sub2-img")
+
+
+cancelButton2.addEventListener('click',function(){
+    post2.style.display = "none"
+});
+
+imgMain2.addEventListener('click',function(){
+    post2.style.display = "block";
+});
 
