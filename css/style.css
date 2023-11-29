@@ -1197,7 +1197,7 @@ button {
 /* 3 bài viết */
 .post {
 	position: absolute;
-	bottom: -1500px;
+	bottom: -1450px;
 	left: 60px;
 	width: 1200px;
 	height: 640px;
@@ -1533,7 +1533,7 @@ button {
 
 #footer {
 	position: relative;
-	bottom: -3000px;
+	bottom: -2300px;
 }
 
 .footer__top {
