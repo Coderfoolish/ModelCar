@@ -307,7 +307,7 @@ function addProduct(){
     var producttemp = {
         productID: productid,
         brand: brand.value,
-        productIMG: 'tmp.jpg',
+        productIMG: '',
         productName: productname.value,
         price: price.value
     };

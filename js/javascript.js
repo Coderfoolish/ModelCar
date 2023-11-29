@@ -30,11 +30,11 @@ function createAdmin() {
 
 function showform() {
   var userform = document.getElementById("user");
-  userform.style.display = "block";
+      userform.style.display = "block";
 }
 function closeform() {
   var userform = document.getElementById("user");
-  userform.style.display = "none";
+      userform.style.display = "none";
 }
 
 function showSignUp() {
@@ -160,7 +160,6 @@ function customAlert(message, type) {
     x.className = x.classList.remove("show");
   }, 3500);
 }
-
 function login(e) {
   e.preventDefault();
   var username = document.getElementById("usernameLogin").value;
@@ -1072,14 +1071,6 @@ function loadproduct(){
         productIMG: "porsche/P0049.png",
         brand: "Porsche",
         price: "72.00",
-        type: "bestselling"
-      },
-      {
-        productID: "P0050",
-        productName: "Bburago Porsche 918 Spyder 1/24 Model Car",
-        productIMG: "porsche/P0050.png",
-        brand: "Porsche",
-        price: "12.00",
         type: "bestselling"
       },
       {
