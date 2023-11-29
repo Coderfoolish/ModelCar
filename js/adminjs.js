@@ -483,3 +483,17 @@ function openCloseDropdown(event) {
 }
 
 
+function customAlert(message, type) {
+    if (type === "success") {
+    document.getElementById("customalert").style.backgroundColor = "#4CAF50";
+  }
+    if (type === "warning") {
+    document.getElementById("customalert").style.backgroundColor = "#f44336";
+  }
+  document.getElementById("customalert").innerHTML = message;
+  var x = document.getElementById("customalert");
+  x.className = "show";
+  setTimeout(function () {
+    x.className = x.classList.remove("show");
+  }, 3500);
+}
