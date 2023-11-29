@@ -198,9 +198,16 @@ function login(e) {
 }
 
 function logout(url) {
-  localStorage.removeItem("userlogin");
-  localStorage.removeItem("cart");
-  location.href = url;
+  if(loca === 'index'){
+    localStorage.removeItem("userlogin");
+    localStorage.removeItem("cart");
+    location.href = url;
+  }
+  else{
+    location.href = '../index.html'
+    localStorage.removeItem("userlogin");
+    localStorage.removeItem("cart");
+  }
 }
 
 function checklogin() {
@@ -637,6 +644,7 @@ function loadproduct(){
         price: "11.99",
         type: "featured"
       },
+      
       {
         productID: "P0002",
         productName: "Bburago Ferrari Race & Play F8 Tributo 1/43 B18-36054",
@@ -719,6 +727,30 @@ function loadproduct(){
       },
       {
         productID: "P0012",
+        productName: "Bburago Ferrari Race And Play 488 Pista 1/24 Model Car ",
+        productIMG: "ferrari/P0012.png",
+        brand: "Ferrari",
+        price: "22.00",
+        type: "featured"
+      },
+      {
+        productID: "P0120",
+        productName: "Bburago Ferrari Race And Play 488 Pista 1/24 Model Car ",
+        productIMG: "ferrari/P0012.png",
+        brand: "Ferrari",
+        price: "22.00",
+        type: "featured"
+      },
+      {
+        productID: "P0120",
+        productName: "Bburago Ferrari Race And Play 488 Pista 1/24 Model Car ",
+        productIMG: "ferrari/P0012.png",
+        brand: "Ferrari",
+        price: "22.00",
+        type: "featured"
+      },
+      {
+        productID: "P0120",
         productName: "Bburago Ferrari Race And Play 488 Pista 1/24 Model Car ",
         productIMG: "ferrari/P0012.png",
         brand: "Ferrari",
