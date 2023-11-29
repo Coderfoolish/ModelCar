@@ -204,7 +204,7 @@ function deleteproduct(productiddelete){
         }
     }
     localStorage.setItem('product',JSON.stringify(productArray));
-    showProductList(vitri);
+    showProductList(0);
 }
 function setPagination(){
     var productArray = JSON.parse(localStorage.getItem('product'));
@@ -257,7 +257,7 @@ function changeproduct(productid){
                 productArray[i].price= price;
                 productArray[i].type= type;
                 localStorage.setItem('product',JSON.stringify(productArray));
-                showProductList(vitri);
+                showProductList(0);
                 
             }else{
                 productArray[i].productName=productName;
@@ -265,9 +265,9 @@ function changeproduct(productid){
                 productArray[i].price= price;
                 productArray[i].type= type;
                 localStorage.setItem('product',JSON.stringify(productArray));
-                showProductList(vitri);
+                showProductList(0);
             }
-
+            break;
         }
     }
 }
