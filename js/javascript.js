@@ -30,11 +30,11 @@ function createAdmin() {
 
 function showform() {
   var userform = document.getElementById("user");
-  userform.style.display = "block";
+      userform.style.display = "block";
 }
 function closeform() {
   var userform = document.getElementById("user");
-  userform.style.display = "none";
+      userform.style.display = "none";
 }
 
 function showSignUp() {
@@ -160,7 +160,6 @@ function customAlert(message, type) {
     x.className = x.classList.remove("show");
   }, 3500);
 }
-
 function login(e) {
   e.preventDefault();
   var username = document.getElementById("usernameLogin").value;
