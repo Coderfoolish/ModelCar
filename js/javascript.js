@@ -2,7 +2,7 @@ createAdmin();
 
 
 // localStorage.removeItem('cart');
-// localStorage.removeItem('product');
+localStorage.removeItem('product');
 // localStorage.removeItem('bill');
 
 
@@ -725,104 +725,15 @@ function loadproduct(){
         price: "22.00",
         type: "featured"
       },
-      //dup
       {
-        productID: "P0060",
-        productName: "Bburago F1 Ferrari F1-75 #16 (Charles Leclerc) 2022 Formula 1 Model Car 1/43",
-        productIMG: "ferrari/P0001.png",
-        brand: "Ferrari",
-        price: "11.99",
-        type: "featured"
-      },
-      {
-        productID: "P0061",
-        productName: "Bburago Ferrari Race & Play F8 Tributo 1/43 B18-36054",
-        productIMG: "ferrari/P0002.png",
-        brand: "Ferrari",
-        price: "6.50",
-        type: "featured"
-      },
-      {
-        productID: "P0062",
-        productName: "Bburago Scuderia F1 Ferrari 2022 - SF21 #16 (Charles Leclerc) 2022 Model Car 1/43",
-        productIMG: "ferrari/P0003.png",
-        brand: "Ferrari",
-        price: "11.99",
-        type: "featured"
-      },
-      {
-        productID: "P0063",
-        productName: "Maisto Ferrari Enzo Kit 1/24",
-        productIMG: "ferrari/P0004.png",
-        brand: "Ferrari",
-        price: "22.00",
-        type: "featured"
-      },
-      {
-        productID: "P0064",
-        productName: "Bburago Ferrari Race And Play Monza Sp-1 1/43 Toy Car",
-        productIMG: "ferrari/P0005.png",
-        brand: "Ferrari",
-        price: "7.95",
-        type: "featured"
-      },
-      {
-        productID: "P0065",
-        productName: "Maisto Premium RC F1 Ferrari SF90 2019 Season Leclerc 1/24",
-        productIMG: "ferrari/P0006.png",
-        brand: "Ferrari",
-        price: "35.00",
-        type: "featured"
-      },
-      {
-        productID: "P0066",
-        productName: "Bburago Ferrari Racing 488 Challenge (Formula Ferrari Racing 2017) 1/24 Model Car",
-        productIMG: "ferrari/P0007.png",
-        brand: "Ferrari",
-        price: "25.00",
-        type: "featured"
-      },
-      {
-        productID: "P0067",
-        productName: "Bburago Ferrari Race & Play F12 Tdf 1/24",
-        productIMG: "ferrari/P0008.png",
-        brand: "Ferrari",
-        price: "20.00",
-        type: "featured"
-      },
-      {
-        productID: "P0068",
-        productName: "Bburago Ferrari Signature SF90 Stradale 1/18 Model Car ",
-        productIMG: "ferrari/P0009.png",
-        brand: "Ferrari",
-        price: "81.99",
-        type: "featured"
-      },
-      {
-        productID: "P0069",
-        productName: "Bburago Ferrari Race & Play 488 GTB 1/24 Model Car",
-        productIMG: "ferrari/P0010.png",
-        brand: "Ferrari",
-        price: "22.00",
-        type: "featured"
-      },
-      {
-        productID: "P0070",
-        productName: "Bburago Ferrari Race & Play Laferrari 1/24",
-        productIMG: "ferrari/P0011.png",
-        brand: "Ferrari",
-        price: "20.00",
-        type: "featured"
-      },
-      {
-        productID: "P0071",
+        productID: "P0120",
         productName: "Bburago Ferrari Race And Play 488 Pista 1/24 Model Car ",
         productIMG: "ferrari/P0012.png",
         brand: "Ferrari",
         price: "22.00",
         type: "featured"
       },
-      //dup
+
 
 
       // TOYOTAAAAAAAA
@@ -1243,7 +1154,7 @@ function loadproduct(){
         type: "bestselling"
       },
     ];
-  productArray = shuffle(productArray);
+  //productArray = shuffle(productArray);
   localStorage.setItem('product', JSON.stringify(productArray));
   }
 }
