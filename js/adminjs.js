@@ -57,7 +57,7 @@ function showbilllist(){
         document.getElementById('billlist').innerHTML=s;
         return false;
     }
-    var s='<tr><th>NGÀY</th><th>KHÁCH HÀNG</th><th>GIÁ</th><th>TRẠNG THÁI</th></tr>';
+    var s='<tr><th>NGÀY</th><th>KHÁCH HÀNG</th><th>GIÁ($)</th><th>TRẠNG THÁI</th></tr>';
     var billArray = JSON.parse(localStorage.getItem('bill'));
     for(var i=0;i<billArray.length;i++){
         if (billArray[i].Status == 'unprocessed') {
@@ -123,7 +123,7 @@ function searchBill(){
             billArrayTemp.push(billArray[i]);
         }
     }
-    var s='<th>NGÀY</th><th>KHÁCH HÀNG</th><th>GIÁ</th><th>TRẠNG THÁI</th>';
+    var s='<th>NGÀY</th><th>KHÁCH HÀNG</th><th>GIÁ($)</th><th>TRẠNG THÁI</th>';
     for(var i=0;i<billArrayTemp.length;i++){
         if(billArrayTemp[i].Status=='unprocessed'){
             s+='<tr onClick="showinfobill('+billArrayTemp[i].ID+')">'+
