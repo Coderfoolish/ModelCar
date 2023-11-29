@@ -11,7 +11,7 @@ function utf8(str) {
     return str.replace(/\r\n/g, '\n').replace(/\t/g, '    ').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
 }
 function currency(num) {
-    return num.toString().replace(/(\d{11})$/g, "");
+    return num.toString().replace(/(\d{11})$/g, "")+'$';
 }
 // Gom
 function  showDeafault()
@@ -57,7 +57,7 @@ function showbilllist(){
         document.getElementById('billlist').innerHTML=s;
         return false;
     }
-    var s='<tr><th>NGÀY</th><th>KHÁCH HÀNG</th><th>GIÁ</th><th>TRẠNG THÁI</th></tr>';
+    var s='<tr><th>NGÀY</th><th>KHÁCH HÀNG</th><th>GIÁ($)</th><th>TRẠNG THÁI</th></tr>';
     var billArray = JSON.parse(localStorage.getItem('bill'));
     for(var i=0;i<billArray.length;i++){
         if (billArray[i].Status == 'unprocessed') {
@@ -123,7 +123,7 @@ function searchBill(){
             billArrayTemp.push(billArray[i]);
         }
     }
-    var s='<th>NGÀY</th><th>KHÁCH HÀNG</th><th>GIÁ</th><th>TRẠNG THÁI</th>';
+    var s='<th>NGÀY</th><th>KHÁCH HÀNG</th><th>GIÁ($)</th><th>TRẠNG THÁI</th>';
     for(var i=0;i<billArrayTemp.length;i++){
         if(billArrayTemp[i].Status=='unprocessed'){
             s+='<tr onClick="showinfobill('+billArrayTemp[i].ID+')">'+
@@ -170,7 +170,7 @@ function changeStatus(checkbox,id){
 //PRODUCT
 function showProductList(vitri) {
     var productArray = JSON.parse(localStorage.getItem('product'));
-    var s = '<tr><th>#ID</th><th>Ảnh</th><th>TÊN SẢN PHẨM</th><th>THƯƠNG HIỆU</th><th>GIÁ</th><th></th></tr>';
+    var s = '<tr><th>#ID</th><th>Ảnh</th><th>TÊN SẢN PHẨM</th><th>THƯƠNG HIỆU</th><th>GIÁ($)</th><th></th></tr>';
     var dem = 0;
     for (var i = vitri; i < productArray.length; i++) {
         s += '<tr>' +
@@ -307,7 +307,7 @@ function addProduct(){
     var producttemp = {
         productID: productid,
         brand: brand.value,
-        productIMG: '',
+        productIMG: 'tmp.jpg',
         productName: productname.value,
         price: price.value
     };

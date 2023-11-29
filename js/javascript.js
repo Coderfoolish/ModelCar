@@ -2,7 +2,7 @@ createAdmin();
 
 
 // localStorage.removeItem('cart');
-localStorage.removeItem('product');
+//localStorage.removeItem('product');
 // localStorage.removeItem('bill');
 
 
@@ -198,9 +198,16 @@ function login(e) {
 }
 
 function logout(url) {
-  localStorage.removeItem("userlogin");
-  localStorage.removeItem("cart");
-  location.href = url;
+  if(loca === 'index'){
+    localStorage.removeItem("userlogin");
+    localStorage.removeItem("cart");
+    location.href = url;
+  }
+  else{
+    location.href = '../index.html'
+    localStorage.removeItem("userlogin");
+    localStorage.removeItem("cart");
+  }
 }
 
 function checklogin() {
@@ -326,12 +333,13 @@ function showSearchResult(selectPage){
                 </li>`;
     }
   }
-  
-  for(var i=0; i<numPage; i++){
-    if(i==selectPage){
-      reSultPage+='<li><button onclick="showSearchResult('+i+')" style="background-color: #C70039;color: #fff">'+(i+1)+'</button></li>';
-    } else {
-      reSultPage+='<li><button onclick="showSearchResult('+i+')">'+(i+1)+'</button></li>';
+  if(numPage!=1){
+    for(var i=0; i<numPage; i++){
+      if(i==selectPage){
+        reSultPage+='<li><button onclick="showSearchResult('+i+')" style="background-color: #C70039;color: #fff">'+(i+1)+'</button></li>';
+      } else {
+        reSultPage+='<li><button onclick="showSearchResult('+i+')">'+(i+1)+'</button></li>';
+      }
     }
   }
   document.getElementById("searchPage").innerHTML=reSultPage;
@@ -637,6 +645,7 @@ function loadproduct(){
         price: "11.99",
         type: "featured"
       },
+      
       {
         productID: "P0002",
         productName: "Bburago Ferrari Race & Play F8 Tributo 1/43 B18-36054",
@@ -719,6 +728,38 @@ function loadproduct(){
       },
       {
         productID: "P0012",
+        productName: "Bburago Ferrari Race And Play 488 Pista 1/24 Model Car ",
+        productIMG: "ferrari/P0012.png",
+        brand: "Ferrari",
+        price: "22.00",
+        type: "featured"
+      },
+      {
+        productID: "P0120",
+        productName: "Bburago Ferrari Race And Play 488 Pista 1/24 Model Car ",
+        productIMG: "ferrari/P0012.png",
+        brand: "Ferrari",
+        price: "22.00",
+        type: "featured"
+      },
+      {
+        productID: "P0120",
+        productName: "Bburago Ferrari Race And Play 488 Pista 1/24 Model Car ",
+        productIMG: "ferrari/P0012.png",
+        brand: "Ferrari",
+        price: "22.00",
+        type: "featured"
+      },
+      {
+        productID: "P0120",
+        productName: "Bburago Ferrari Race And Play 488 Pista 1/24 Model Car ",
+        productIMG: "ferrari/P0012.png",
+        brand: "Ferrari",
+        price: "22.00",
+        type: "featured"
+      },
+      {
+        productID: "P0120",
         productName: "Bburago Ferrari Race And Play 488 Pista 1/24 Model Car ",
         productIMG: "ferrari/P0012.png",
         brand: "Ferrari",
@@ -1406,11 +1447,13 @@ function brandPagination(brand) {
   brand = brand.toLowerCase();
   var quantityOfPages = Math.ceil(JSON.parse(localStorage.getItem(brand)).length / brandProductPerPage);
   var button = "";
-  for (var i = 1; i <= quantityOfPages; i++) {
-      index = (i - 1) * brandProductPerPage;
-      button += `<button class="pageButton" onclick="showBrandProducts('${brand}', ${index})">${i}</button>`
+  if(quantityOfPages!=1){
+    for (var i = 1; i <= quantityOfPages; i++) {
+        index = (i - 1) * brandProductPerPage;
+        button += `<button class="pageButton" onclick="showBrandProducts('${brand}', ${index})">${i}</button>`
+    }
+    document.getElementById("page").innerHTML = button;
   }
-  document.getElementById("page").innerHTML = button;
 }
 
 
@@ -1447,12 +1490,14 @@ function showSpecialProducts(type, index) {
 
 function pagination(type) {
   var quantityOfPages = Math.ceil(JSON.parse(localStorage.getItem(type + 'Product')).length / specialProductsPerPage);
+  if(quantityOfPages!=1){
   var button = "";
-  for (var i = 1; i <= quantityOfPages; i++) {
-      index = (i - 1) * specialProductsPerPage;
-      button += `<button class="pageButton" onclick="showSpecialProducts('${type}', ${index})">${i}</button>`
+    for (var i = 1; i <= quantityOfPages; i++) {
+        index = (i - 1) * specialProductsPerPage;
+        button += `<button class="pageButton" onclick="showSpecialProducts('${type}', ${index})">${i}</button>`
+    }
+    document.getElementById("page").innerHTML = button;
   }
-  document.getElementById("page").innerHTML = button;
 }
 //post
 const preventDefaultLinks = document.querySelectorAll('.hoverimage');
