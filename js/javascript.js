@@ -30,11 +30,11 @@ function createAdmin() {
 
 function showform() {
   var userform = document.getElementById("user");
-      userform.style.display = "block";
+  userform.style.display = "block";
 }
 function closeform() {
   var userform = document.getElementById("user");
-      userform.style.display = "none";
+  userform.style.display = "none";
 }
 
 function showSignUp() {
@@ -725,15 +725,8 @@ function loadproduct(){
         price: "22.00",
         type: "featured"
       },
-      {
-        productID: "P0120",
-        productName: "Bburago Ferrari Race And Play 488 Pista 1/24 Model Car ",
-        productIMG: "ferrari/P0012.png",
-        brand: "Ferrari",
-        price: "22.00",
-        type: "featured"
-      },
 
+      
 
 
       // TOYOTAAAAAAAA
@@ -1074,6 +1067,14 @@ function loadproduct(){
         type: "bestselling"
       },
       {
+        productID: "P0050",
+        productName: "Bburago Porsche 918 Spyder 1/24 Model Car",
+        productIMG: "porsche/P0050.png",
+        brand: "Porsche",
+        price: "12.00",
+        type: "bestselling"
+      },
+      {
         productID: "P0051",
         productName: "Bburago Porsche 911 Rsr Lemans Model Car 1/43",
         productIMG: "porsche/P0051.png",
@@ -1154,7 +1155,7 @@ function loadproduct(){
         type: "bestselling"
       },
     ];
-  //productArray = shuffle(productArray);
+  productArray = shuffle(productArray);
   localStorage.setItem('product', JSON.stringify(productArray));
   }
 }
