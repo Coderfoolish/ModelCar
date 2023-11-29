@@ -247,8 +247,8 @@ function changeproduct(productid){
                 var productimg =document.getElementById('change-product-img').files[0];
                 var src;
                 var reader = new FileReader();
-                reader.onload = function(e){
-                   src = e.result;
+                reader.onload = function(){
+                   src = reader.result;
                 }
                 reader.readAsDataURL(productimg);
                 productArray[i].productIMG=src;
