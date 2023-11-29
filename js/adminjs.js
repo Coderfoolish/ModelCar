@@ -288,7 +288,7 @@ function closechangebox(){
 }
 function addProduct(){
     var productArray = JSON.parse(localStorage.getItem('product'));
-    var productid = productArray[0].productID+1;
+    var productid = 'P'+productArray.length;
     var productname = document.getElementById('productname');
     var brand = document.getElementById('brand');
     var price = document.getElementById('productprice');
@@ -301,13 +301,33 @@ function addProduct(){
         customAlert('Giá không hợp lệ','warning');
         return false;
     }
-    var producttemp = {
-        productID: productid,
-        brand: brand.value,
-        productIMG: 'tmp.jpg',
-        productName: productname.value,
-        price: price.value
-    };
+
+    var imgsrc = document.getElementById('addproductimg');
+    if('files' in imgsrc){
+        if(imgsrc.files.length!=0){
+            var productimg = brand.value.toLowerCase()+"/"+imgsrc.files[0].name; 
+            var producttemp = {
+                productID: productid,
+                productName: productname.value,
+                productIMG: productimg,
+                brand: brand.value,
+                price: price.value,
+                type: ""
+            };
+            
+        }else{
+            var producttemp = {
+                productID: productid,
+                productName: productname.value,
+                productIMG: 'tmp.jpg',
+                brand: brand.value,
+                price: price.value,
+                type: ""
+            };
+        }
+    }
+
+    
     productArray.unshift(producttemp);
     localStorage.setItem('product',JSON.stringify(productArray));
     showProductList(0);
