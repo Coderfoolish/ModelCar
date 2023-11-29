@@ -2,7 +2,7 @@ createAdmin();
 
 
 // localStorage.removeItem('cart');
-localStorage.removeItem('product');
+// localStorage.removeItem('product');
 // localStorage.removeItem('bill');
 
 
