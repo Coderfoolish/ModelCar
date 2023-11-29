@@ -1602,3 +1602,10 @@ imgMain2.addEventListener('click',function(){
     post2.style.display = "block";
 });
 
+//footer
+
+function crolltop(namebrand){
+  showBrandProducts(namebrand,0);
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}

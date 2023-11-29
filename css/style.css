@@ -986,7 +986,7 @@ li.product {
 .product:hover .product-botton {
 	background-color: #2d2626;
 	color: #fff;
-	bottom: auto;
+	bottom: 0;
 }
 
 .icon {
@@ -1031,6 +1031,10 @@ li.product {
 	color: #b12704;
 	font-weight: 700;
 }
+.navBtn-click {
+	font-size: 18px !important;
+	color: #a50230 !important;
+}
 
 
 /* bấm nút view hiện box thông tin sản phẩm */
@@ -1048,11 +1052,11 @@ li.product {
 
 #productInfor {
 	width: 1000px;
-	height: 600px;
+	height: 550px;
 	background-color: #ffffff;
 	position: fixed;
-	top: calc((100% - 550px) / 2);
-	left: calc((100% - 1000px) / 2);
+	top: calc((100% - 550px)/2);
+	left: calc((100% - 1000px)/2);
 	border-radius: 16px;
 }
 
@@ -1166,7 +1170,6 @@ button {
 .close-button {
 	width: 60px;
 	height: 50px;
-	border-radius: 16px;
 	background-color: #ffffff;
 	position: absolute;
 	top: 0px;
@@ -1176,7 +1179,8 @@ button {
 	font-size: 50px;
 	text-align: center;
 	overflow: hidden;
-	/* border-radius: 16px; */
+	border-top-right-radius: 16px;
+	line-height: 110%;
 }
 
 .close-button p {
@@ -1193,7 +1197,7 @@ button {
 /* 3 bài viết */
 .post {
 	position: absolute;
-	bottom: -1500px;
+	bottom: -1450px;
 	left: 60px;
 	width: 1200px;
 	height: 640px;
@@ -1529,7 +1533,7 @@ button {
 
 #footer {
 	position: relative;
-	bottom: -3000px;
+	bottom: -2300px;
 }
 
 .footer__top {
