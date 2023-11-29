@@ -1163,14 +1163,6 @@ function loadproduct(){
         type: "bestselling"
       },
       {
-        productID: "P0050",
-        productName: "Bburago Porsche 918 Spyder 1/24 Model Car",
-        productIMG: "porsche/P0050.png",
-        brand: "Porsche",
-        price: "12.00",
-        type: "bestselling"
-      },
-      {
         productID: "P0051",
         productName: "Bburago Porsche 911 Rsr Lemans Model Car 1/43",
         productIMG: "porsche/P0051.png",
