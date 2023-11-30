@@ -789,7 +789,8 @@ table th {
     padding: 30px 50px 10px;
     overflow-x: auto;
 }
-#content #leftsection #maintable h1{
+
+#content #leftsection #maintable h3 {
     text-align: center;
     margin-bottom: 20px;
 }
@@ -1034,7 +1035,6 @@ table th {
 	position: relative;
 	padding: 6px;
 } */
-
 #modal1 #changeproduct{
 	width: 600px;
 	height: 800px;
@@ -1112,7 +1112,6 @@ table th {
 	background-color: #fff;
 	color: var(--red);
 }
-
 #billinfo #info{
 	width: 600px;
 	height: 700px;

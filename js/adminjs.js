@@ -312,7 +312,7 @@ function addProduct(){
                 productIMG: productimg,
                 brand: brand.value,
                 price: price.value,
-                type: ""
+                type: "",
             };
             
         }else{
@@ -326,8 +326,6 @@ function addProduct(){
             };
         }
     }
-
-    
     productArray.unshift(producttemp);
     localStorage.setItem('product',JSON.stringify(productArray));
     showProductList(0);
