@@ -58,12 +58,15 @@ function createUser(e) {
   var username = document.getElementById("usernameSignUp");
   var password = document.getElementById("passwordSignUp");
   var password2 = document.getElementById("passwordSignUp2");
+    var fullnameRegex = /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỰỲỴÝỶỸửựỳỵýỷỹ ]+$/;
+    var usernameRegex = /^[a-zA-Z0-9]+$/;
   var flag = true;
-  if (!fullname.value) {
-    document.getElementById("fullnameerror").style.display = "block";
-    flag = false;
+
+    if (!fullnameRegex.test(fullname.value)) {
+        document.getElementById("fullnameerror").style.display = "block";
+        flag = false;
   } else {
-    document.getElementById("fullnameerror").style.display = "none";
+        document.getElementById("fullnameerror").style.display = "none";
   }
   if (!address.value) {
     document.getElementById("addresserror").style.display = "block";
@@ -91,12 +94,12 @@ function createUser(e) {
       }
     }
   }
-  if (!username.value) {
-    document.getElementById("usererror").style.display = "block";
-    flag = false;
-  } else {
-    document.getElementById("usererror").style.display = "none";
-  }
+    if (!usernameRegex.test(username.value)) {
+        document.getElementById("usererror").style.display = "block";
+        flag = false;
+    } else {
+        document.getElementById("usererror").style.display = "none";
+    }
   if (!password.value) {
     document.getElementById("passworderror").style.display = "block";
     flag = false;
