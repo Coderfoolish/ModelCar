@@ -282,6 +282,10 @@ function changeimgadd(input){
     };
     reader.readAsDataURL(input.files[0]);
 }
+
+function deleteimgadd(){
+    document.getElementById('imgadd').src='../images/icon/temp2.jpg';
+}
 function closechangebox(){
 
     document.getElementById('modal1').style.display = 'none';
