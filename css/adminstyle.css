@@ -589,6 +589,7 @@ body {
 
 .card-header h3 {
     margin: 0;
+    text-align: center;
 }
 
 .card-content {
@@ -611,6 +612,8 @@ table th {
     border-bottom: 1px solid var(--second-bg-color);
     padding: 15px 12px;
     text-align: left;
+    background-color: var(--red);
+    color: var(--btn-color) ;
 }
 
 .dot i {
@@ -641,7 +644,13 @@ table th {
 }
 
 /*TÌm kiếm user  */
-
+button.delete{
+    font-size: 0.9rem;
+    border-radius: 20px;
+    width: 50%;
+    background-color: var(--red);
+    color: var(--btn-color);
+}
 .subsection form {
     width: 300px;
     margin: 0 auto;
@@ -715,6 +724,7 @@ table th {
 .rightsection .subsection form {
     width: 300px;
     margin: 0 auto;
+    height: 300px;
 }
 
 .rightsection .subsection label {
@@ -808,7 +818,6 @@ table th {
     background-color: #ced6e0;
 }
 #content #leftsection #maintable th{
-    background-color: var(--red);
     color: white;
     height: 35px;
     padding: 0 5px;
@@ -954,94 +963,13 @@ table th {
 #modal1{
     display: none;
 }
-/* #modal1 #changeproduct{
-	width: 600px;
-	height: 700px;
-	background-color: #fff;
-	margin: 70px auto;
-	position: relative;
-    top: 0;
-	padding: 6px;
-
-}
-#modal1 #changeproduct .close{
-	position: absolute;
-	right: 15px;
-	top: 0px;
-	font-size: 40pt;
-	background: none;
-	outline: none;
-	cursor: pointer;
-}
-#modal1 #changeproduct .close:hover{
-	color: var(--red);
-}
-#modal1 #changeproduct .image{
-	margin-top: 50px;
-	display: flex;
-	align-items: flex-start;
-	justify-content: space-around;
-}
-#modal1 #changeproduct .image img{
-	width: 40%;
-	padding: 20px;
-	border:  1px solid #000;
-	border-radius: 10px;
-}
-#modal1 #changeproduct .info{
-	width: 700px;
-	margin: 50px auto 0;
-}
-#modal1 #changeproduct .info label{
-	width: 200px;
-	font-size: 14pt;
-	font-weight: bold;
-	display: inline-block;
-	margin-bottom: 10px;
-}
-#modal1 #changeproduct .info input{
-	font-size: 13pt;
-	width: 400px;
-	border-bottom: 2px solid #000;
-	margin-bottom: 10px;
-}
-#modal1 #changeproduct .info #fileimg{
-	font-size: 13pt;
-	width: 400px;
-	border: 2px solid #000;
-	margin-left: 202px;
-	cursor: pointer;
-}
-#modal1 #changeproduct button #save{
-	font-size: 16pt;
-	width: 200px;
-	padding: 10px;
-	margin: 30px auto;
-	border: 3px solid var(--red);
-	background-color: var(--red);
-	color: #fff;
-	display: block;
-	cursor: pointer;
-}
-#modal1 #changeproduct button #save:hover{
-	background-color: #fff;
-	color: var(--red);
-}
-#billinfo #info{
-	width: 600px;
-	height: 700px;
-	background-color: #fff;
-	margin: 70px auto;
-	position: relative;
-	padding: 6px;
-} */
 #modal1 #changeproduct{
-	width: 600px;
+	width: 50%;
 	height: 800px;
-	background-color: #fff;
+	background-color:var(--second-bg-color);
 	margin: 70px auto;
 	position: relative;
-    top: -1000px;
+    top: -1100px;
 	padding: 12px;
 
 }
@@ -1065,10 +993,14 @@ table th {
 	justify-content: space-around;
 }
 #modal1 #changeproduct .image img{
-	width: 40%;
-	padding: 20px;
-	border:  1px solid #000;
+	width: 20%;
+	padding: 10px;
+	border:  1px solid var(--third-bg-color);
 	border-radius: 10px;
+    margin: 40px 300px;
+}
+input#change-product-img {
+    position: absolute;
 }
 #modal1 #changeproduct .info{
 	width: 600px;
@@ -1085,6 +1017,8 @@ table th {
 	font-size: 20px;
 	width: 400px;
 	margin-bottom: 10px;
+    border-radius: 20px;
+    padding: 3px 10px;
 }
 
 #modal1 #changeproduct .info select{
