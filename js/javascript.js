@@ -273,6 +273,30 @@ function closeSearch(){
   document.getElementById("searchtext").value=document.getElementById("searchtext2").value;
 }
 
+function onoffadvancedsearch(){
+  var flag=document.getElementById('advancedsearch');
+  if(flag.className=='off'){
+    flag.classList.remove('off');
+    flag.classList.add('on');
+    flag.style.display='block';
+    if(loca=='index'){
+      document.querySelector('#btn-advancedsearch img').src="images/icon/arrow2.svg";
+    } else {
+      document.querySelector('#btn-advancedsearch img').src="../images/icon/arrow2.svg";
+    }
+  } else {
+    flag.classList.remove('on');
+    flag.classList.add('off');
+    flag.style.display='none';
+    if(loca=='index'){
+      document.querySelector('#btn-advancedsearch img').src="images/icon/arrow.svg";
+    } else {
+      document.querySelector('#btn-advancedsearch img').src="../images/icon/arrow.svg";
+    }
+  }
+  searching();
+}
+
   
 var searchArray=[];
 function searching(){
@@ -286,14 +310,24 @@ function searching(){
   if(priceto==''){
     priceto=9999999999;
   }
-  for(var i=0; i<productArray.length; i++){
-      if((productArray[i].productName.toLowerCase().search(text)>-1
+  if(document.getElementById('advancedsearch').className=='on'){
+    for(var i=0; i<productArray.length; i++){
+        if((productArray[i].productName.toLowerCase().search(text)>-1
+        ||productArray[i].productID.toLowerCase().search(text)>-1
+        ||productArray[i].brand.toLowerCase().search(text)>-1)
+        &&compare(brand.toLowerCase(),productArray[i].brand.toLowerCase())
+        &&(Number(productArray[i].price)>=Number(priceform) && Number(productArray[i].price)<=Number(priceto))){
+          searchArray1.unshift(productArray[i]);
+        }
+    }
+  } else {
+    for(var i=0; i<productArray.length; i++){
+      if(productArray[i].productName.toLowerCase().search(text)>-1
       ||productArray[i].productID.toLowerCase().search(text)>-1
-      ||productArray[i].brand.toLowerCase().search(text)>-1)
-      &&compare(brand.toLowerCase(),productArray[i].brand.toLowerCase())
-      &&(Number(productArray[i].price)>=Number(priceform) && Number(productArray[i].price)<=Number(priceto))){
-        searchArray1.unshift(productArray[i]);
-      }
+      ||productArray[i].brand.toLowerCase().search(text)>-1
+      ||productArray[i].price==text)
+      searchArray1.unshift(productArray[i]);
+    }
   }
   searchArray=searchArray1;
   showSearchResult(0);

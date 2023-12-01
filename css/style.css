@@ -222,6 +222,7 @@ ul.devided > li:last-child {
 	margin: 5px 5px;
 	border: 0;
 	border-radius: 8px;
+	background-color: white;
 }
 
 #searchsection #buttonclose:hover{
@@ -245,6 +246,19 @@ ul.devided > li:last-child {
 	border: 1px solid black;
 	border-radius: 8px;
 }
+#searchsection #btn-advancedsearch{
+	position: absolute;
+	top: 37px;
+	right: 20px;
+	width: 30px;
+	height: 30px;
+	outline: 0;
+	background-color: white;
+}
+
+#searchsection #advancedsearch{
+	display: none;
+}
 
 #searchsection #searchBrand{
 	position: absolute;
@@ -264,7 +278,7 @@ ul.devided > li:last-child {
 #searchsection #searchPrice{
 	position: absolute;
 	top: 37px;
-	right: 20px;
+	right: 50px;
 }
 #searchsection #searchPrice input{
 	width:	175px;
