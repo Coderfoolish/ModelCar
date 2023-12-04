@@ -322,10 +322,11 @@ function searching(){
     }
   } else {
     for(var i=0; i<productArray.length; i++){
-      if(productArray[i].productName.toLowerCase().search(text)>-1
+      if((productArray[i].productName.toLowerCase().search(text)>-1
       ||productArray[i].productID.toLowerCase().search(text)>-1
       ||productArray[i].brand.toLowerCase().search(text)>-1
       ||productArray[i].price==text)
+      &&text!="")
       searchArray1.unshift(productArray[i]);
     }
   }
