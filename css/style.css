@@ -211,6 +211,7 @@ ul.devided > li:last-child {
 	height: 900px;
 	position: relative;
 	z-index: 10;
+	border-radius: 20px;
 }
 #searchsection #buttonclose{
 	position: absolute;
@@ -299,6 +300,8 @@ ul.devided > li:last-child {
 	top: 80px;
 	height: 90%;
 	background-color: var(--third-bg-color);
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
 }
 
 #searchresult ul{
