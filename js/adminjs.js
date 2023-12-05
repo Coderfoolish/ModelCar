@@ -499,3 +499,124 @@ function customAlert(message, type) {
     x.className = x.classList.remove("show");
   }, 3500);
 }
+
+// STATISTIC TABLE
+function statisticInfo(id) {
+    let statistics = {};
+    var billArray = JSON.parse(localStorage.getItem('bill'));
+  
+    for (let i = 0; i < billArray.length; i++) {
+    let bill = billArray[i];
+  
+    if (bill.ID === id) {
+        let info = bill.Info.split(';');
+  
+        for (let j = 0; j < info.length; j++) {
+        info[j].trim();
+        let productInfo = info[j].trim().split('*');
+        let productName = productInfo[0].trim().replace(/^"|"$/g, '');
+        let quantity = parseInt(productInfo[1]);
+  
+        if (statistics[productName] ) {
+            statistics[productName] += quantity;
+        } else {
+            statistics[productName] = quantity;
+        }
+        }
+        break;
+    }
+    }
+  
+  return statistics;
+  }
+  
+  function runStatistics() {
+    let statistics = {};
+    var billArray = JSON.parse(localStorage.getItem('bill'));
+  
+    for (let i = 0; i < billArray.length; i++) {
+        let id = billArray[i].ID;
+        let result = statisticInfo(id);
+  
+        for (let productName in result) {
+            if(!isNaN(productName) == false){
+                // console.log(productName)
+                if (statistics[productName]) {
+                statistics[productName] += result[productName];
+                } else {
+                statistics[productName] = result[productName];
+                }
+                // console.log(statistics[productName])
+            }
+        }
+    }
+  
+    let tempArray = [];
+    for (let productName in statistics) {
+        tempArray.push({ name: productName, value: statistics[productName] });
+        // console.log(statistics[productName]+"tmpArray")
+    }
+  
+    tempArray.sort((a, b) => b.value - a.value);
+  
+    statistics = {};
+    for (let i = 0; i < tempArray.length; i++) {
+        let productName = tempArray[i].name;
+        let value = tempArray[i].value;
+        statistics[productName] = value;
+        // console.log(statistics[productName]+"sort")
+    }
+  
+    return statistics;
+  }
+  function runTable() {
+    let statistics = runStatistics();
+    var table = document.querySelector(".card-content tbody");
+    var s = "";
+    var i = 1;
+  
+    for (let product in statistics) {
+      if (!isNaN(statistics[product])) {
+        let status = "";
+        let color = "";
+  
+        if (statistics[product] >= 20) {
+          status = "Top-selling";
+          color = "bg-success";
+        } else if (statistics[product] >= 10 && statistics[product] < 20) {
+          status = "Unpopular";
+          color = "bg-warning";
+        } else {
+          status = "Poor-selling";
+          color = "bg-danger";
+        }
+  
+        var s1 = product.toString();
+        var price;
+        var productArray = JSON.parse(localStorage.getItem("product"));
+        for (let iloop = 0; iloop < productArray.length; iloop++) {
+          if (s1 == productArray[iloop].productName) {
+            price = productArray[iloop].price;
+          }
+        }
+  
+        s +=
+          "<tr>" +
+          "<td>" + i + "</td>" +
+          "<td>" + product + "</td>" +
+          "<td>" + statistics[product] + "</td>" +
+          "<td>" + price * statistics[product] + "$" + "</td>" +
+          "<td>" +
+          '<span class="dot">' +
+          '<i class="' + color + '"></i>' +
+          status +
+          "</span>" +
+          "</td>";
+        i++;
+      }
+    }
+  
+    table.innerHTML = s;
+}
+runTable();
+// END STATISTIC TABLE
