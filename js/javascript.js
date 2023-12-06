@@ -417,10 +417,10 @@ function openCloseDropdown(event) {
 
 //Cart
 
-function fixNum(num,precision){
-  precision = Math.pow(10,precision);
-  return parseFloat((Math.ceil(num*precision)/precision).toFixed(2));
-}
+// function fixNum(num,precision){
+//   precision = Math.pow(10,precision);
+//   return parseFloat((Math.ceil(num*precision)/precision).toFixed(2));
+// }
 
 function addToCart(productid1) {
   var quantity = document.getElementById("quantity_number");
@@ -469,7 +469,7 @@ function showCartTable() {
   } else {
       var cartArray = JSON.parse(localStorage.getItem("cart"));
       var s =
-          "<tr><th></th><th>Sản phẩm</th><th>Giá</th><th>Số lượng</th><th>Tổng</th><th></th></tr>";
+          "<tr><th>Sản phẩm</th><th></th><th>Giá</th><th>Số lượng</th><th>Tổng</th><th></th></tr>";
       var totalprice = 0;
       for (var i = 0; i < cartArray.length; i++) {
           s += `<tr>
@@ -557,11 +557,11 @@ function Buy() {
       localStorage.getItem("cart") === null ||
       localStorage.getItem("cart") == "[]"
   ) {
-      // warning('Giỏ hàng trống');
+      customAlert('Giỏ hàng trống','warning');
       return false;
   }
   if (localStorage.getItem("userlogin") === null) {
-      // warning('Đăng nhập để mua hàng');
+      customAlert('Đăng nhập để mua hàng','warning');
       showform();
   }
   var cartArray = JSON.parse(localStorage.getItem("cart"));

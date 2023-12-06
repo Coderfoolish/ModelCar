@@ -205,18 +205,26 @@
 </div>
 
 <div id="cart">
-    <div id="title">
+    <div class="cart-card">
+        <div id="title">
+            <div class="container">
+                <h1>Giỏ hàng</h1>
+            </div>
+        </div>
         <div class="container">
-            <h1>Giỏ hàng</h1>
+            <div id="contain">
+                <table id="carttable"></table>
+                <div class="total">Thành tiền: <span id="totalPrice"></span></div>
+                <button onclick="deleteCart()">Xóa tất cả</button>
+                <button onclick="Buy()">Mua hàng</button>
+            </div>
         </div>
     </div>
-    <div class="container">
-        <div id="contain">
-            <div id="bill"></div>
-            <table id="carttable"></table>
-            <div class="total">Thành tiền: <span id="totalPrice"></span></div>
-            <button onclick="deleteCart()">Xóa tất cả</button>
-            <button onclick="Buy()">Mua hàng</button>
+    <div class="bill-card">
+        <div class="container">
+            <div id="contain">
+                <table id="bill"></table>
+            </div>
         </div>
     </div>
 </div>
