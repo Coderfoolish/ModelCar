@@ -502,21 +502,24 @@ ul.devided > li:last-child {
 
 /*CART*/
 #cart #title {
+	width: 100%;
 	height: 80px;
 	padding: 20px;
+	align-items: center;
 }
 
 #cart h1 {
-	width: 90%;
+	text-align: center;
 }
 
 #cart #contain {
-	height: 900px;
+	height: auto;
 	width: 90%;
 }
 
 #cart #contain #bill {
 	display: none;
+	margin-top: 120px;
 }
 
 #cart #contain #bill h2 {
@@ -537,9 +540,18 @@ ul.devided > li:last-child {
 	width: 40%;
 	text-align: left;
 }
+#cart #contain #bill .billcontent div:nth-child(2) {
+	width: 30%;
+}
+#cart #contain #bill .billcontent div:nth-child(3) {
+	width: 10%;
+}
+#cart #contain #bill .billcontent div:nth-child(4) {
+	width: 10%;
+}
 
 #cart #contain #bill .billcontent div:nth-child(5) {
-	width: 9%;
+	width: 10%;
 }
 
 #cart #contain #bill .billcontent div {
@@ -573,7 +585,7 @@ ul.devided > li:last-child {
 	line-height: 25px;
 	font-size: 15px;
 	text-align: center;
-	border: 2px solid #000;
+	border: 1px solid #000;
 	cursor: pointer;
 	outline: none;
 	background: none;
@@ -586,7 +598,7 @@ ul.devided > li:last-child {
 
 #cart #contain #carttable td input {
 	height: 25px;
-	width: 50px;
+	width: 30px;
 	font-size: 12px;
 	text-align: center;
 	border: none;

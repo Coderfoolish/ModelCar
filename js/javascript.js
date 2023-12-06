@@ -473,7 +473,7 @@ function showCartTable() {
   } else {
       var cartArray = JSON.parse(localStorage.getItem("cart"));
       var s =
-          "<tr><th></th><th>Sản phẩm</th><th>Giá</th><th>Số lượng</th><th>Tổng</th><th></th></tr>";
+          "<tr><th>Sản phẩm</th><th></th><th>Giá</th><th>Số lượng</th><th>Tổng</th><th></th></tr>";
       var totalprice = 0;
       for (var i = 0; i < cartArray.length; i++) {
           s += `<tr>
