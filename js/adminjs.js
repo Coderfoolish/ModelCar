@@ -605,7 +605,7 @@ function statisticInfo(id) {
           "<td>" + i + "</td>" +
           "<td>" + product + "</td>" +
           "<td>" + statistics[product] + "</td>" +
-          "<td>" + price * statistics[product] + "$" + "</td>" +
+          "<td>" + currency(price * statistics[product])+ "</td>" +
           "<td>" +
           '<span class="dot">' +
           '<i class="' + color + '"></i>' +
