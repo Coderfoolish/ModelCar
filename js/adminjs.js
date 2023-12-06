@@ -44,6 +44,45 @@ function showBillSideBar()
     document.getElementById("thongKeSideBar").style.display = 'none' ;
 }
 //END GOM
+
+//thong ke
+
+upDateThongKe();
+function upDateThongKe(){
+    tongdoanhthu();
+    souser();
+    sodonhang();
+    sosanpham();
+}
+
+function tongdoanhthu(){
+    var tong=0;
+    var billArray=JSON.parse(localStorage.getItem('bill'));
+    for(var i=0; i<billArray.length; i++){
+        tong += billArray[i].Totalprice;
+    }
+
+    document.getElementById('tongdoanhthu').innerHTML=currency(tong);
+}
+
+function souser(){
+    var userArray=JSON.parse(localStorage.getItem('user'));
+    document.getElementById('souser').innerHTML=userArray.length;
+}
+
+function sodonhang(){
+    var donhang=JSON.parse(localStorage.getItem('bill'))
+    document.getElementById('sodonhang').innerHTML=donhang.length;
+}
+
+
+function sosanpham(){
+    var product=JSON.parse(localStorage.getItem('product'));
+
+    document.getElementById('sosanpham').innerHTML=product.length;
+}
+
+
 /*ADMIN*/
 function logout(){
     localStorage.removeItem('userlogin');
@@ -204,6 +243,7 @@ function deleteproduct(productiddelete){
     }
     localStorage.setItem('product',JSON.stringify(productArray));
     showProductList(0);
+    upDateThongKe();
 }
 function setPagination(){
     var productArray = JSON.parse(localStorage.getItem('product'));
@@ -333,6 +373,7 @@ function addProduct(){
     localStorage.setItem('product',JSON.stringify(productArray));
     showProductList(0);
     customAlert('Thêm sản phẩm thành công','success');
+    upDateThongKe();
 }
 function searchproduct(){
     var productArray = JSON.parse(localStorage.getItem('product'));
@@ -404,6 +445,7 @@ function deleteuser(usernamedelete){
     }
     localStorage.setItem('user',JSON.stringify(userArray));
     showUserList();
+    upDateThongKe();
 }
 
 const body = document.getElementsByTagName('body')[0]
