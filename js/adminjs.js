@@ -170,22 +170,21 @@ function changeStatus(checkbox,id){
 //PRODUCT
 function showProductList(vitri) {
     var productArray = JSON.parse(localStorage.getItem('product'));
-    var s = '<tr><th>#ID</th><th>Ảnh</th><th>TÊN SẢN PHẨM</th><th>THƯƠNG HIỆU</th><th>GIÁ($)</th><th></th></tr>';
+    var s = '<tr><th>#ID</th><th>Ảnh</th><th>TÊN SẢN PHẨM</th><th>THƯƠNG HIỆU</th><th>GIÁ($)</th><th>Xóa</th><th>Sửa</th></tr>';
     var dem = 0;
     for (var i = vitri; i < productArray.length; i++) {
-        s += '<tr>' +
-            '<td>' + productArray[i].productID + '</td>' +
-            '<td><img src="../images/product/' + productArray[i].productIMG + '"></td>' +
-            '<td>' + productArray[i].productName + '</td>' +
-            '<td>' + productArray[i].brand.toUpperCase() + '</td>' +
-            '<td>' + currency(productArray[i].price) + '</td>' +
-            '<td>' +
-            '<button class="delete" onClick="deleteproduct(\'' + productArray[i].productID + '\')">&times;</div>' +
-            '<button class="change" onClick="showchangeproductbox(\'' + productArray[i].productID + '\')">Sửa</div>' +
-            '</td>' +
-            '</tr>';
+        s +=`<tr>
+            <td>${productArray[i].productID}</td>
+            <td><img src="../images/product/${productArray[i].productIMG}"></td>
+            <td>${productArray[i].productName}</td>
+            <td>${productArray[i].brand.toUpperCase()}</td>
+            <td>${currency(productArray[i].price)}</td>
+            <td><button class="delete" onClick="deleteproduct('${productArray[i].productID}')">Xóa</div></td>
+            <td><button class="change" onClick="showchangeproductbox('${productArray[i].productID}')">Sửa</div></td>
+            
+            </tr>`;
         dem++;
-        if (dem == 10) {
+        if (dem == 5) {
             break;
         }
     }
@@ -208,10 +207,10 @@ function deleteproduct(productiddelete){
 }
 function setPagination(){
     var productArray = JSON.parse(localStorage.getItem('product'));
-    var sotrang=Math.ceil(productArray.length/10);
+    var sotrang=Math.ceil(productArray.length/5);
     var button='';
     for(var i = 1;i<=sotrang;i++){
-        vitri=(i-1)*10;
+        vitri=(i-1)*5;
         button += '<button class="pageNumber" onclick="showProductList('+vitri+')">'+i+'</button>';
     }
     document.getElementById('pagination').innerHTML = button;
@@ -339,7 +338,7 @@ function searchproduct(){
     var productArray = JSON.parse(localStorage.getItem('product'));
     var name = document.getElementById('searchproductname').value.toLowerCase();
     var brand = document.getElementById('searchproductbrand').value.toLowerCase();
-    var s='<tr><th>#ID</th><th>Ảnh</th><th>TÊN SẢN PHẨM</th><th>THƯƠNG HIỆU</th><th>GIÁ</th><th>Xóa</th></tr>';
+    var s='<tr><th>#ID</th><th>Ảnh</th><th>TÊN SẢN PHẨM</th><th>THƯƠNG HIỆU</th><th>GIÁ</th><th>Xóa</th><th>Sửa</th></tr>';
     if (brand=='all') {
         if(!name){
             showProductList(0);
@@ -347,17 +346,16 @@ function searchproduct(){
         else {
             for(var i = 0; i < productArray.length; i++) {
                 if (productArray[i].productName.toLowerCase().search(name) >=0) {
-                    s+='<tr>'+
-                        '<td>'+productArray[i].productID+'</td>'+
-                        '<td><img src="../images/product/'+productArray[i].productIMG+'"></td>'+
-                        '<td>'+productArray[i].productName+'</td>'+
-                        '<td>'+productArray[i].brand+'</td>'+
-                        '<td>'+currency(productArray[i].price)+'</td>'+
-                        '<td>'+
-                        '<button class="delete" onClick="deleteproduct(\''+productArray[i].productID+'\')">&times;</div>'+
-                        '<button class="change" onClick="showchangeproductbox(\''+productArray[i].productID+'\')">Sửa</div>'+
-                        '</td>'+
-                        '</tr>';
+                    s+=`<tr>
+                    <td>${productArray[i].productID}</td>
+                    <td><img src="../images/product/${productArray[i].productIMG}"></td>
+                    <td>${productArray[i].productName}</td>
+                    <td>${productArray[i].brand.toUpperCase()}</td>
+                    <td>currency(${productArray[i].price})</td>
+                    <td><button class="delete" onClick="deleteproduct('${productArray[i].productID}')">Xóa</div></td>
+                    <td><button class="change" onClick="showchangeproductbox('${productArray[i].productID}')">Sửa</div></td>
+                    
+                    </tr>`;
                 }
             }
             document.getElementById('productlist').innerHTML=s;

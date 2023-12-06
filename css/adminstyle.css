@@ -645,8 +645,7 @@ table th {
 
 /*TÌm kiếm user  */
 button.delete{
-    font-size: 0.9rem;
-    border-radius: 20px;
+    font-size: 12px;
     width: 50%;
     background-color: var(--red);
     color: var(--btn-color);
