@@ -256,7 +256,7 @@ function setPagination(){
     document.getElementById('pagination').innerHTML = button;
 }
 function showchangeproductbox(productid){
-    document.getElementById('modal1').style.display = 'block';
+    document.getElementById('modal').style.display = 'block';
     var productArray = JSON.parse(localStorage.getItem('product'));
     for(var i=0;i<productArray.length;i++){
         if(productArray[i].productID == productid){
@@ -272,7 +272,7 @@ function showchangeproductbox(productid){
     }
 }
 function changeproduct(productid){
-    document.getElementById('modal1').style.display = 'none';
+    document.getElementById('modal').style.display = 'none';
 
     var productArray = JSON.parse(localStorage.getItem('product'));
     for(var i=0;i<productArray.length;i++){
@@ -327,7 +327,7 @@ function deleteimgadd(){
 }
 function closechangebox(){
 
-    document.getElementById('modal1').style.display = 'none';
+    document.getElementById('modal').style.display = 'none';
 }
 function addProduct(){
     var productArray = JSON.parse(localStorage.getItem('product'));
@@ -554,7 +554,7 @@ function statisticInfo(id) {
         for (let j = 0; j < info.length; j++) {
         info[j].trim();
         let productInfo = info[j].trim().split('*');
-        let productName = productInfo[0].trim().replace(/^"|"$/g, '');
+        let productName = productInfo[0].trim();
         let quantity = parseInt(productInfo[1]);
   
         if (statistics[productName] ) {
@@ -573,20 +573,26 @@ function statisticInfo(id) {
   function runStatistics() {
     let statistics = {};
     var billArray = JSON.parse(localStorage.getItem('bill'));
-  
+    var option=document.getElementById('selectoptiondate').value;
+    var day;
+    if(option=="day"){
+        day=document.getElementById('date').value;
+    }
     for (let i = 0; i < billArray.length; i++) {
-        let id = billArray[i].ID;
-        let result = statisticInfo(id);
-  
-        for (let productName in result) {
-            if(!isNaN(productName) == false){
-                // console.log(productName)
-                if (statistics[productName]) {
-                statistics[productName] += result[productName];
-                } else {
-                statistics[productName] = result[productName];
+        if(option=="none"){
+            let id = billArray[i].ID;
+            let result = statisticInfo(id);
+    
+            for (let productName in result) {
+                if(!isNaN(productName) == false){
+                    // console.log(productName)
+                    if (statistics[productName]) {
+                    statistics[productName] += result[productName];
+                    } else {
+                    statistics[productName] = result[productName];
+                    }
+                    // console.log(statistics[productName])
                 }
-                // console.log(statistics[productName])
             }
         }
     }
@@ -611,50 +617,110 @@ function statisticInfo(id) {
   }
   function runTable() {
     let statistics = runStatistics();
-    var table = document.querySelector(".card-content tbody");
+    var productArray = JSON.parse(localStorage.getItem("product"));
+    var table = document.querySelector("#tungsanpham tbody");
     var s = "";
     var i = 1;
-  
+    var ferrarisold=0, toyotasold=0, mclarensold=0, lamborghinisold=0, porschesold=0, allsold=0;
+    var ferrariprofit=0, toyotaprofit=0, mclarenprofit=0, lamborghiniprofit=0, porscheprofit=0, allprofit=0;
+    
     for (let product in statistics) {
-      if (!isNaN(statistics[product])) {
-        let status = "";
-        let color = "";
-  
-        if (statistics[product] >= 20) {
-          status = "Top-selling";
-          color = "bg-success";
-        } else if (statistics[product] >= 10 && statistics[product] < 20) {
-          status = "Unpopular";
-          color = "bg-warning";
-        } else {
-          status = "Poor-selling";
-          color = "bg-danger";
+        if (!isNaN(statistics[product])) {
+            let status = "";
+            let color = "";
+    
+            if (statistics[product] >= 20) {
+            status = "Top-selling";
+            color = "bg-success";
+            } else if (statistics[product] >= 10 && statistics[product] < 20) {
+            status = "Unpopular";
+            color = "bg-warning";
+            } else {
+            status = "Poor-selling";
+            color = "bg-danger";
+            }
+    
+            var s1 = product.toString();
+            var price;
+            for (let iloop = 0; iloop < productArray.length; iloop++) {
+            if (s1 == productArray[iloop].productName) {
+                price = productArray[iloop].price;
+            }
+            }
+            s +=
+            "<tr>" +
+            "<td>" + i + "</td>" +
+            "<td>" + product + "</td>" +
+            "<td>" + statistics[product] + "</td>" +
+            "<td>" + currency(price * statistics[product])    + "</td>" +
+            "<td>" +
+            '<span class="dot">' +
+            '<i class="' + color + '"></i>' +
+            status +
+            "</span>" +
+            "</td>";
+            i++;
+
+            if(/ferrari/i.test(product)){
+                ferrariprofit+=price * statistics[product]
+                ferrarisold+=statistics[product]
+            }
+            else if(/PORSCHE/i.test(product)){
+                porscheprofit+=price * statistics[product]
+                porschesold+=statistics[product]
+            }
+            else if(/MCLAREN/i.test(product)){
+                mclarenprofit+=price * statistics[product]
+                mclarensold+=statistics[product]
+            }
+            else if(/LAMBORGHINI/i.test(product)){
+                lamborghiniprofit+=price * statistics[product]
+                lamborghinisold+=statistics[product]
+            }
+            else{
+                toyotaprofit+=price * statistics[product]
+                toyotasold+=statistics[product]
+            }
+
+            allprofit+=price * statistics[product]
+            allsold+=statistics[product]
+
         }
-  
-        var s1 = product.toString();
-        var price;
-        var productArray = JSON.parse(localStorage.getItem("product"));
-        for (let iloop = 0; iloop < productArray.length; iloop++) {
-          if (s1 == productArray[iloop].productName) {
-            price = productArray[iloop].price;
-          }
-        }
-  
-        s +=
-          "<tr>" +
-          "<td>" + i + "</td>" +
-          "<td>" + product + "</td>" +
-          "<td>" + statistics[product] + "</td>" +
-          "<td>" + currency(price * statistics[product])    + "</td>" +
-          "<td>" +
-          '<span class="dot">' +
-          '<i class="' + color + '"></i>' +
-          status +
-          "</span>" +
-          "</td>";
-        i++;
-      }
     }
+
+    s2=
+    `<tr>
+        <td>Ferrari</td>
+        <td>${ferrarisold}</td>
+        <td>${currency(ferrariprofit)}</td>
+    </tr>
+    <tr>
+        <td>Lamborghini</td>
+        <td>${lamborghinisold}</td>
+        <td>${currency(lamborghiniprofit)}</td>
+    </tr>
+    <tr>
+        <td>Mclaren</td>
+        <td>${mclarensold}</td>
+        <td>${currency(mclarenprofit)}</td>
+    </tr>
+    <tr>
+        <td>Porsche</td>
+        <td>${porschesold}</td>
+        <td>${currency(porscheprofit)}</td>
+    </tr>
+    <tr>
+        <td>Toyota</td>
+        <td>${toyotasold}</td>
+        <td>${currency(toyotaprofit)}</td>
+    </tr>
+    <tr>
+        <td>All</td>
+        <td>${allsold}</td>
+        <td>${currency(allprofit)}</td>
+    </tr>`
+
+    document.querySelector("#theobrand tbody").innerHTML=s2
   
     table.innerHTML = s;
 }

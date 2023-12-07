@@ -593,7 +593,7 @@ function Buy() {
   var totalprice = 0;
   for (var i = 0; i < cartArray.length; i++) {
     info +=
-      '"' + cartArray[i].productName + "*" + cartArray[i].quantity + '" ; ';
+      `${cartArray[i].productName}*${cartArray[i].quantity};`
     totalprice += Number(currency(cartArray[i].price * cartArray[i].quantity));
   }
 

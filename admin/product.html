@@ -157,7 +157,15 @@
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
                     <div class="card-content">
-                        <table>
+                        <input type="date" id="date">
+                        
+                        <select name="" id="selectoptiondate" onchange="runTable()">
+                            <option value="none">Tất cả</option>
+                            <option value="day">Theo ngày</option>
+                        </select>
+                    </div>
+                    <div class="card-content">
+                        <table id="tungsanpham">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -183,8 +191,18 @@
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
                     <div class="card-content">
-                        <table>
-                                
+                        <table id="theobrand">
+                            <thead>
+                                <tr>
+                                    <th>Brand</th>
+                                    <th>Sold</th>
+                                    <th>Profit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -194,19 +212,7 @@
     <!--QUAN LI SAN PHAM-->
     <div class="wrapper" id="productSideBar">
         <div class="row">
-            <div class="col-8 col-m-12 col-sm-12">
-                <div id="content">
-                    <div id="leftsection">
-                        <div id="maintable">
-                            <h3>DANH SÁCH SẢN PHẨM</h3>
-                            <table id="productlist">
-                            </table>
-                            <div id="pagination"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4 col-m-12 col-sm-12">
+            <div class="col-6 col-m-12 col-sm-12">
                 <div class="card">
                     <div class="card-header">
                         <h3>
@@ -232,6 +238,8 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-6 col-m-12 col-sm-12">
                 <div class="card">
                     <div class="card-header">
                         <h3>
@@ -265,9 +273,23 @@
                 </div>
             </div>
         </div>
+        <div>
+            <div>
+                <div id="content">
+                    <div id="leftsection">
+                        <div id="maintable">
+                            <h3>DANH SÁCH SẢN PHẨM</h3>
+                            <table id="productlist">
+                            </table>
+                            <div id="pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="cap">
-        <div id="modal1" class="madal">
+        <div id="modal" class="madal">
             <div id="changeproduct">
                 <button class="close" onclick="closechangebox()">x</button>
                 <div class="image">
