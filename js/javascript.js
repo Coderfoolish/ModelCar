@@ -87,23 +87,7 @@ function createUser(e) {
     );
     flag = false;
   } else {
-    if (isNaN(Number(phone.value))) {
-      document.getElementById("phoneerror").innerHTML = customAlert(
-        "Số điện thoại không hợp lệ",
-        "warning"
-      );
-      flag = false;
-    } else {
-      if (Number(phone.value) < 100000000 || Number(phone.value) > 999999999) {
-        document.getElementById("phoneerror").innerHTML = customAlert(
-          "Số điện thoại không hợp lệ",
-          "warning"
-        );
-        flag = false;
-      } else {
-        document.getElementById("phoneerror").style.display = "none";
-      }
-    }
+    document.getElementById("phoneerror").style.display = "none";
   }
   if (!usernameRegex.test(username.value)) {
     document.getElementById("usererror").innerHTML = customAlert(
