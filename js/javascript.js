@@ -222,7 +222,6 @@ function checklogin() {
       document.querySelector(".user-menu > li > button").style =
         "transform: translateY(100%);";
       document.querySelector(".mid-header .user-menu").innerHTML = s;
-      customAlert("Đăng nhập thành công", "success");
     } else {
       s =
         '<li><span id="user-member">' +
@@ -234,7 +233,6 @@ function checklogin() {
         "transform: translateY(100%);";
       document.querySelector(".user-menu").style = "margin-top: 30px;";
       document.querySelector(".mid-header .user-menu li").innerHTML = s;
-      customAlert("Đăng nhập thành công", "success");
     }
   }
 }
@@ -641,6 +639,7 @@ function Buy() {
   localStorage.removeItem("cart");
   showCartTable();
   showBill();
+  customAlert("Mua hàng thành công , hãy chờ xác nhận từ quản lí !" , "success")
 }
 
 function showBill() {
