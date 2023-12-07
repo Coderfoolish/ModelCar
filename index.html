@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,8 @@
         rel="stylesheet">
     <!-- boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="shortcut icon" href="images/icon/logo_vYW_icon.ico">
     <link rel="stylesheet" href="css/style.css">
     <title>CMS</title>
@@ -141,52 +144,89 @@
         <div id="login">
             <form id="loginform">
                 <button type="button" class="close" onClick="closeform()">+</button>
-                <h2>ĐĂNG NHẬP</h2>
+                <h2>Login</h2>
                 <div class="logininfo">
                     <div class="col">
-                        <label for="usernameLogin">Tên đăng nhập:</label>
-                        <input type="text" id="usernameLogin">
-                        <div id="usernameerror">Bạn chưa nhập tên đăng nhập</div>
-                        <label for="passwordLogin">Mật khẩu:</label>
-                        <input type="password" id="passwordLogin">
-                        <div id="passwordloginerror">Bạn chưa nhập mật khẩu</div>
+                        <label for="usernameLogin">@username</label>
+                        <input type="username" id="usernameLogin" placeholder="Type your username"
+                            required /><br /><br />
+                        <div id="usernameerror"></div>
+                        <label for="passwordLogin">@password</label>
+                        <input type="password" id="passwordLogin" placeholder="Type your password" required /><br /><br />
+                        <div id="passwordloginerror"></div>
                     </div>
                 </div>
                 <button type="submit" id="btnlogin">Login</button>
+                <p>Or Sign Up Using</p>
+                <p style="margin: 50px 50px;"><i class="fa-brands fa-facebook"
+                        style="font-size: 2rem; margin: 20px 10px;"></i>
+                    <i class="fa-brands fa-x-twitter" style="font-size: 2rem;margin: 20px 10px;"></i>
+                    <i class="fa-brands fa-google" style="font-size: 2rem;margin: 20px 10px;"></i>
+                </p>
                 <p>Bạn chưa có tài khoản? <a href="#" onClick="showSignUp()">Đăng ký</a></p>
             </form>
         </div>
         <div id="signup">
             <form id="signupform">
                 <button type="button" class="close" onClick="closeform()">+</button>
-                <h2>ĐĂNG KÝ</h2>
+                <h1>Create Account</h1>
                 <div class="signupinfo">
                     <div class="col">
-                        <label for="fullname">Họ và tên: </label>
-                        <input type="text" id="fullname">
-                        <div id="fullnameerror">Bạn chưa nhập họ tên</div>
-                        <label for="address">Địa chỉ: </label>
-                        <input type="text" id="address">
-                        <div id="addresserror">Bạn chưa địa chỉ</div>
-                        <label for="phone">Số điện thoại: </label>
-                        <input type="text" id="phone">
-                        <div id="phoneerror">Bạn chưa nhập số điện thoại</div>
+                        <label for="fullname">@fullname</label>
+                        <input type="text" id="fullname" required /><br /><br />
+                        <div id="fullnameerror"></div>
+                        <label for="address">@address</label>
+                        <input type="text" id="address" required /><br /><br />
+                        <div id="addresserror"></div>
+                        <label for="phone">@phone </label>
+                        <input type="text" id="phone" required /><br /><br />
+                        <div id="phoneerror"></div>
                     </div>
                     <div class="col">
-                        <label for="usernameSignUp">Tên đăng nhập: </label>
-                        <input type="text" id="usernameSignUp">
-                        <div id="usererror">Bạn chưa nhập tên đăng nhập</div>
-                        <label for="passwordSignUp">Mật khẩu: </label>
-                        <input type="password" id="passwordSignUp">
-                        <div id="passworderror">Bạn chưa nhập mật khẩu</div>
-                        <label for="passwordSignUp2">Nhập lại mật khẩu: </label>
-                        <input type="password" id="passwordSignUp2">
-                        <div id="password2error">Mật khẩu không trùng khớp</div>
+                        <label for="usernameSignUp">@username</label>
+                        <input type="text" id="usernameSignUp" required /><br /><br />
+                        <div id="usererror"></div>
+                        <label for="passwordSignUp">@password</label>
+                        <input type="password" id="passwordSignUp" required /><br /><br />
+                        <div id="passworderror"></div>
+                        <label for="passwordSignUp2">@confirm password</label>
+                        <input type="password" id="passwordSignUp2" required /><br /><br />
+                        <div id="password2error"></div>
                     </div>
                 </div>
                 <button type="submit" id="btnsignup">Đăng ký</button>
+                <p>Or Registeration Using</p>
+                <p style="margin: 50px 50px;"><i class="fa-brands fa-facebook"
+                        style="font-size: 2rem; margin: 10px 5px;"></i>
+                    <i class="fa-brands fa-x-twitter" style="font-size: 2rem;margin: 10px 5px;"></i>
+                    <i class="fa-brands fa-google" style="font-size: 2rem;margin: 10px 5px;"></i>
+                </p>
                 <p>Trở về trang <a href="#" onClick="showLogin()">Đăng nhập</a></p>
             </form>
+        </div>
+    </div>
+    <!--Searchsection  begin -->
+    <div id="searchsection">
+        <div class="container">
+            <div class="close" onClick="closeSearch()">+</div>
+            <div class="searchbox">
+                <input type="text" placeholder="Tìm kiếm" id="search" onKeyUp="search()"><button
+                    onclick="showextend()"><img src="images/icon/arrow.svg"></button>
+            </div>
+            <div id="searchextend" class="">
+                <div>
+                    <select id="brandsearch" onchange="search()">
+                        <option value="all" selected>TẤT CẢ</option>
+                        <option value="adidas">ADIDAS</option>
+                        <option value="nike">NIKE</option>
+                        <option value="gucci">GUCCI</option>
+                        <option value="balenciaga">BALENCIAGA</option>
+                    </select>
+                </div>
+                <div> <input type="text" id="priceform" onchange="search()" placeholder="Giá từ"> &mdash; <input
+                        type="text" id="priceto" onchange="search()" placeholder="Đến"></div>
+            </div>
+            <div id="searchresult"></div>
         </div>
     </div>
     <div id="banner">
