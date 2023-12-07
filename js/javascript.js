@@ -592,13 +592,10 @@ function Buy() {
   var info = "";
   var totalprice = 0;
   for (var i = 0; i < cartArray.length; i++) {
-    info +=
-      `${cartArray[i].productName}*${cartArray[i].quantity};`
+    info += `${cartArray[i].productName}*${cartArray[i].quantity};`
     totalprice += Number(currency(cartArray[i].price * cartArray[i].quantity));
   }
-
   var user = JSON.parse(localStorage.getItem("userlogin"));
-
   const time = new Date();
   var date =
     String(time.getDate()) +
@@ -701,7 +698,7 @@ function loadproduct() {
           "Bburago F1 Ferrari F1-75 #16 (Charles Leclerc) 2022 Formula 1 Model Car 1/43",
         productIMG: "ferrari/P0001.png",
         brand: "Ferrari",
-        price: "11.99",
+        price: 11.99,
         type: "featured",
       },
 
@@ -710,7 +707,7 @@ function loadproduct() {
         productName: "Bburago Ferrari Race & Play F8 Tributo 1/43 B18-36054",
         productIMG: "ferrari/P0002.png",
         brand: "Ferrari",
-        price: "6.50",
+        price: 6.50,
         type: "featured",
       },
       {
@@ -719,7 +716,7 @@ function loadproduct() {
           "Bburago Scuderia F1 Ferrari 2022 - SF21 #16 (Charles Leclerc) 2022 Model Car 1/43",
         productIMG: "ferrari/P0003.png",
         brand: "Ferrari",
-        price: "11.99",
+        price: 11.99,
         type: "featured",
       },
       {
@@ -727,7 +724,7 @@ function loadproduct() {
         productName: "Maisto Ferrari Enzo Kit 1/24",
         productIMG: "ferrari/P0004.png",
         brand: "Ferrari",
-        price: "22.00",
+        price: 22.00,
         type: "featured",
       },
       {
@@ -735,7 +732,7 @@ function loadproduct() {
         productName: "Bburago Ferrari Race And Play Monza Sp-1 1/43 Toy Car",
         productIMG: "ferrari/P0005.png",
         brand: "Ferrari",
-        price: "7.95",
+        price: 7.95,
         type: "featured",
       },
       {
@@ -744,7 +741,7 @@ function loadproduct() {
           "Maisto Premium RC F1 Ferrari SF90 2019 Season Leclerc 1/24",
         productIMG: "ferrari/P0006.png",
         brand: "Ferrari",
-        price: "35.00",
+        price: 35.00,
         type: "featured",
       },
       {
@@ -753,7 +750,7 @@ function loadproduct() {
           "Bburago Ferrari Racing 488 Challenge (Formula Ferrari Racing 2017) 1/24 Model Car",
         productIMG: "ferrari/P0007.png",
         brand: "Ferrari",
-        price: "25.00",
+        price: 25.00,
         type: "featured",
       },
       {
@@ -761,7 +758,7 @@ function loadproduct() {
         productName: "Bburago Ferrari Race & Play F12 Tdf 1/24",
         productIMG: "ferrari/P0008.png",
         brand: "Ferrari",
-        price: "20.00",
+        price: 20.00,
         type: "featured",
       },
       {
@@ -769,7 +766,7 @@ function loadproduct() {
         productName: "Bburago Ferrari Signature SF90 Stradale 1/18 Model Car ",
         productIMG: "ferrari/P0009.png",
         brand: "Ferrari",
-        price: "81.99",
+        price: 81.99,
         type: "featured",
       },
       {
@@ -777,7 +774,7 @@ function loadproduct() {
         productName: "Bburago Ferrari Race & Play 488 GTB 1/24 Model Car",
         productIMG: "ferrari/P0010.png",
         brand: "Ferrari",
-        price: "22.00",
+        price: 22.00,
         type: "featured",
       },
       {
@@ -785,7 +782,7 @@ function loadproduct() {
         productName: "Bburago Ferrari Race & Play Laferrari 1/24",
         productIMG: "ferrari/P0011.png",
         brand: "Ferrari",
-        price: "20.00",
+        price: 20.00,
         type: "featured",
       },
       {
@@ -793,7 +790,7 @@ function loadproduct() {
         productName: "Bburago Ferrari Race And Play 488 Pista 1/24 Model Car ",
         productIMG: "ferrari/P0012.png",
         brand: "Ferrari",
-        price: "22.00",
+        price: 22.00,
         type: "featured",
       },
       {
@@ -801,7 +798,7 @@ function loadproduct() {
         productName: "Bburago Ferrari Race And Play 488 Pista 1/24 Model Car ",
         productIMG: "ferrari/P0012.png",
         brand: "Ferrari",
-        price: "22.00",
+        price: 22.00,
         type: "featured",
       },
       {
@@ -809,7 +806,7 @@ function loadproduct() {
         productName: "Bburago Ferrari Race And Play 488 Pista 1/24 Model Car ",
         productIMG: "ferrari/P0012.png",
         brand: "Ferrari",
-        price: "22.00",
+        price: 22.00,
         type: "featured",
       },
       {
@@ -817,7 +814,7 @@ function loadproduct() {
         productName: "Bburago Ferrari Race And Play 488 Pista 1/24 Model Car ",
         productIMG: "ferrari/P0012.png",
         brand: "Ferrari",
-        price: "22.00",
+        price: 22.00,
         type: "featured",
       },
       {
@@ -825,7 +822,7 @@ function loadproduct() {
         productName: "Bburago Ferrari Race And Play 488 Pista 1/24 Model Car ",
         productIMG: "ferrari/P0012.png",
         brand: "Ferrari",
-        price: "22.00",
+        price: 22.00,
         type: "featured",
       },
 
@@ -836,7 +833,7 @@ function loadproduct() {
           "Solido 1993 Toyota Supra Mk.4 (A80) - Renaissance Red Car Model 1/18",
         productIMG: "toyota/P0013.png",
         brand: "Toyota",
-        price: "49.00",
+        price: 49.00,
         type: "new",
       },
       {
@@ -844,7 +841,7 @@ function loadproduct() {
         productName: "CULT Toyota Landcruiser FJ40 Yellow 1977 1/18",
         productIMG: "toyota/P0014.png",
         brand: "Toyota",
-        price: "128.29",
+        price: 128.29,
         type: "new",
       },
       {
@@ -853,7 +850,7 @@ function loadproduct() {
           "Solido 2023 Toyota GR Supra Streetfighter - Prominance Red Car Model 1/8",
         productIMG: "toyota/P0015.png",
         brand: "Toyota",
-        price: "60.00",
+        price: 60.00,
         type: "new",
       },
       {
@@ -861,7 +858,7 @@ function loadproduct() {
         productName: "Maisto Toyota Supra GR Red 1/24 Scale Model Car",
         productIMG: "toyota/P0016.png",
         brand: "Toyota",
-        price: "20.00",
+        price: 20.00,
         type: "new",
       },
       {
@@ -870,7 +867,7 @@ function loadproduct() {
           "Ixo Toyota Yaris Pandem White 1/43 Diecast Scale Model Car",
         productIMG: "toyota/P0017.png",
         brand: "Toyota",
-        price: "39.00",
+        price: 39.00,
         type: "new",
       },
       {
@@ -878,7 +875,7 @@ function loadproduct() {
         productName: "Maisto Toyota Tacoma Pick-Up 2.4GHZ 1/16",
         productIMG: "toyota/P0018.png",
         brand: "Toyota",
-        price: "33.00",
+        price: 33.00,
         type: "new",
       },
       {
@@ -886,7 +883,7 @@ function loadproduct() {
         productName: "AutoArt Toyota Century Open Black DieCast Car Model 1/18",
         productIMG: "toyota/P0019.png",
         brand: "Toyota",
-        price: "300.00",
+        price: 300.00,
         type: "new",
       },
       {
@@ -894,7 +891,7 @@ function loadproduct() {
         productName: "AutoArt 2018 Toyota Century (Black) Composite Model 1/18",
         productIMG: "toyota/P0020.png",
         brand: "Toyota",
-        price: "330.00",
+        price: 330.00,
         type: "new",
       },
       {
@@ -903,7 +900,7 @@ function loadproduct() {
           "AutoArt Toyota Celica Liftback 2000GT (RA25) 1973 (Turquoise Blue Metallic) 1/18",
         productIMG: "toyota/P0021.png",
         brand: "Toyota",
-        price: "260.00",
+        price: 260.00,
         type: "new",
       },
       {
@@ -911,7 +908,7 @@ function loadproduct() {
         productName: "Maisto RWB Toyota Sprinter Trueno AE86 White/Black 1/24",
         productIMG: "toyota/P0022.png",
         brand: "Toyota",
-        price: "330.00",
+        price: 330.00,
         type: "new",
       },
       {
@@ -919,7 +916,7 @@ function loadproduct() {
         productName: "IXO Toyota Celica Turbo 4WD (ST185) #1 Safari Rally 1993",
         productIMG: "toyota/P0023.png",
         brand: "Toyota",
-        price: "29.00",
+        price: 29.00,
         type: "new",
       },
       {
@@ -928,7 +925,7 @@ function loadproduct() {
           "IXO Toyota Yaris WRC #69 Rally Ypres 2021 K.Rovanpera/J.Halttunen 1/43",
         productIMG: "toyota/P0024.png",
         brand: "Toyota",
-        price: "39.00",
+        price: 39.00,
         type: "new",
       },
 
@@ -938,7 +935,7 @@ function loadproduct() {
         productName: "Bburago Lamborghini Aventador Toy Car 1/64",
         productIMG: "lamborghini/P0025.png",
         brand: "Lamborghini",
-        price: "3.00",
+        price: 3.00,
         type: "",
       },
       {
@@ -946,7 +943,7 @@ function loadproduct() {
         productName: "Bburago Lamborghini Sian FKP 37 Red 1/24",
         productIMG: "lamborghini/P0026.png",
         brand: "Lamborghini",
-        price: "13.00",
+        price: 13.00,
         type: "",
       },
       {
@@ -954,7 +951,7 @@ function loadproduct() {
         productName: "Bburago Lamborghini Centenario Toy Car 1/64",
         productIMG: "lamborghini/P0027.png",
         brand: "Lamborghini",
-        price: "6.00",
+        price: 6.00,
         type: "",
       },
       {
@@ -962,7 +959,7 @@ function loadproduct() {
         productName: "Bburago Lamborghini Centenario Toy Car 1/43",
         productIMG: "lamborghini/P0028.png",
         brand: "Lamborghini",
-        price: "18.00",
+        price: 18.00,
         type: "",
       },
       {
@@ -970,7 +967,7 @@ function loadproduct() {
         productName: "Bburago Lamborghini Countach Lpi 800-4 1/24 Model Car",
         productIMG: "lamborghini/P0029.png",
         brand: "Lamborghini",
-        price: "17.00",
+        price: 17.00,
         type: "",
       },
       {
@@ -978,7 +975,7 @@ function loadproduct() {
         productName: "Bburago Lamborghini Huracan Performante 1/24 Model Car",
         productIMG: "lamborghini/P0030.png",
         brand: "Lamborghini",
-        price: "17.00",
+        price: 17.00,
         type: "",
       },
       {
@@ -987,7 +984,7 @@ function loadproduct() {
           "Maisto Lamborghini Aventador Lp 700-4 Roadster Model Car Kit 1/24",
         productIMG: "lamborghini/P0031.png",
         brand: "Lamborghini",
-        price: "21.00",
+        price: 21.00,
         type: "",
       },
       {
@@ -995,7 +992,7 @@ function loadproduct() {
         productName: "Maisto Lamborghini Urus Model Car 1/24",
         productIMG: "lamborghini/P0032.png",
         brand: "Lamborghini",
-        price: "18.00",
+        price: 18.00,
         type: "",
       },
       {
@@ -1003,7 +1000,7 @@ function loadproduct() {
         productName: "Bburago Lamborghini Sian FKP 37 Green 1/24 Model Car",
         productIMG: "lamborghini/P0033.png",
         brand: "Lamborghini",
-        price: "17.00",
+        price: 17.00,
         type: "",
       },
       {
@@ -1011,7 +1008,7 @@ function loadproduct() {
         productName: "Bburago Lamborghini Terzo Millenio 1/24 Model Car",
         productIMG: "lamborghini/P0034.png",
         brand: "Lamborghini",
-        price: "16.00",
+        price: 16.00,
         type: "",
       },
       {
@@ -1020,7 +1017,7 @@ function loadproduct() {
           "Maisto Lamborghini Aventador LP700-4 Assorted Colours Model Car 1/24",
         productIMG: "lamborghini/P0035.png",
         brand: "Lamborghini",
-        price: "17.00",
+        price: 17.00,
         type: "",
       },
       {
@@ -1028,7 +1025,7 @@ function loadproduct() {
         productName: "Maisto RC Racing Lamborghini Centenario 1/14",
         productIMG: "lamborghini/P0036.png",
         brand: "Lamborghini",
-        price: "36.00",
+        price: 36.00,
         type: "",
       },
 
@@ -1039,7 +1036,7 @@ function loadproduct() {
           "AutoArt 2017 McLaren 720S (paris blue/metallic blue) 1/18",
         productIMG: "mclaren/P0037.png",
         brand: "McLaren",
-        price: "360.00",
+        price: 360.00,
         type: "",
       },
       {
@@ -1048,7 +1045,7 @@ function loadproduct() {
           "AutoArt 2018 McLaren Senna (trophy kyanos/blue) (composite model) 1/18",
         productIMG: "mclaren/P0038.png",
         brand: "McLaren",
-        price: "390.00",
+        price: 390.00,
         type: "",
       },
       {
@@ -1056,7 +1053,7 @@ function loadproduct() {
         productName: "AutoArt 2019 McLaren 720S GT3 #03 1/18",
         productIMG: "mclaren/P0039.png",
         brand: "McLaren",
-        price: "190.00",
+        price: 190.00,
         type: "",
       },
       {
@@ -1064,7 +1061,7 @@ function loadproduct() {
         productName: "AutoArt McLaren 720S GT3 1/18 Model Car",
         productIMG: "mclaren/P0040.png",
         brand: "McLaren",
-        price: "150.00",
+        price: 150.00,
         type: "",
       },
       {
@@ -1072,7 +1069,7 @@ function loadproduct() {
         productName: "Solido McLaren 600LT Green 2018 1/18 Scale Model",
         productIMG: "mclaren/P0041.png",
         brand: "McLaren",
-        price: "90.00",
+        price: 90.00,
         type: "",
       },
       {
@@ -1081,7 +1078,7 @@ function loadproduct() {
           "Solido McLaren F1 GTR Short Tail #39 - 1996 24H Le Mans Car Model 1/18",
         productIMG: "mclaren/P0042.png",
         brand: "McLaren",
-        price: "52.00",
+        price: 52.00,
         type: "",
       },
       {
@@ -1090,7 +1087,7 @@ function loadproduct() {
           "AutoArt 2018 McLaren Senna (vision victory/grey)(composite model) 1/18",
         productIMG: "mclaren/P0043.png",
         brand: "McLaren",
-        price: "55.00",
+        price: 55.00,
         type: "",
       },
       {
@@ -1099,7 +1096,7 @@ function loadproduct() {
           "AutoArt McLaren P1 GTR (Dark Grey Metallic/Orange Accents) 1/18",
         productIMG: "mclaren/P0044.png",
         brand: "McLaren",
-        price: "252.00",
+        price: 252.00,
         type: "",
       },
       {
@@ -1108,7 +1105,7 @@ function loadproduct() {
           "Minichamps McLaren F1 Team MCL35M - Lando Norris Bahrain GP 2022 1/43",
         productIMG: "mclaren/P0045.png",
         brand: "McLaren",
-        price: "72.00",
+        price: 72.00,
         type: "",
       },
       {
@@ -1116,7 +1113,7 @@ function loadproduct() {
         productName: "Solido McLaren 765 LT Orange 2020 Car Model 1/43",
         productIMG: "mclaren/P0046.png",
         brand: "McLaren",
-        price: "52.00",
+        price: 52.00,
         type: "",
       },
       {
@@ -1125,7 +1122,7 @@ function loadproduct() {
           "Spark Models Mercedes McLaren - F1 MCL35L M12 EQ Power+ P3 Abu Dhabi GP 2021 Daniel Ricciardo 1/43",
         productIMG: "mclaren/P0047.png",
         brand: "McLaren",
-        price: "22.00",
+        price: 22.00,
         type: "",
       },
       {
@@ -1133,7 +1130,7 @@ function loadproduct() {
         productName: "AutoArt 2019 McLaren 600LT (fistral blue) 1/18 Model Car",
         productIMG: "mclaren/P0048.png",
         brand: "McLaren",
-        price: "172.00",
+        price: 172.00,
         type: "",
       },
       {
@@ -1141,7 +1138,7 @@ function loadproduct() {
         productName: "AutoArt 2019 McLaren 600LT (fistral blue) 1/18 Model Car",
         productIMG: "mclaren/P0061.png",
         brand: "McLaren",
-        price: "240.00",
+        price: 240.00,
         type: "",
       },
       {
@@ -1150,7 +1147,7 @@ function loadproduct() {
           "AutoArt 2019 McLaren 600LT (myan orange) Model Car (composite) 1/18",
         productIMG: "mclaren/P0062.png",
         brand: "McLaren",
-        price: "222.00",
+        price: 222.00,
         type: "",
       },
       {
@@ -1159,7 +1156,7 @@ function loadproduct() {
           "AutoArt Mclaren P1 (fire black w/red/black interior) 1/18",
         productIMG: "mclaren/P0063.png",
         brand: "McLaren",
-        price: "172.00",
+        price: 172.00,
         type: "",
       },
       {
@@ -1167,7 +1164,7 @@ function loadproduct() {
         productName: "AutoArt 2019 McLaren 600LT (fistral blue) 1/18 Model Car",
         productIMG: "mclaren/P0064.png",
         brand: "McLaren",
-        price: "172.00",
+        price: 172.00,
         type: "",
       },
 
@@ -1177,7 +1174,7 @@ function loadproduct() {
         productName: "Maisto Porsche 911 GT2 RS Special Edition 1/24",
         productIMG: "porsche/P0049.png",
         brand: "Porsche",
-        price: "72.00",
+        price: 72.00,
         type: "bestselling",
       },
       {
@@ -1185,7 +1182,7 @@ function loadproduct() {
         productName: "Bburago Porsche 918 Spyder 1/24 Model Car",
         productIMG: "porsche/P0050.png",
         brand: "Porsche",
-        price: "12.00",
+        price: 12.00,
         type: "bestselling",
       },
       {
@@ -1193,7 +1190,7 @@ function loadproduct() {
         productName: "Bburago Porsche 911 Rsr Lemans Model Car 1/43",
         productIMG: "porsche/P0051.png",
         brand: "Porsche",
-        price: "15.00",
+        price: 15.00,
         type: "bestselling",
       },
       {
@@ -1201,7 +1198,7 @@ function loadproduct() {
         productName: "Bburago Porsche 911 Carrera S 1/24 Model Car",
         productIMG: "porsche/P0052.png",
         brand: "Porsche",
-        price: "18.00",
+        price: 18.00,
         type: "bestselling",
       },
       {
@@ -1209,7 +1206,7 @@ function loadproduct() {
         productName: "Bburago Porsche 911 RSR GT 1/24 Model Car ",
         productIMG: "porsche/P0053.png",
         brand: "Porsche",
-        price: "72.00",
+        price: 72.00,
         type: "bestselling",
       },
       {
@@ -1217,7 +1214,7 @@ function loadproduct() {
         productName: "Bburago Porsche Macan 1/24 Model Car",
         productIMG: "porsche/P0054.png",
         brand: "Porsche",
-        price: "16.00",
+        price: 16.00,
         type: "bestselling",
       },
       {
@@ -1225,7 +1222,7 @@ function loadproduct() {
         productName: "Bburago Porsche 918 Spyder 1/24 Model Car",
         productIMG: "porsche/P0055.png",
         brand: "Porsche",
-        price: "17.00",
+        price: 17.00,
         type: "bestselling",
       },
       {
@@ -1233,7 +1230,7 @@ function loadproduct() {
         productName: "Bburago Porsche GT3 RS 4.0 Model Car1/18",
         productIMG: "porsche/P0056.png",
         brand: "Porsche",
-        price: "45.00",
+        price: 45.00,
         type: "bestselling",
       },
       {
@@ -1241,7 +1238,7 @@ function loadproduct() {
         productName: "Bburago Porsche Taycan Dark Blue 1/24 Model Car",
         productIMG: "porsche/P0057.png",
         brand: "Porsche",
-        price: "16.00",
+        price: 16.00,
         type: "bestselling",
       },
       {
@@ -1250,7 +1247,7 @@ function loadproduct() {
           "Maisto Premium Remote Controlled Porsche Taycan 2.4ghz 1/24",
         productIMG: "porsche/P0058.png",
         brand: "Porsche",
-        price: "22.00",
+        price: 22.00,
         type: "bestselling",
       },
       {
@@ -1258,7 +1255,7 @@ function loadproduct() {
         productName: "Solido Porsche 992 GT3 - Python Green 2021 1/43",
         productIMG: "porsche/P0059.png",
         brand: "Porsche",
-        price: "29.00",
+        price: 29.00,
         type: "bestselling",
       },
       {
@@ -1267,7 +1264,7 @@ function loadproduct() {
           "IXO Porsche 919 Hybrid #1 24h Le Mans 2017 Jani/Tandy/Lotterer 1/18",
         productIMG: "porsche/P0060.png",
         brand: "Porsche",
-        price: "72.00",
+        price: 72.00,
         type: "bestselling",
       },
     ];

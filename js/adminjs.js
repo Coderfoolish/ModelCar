@@ -54,7 +54,6 @@ function upDateThongKe(){
     sodonhang();
     sosanpham();
 }
-
 function tongdoanhthu(){
     var tong=0;
     var billArray=JSON.parse(localStorage.getItem('bill'));
@@ -78,7 +77,6 @@ function sodonhang(){
 
 function sosanpham(){
     var product=JSON.parse(localStorage.getItem('product'));
-
     document.getElementById('sosanpham').innerHTML=product.length;
 }
 
@@ -626,25 +624,12 @@ function statisticInfo(id) {
     
     for (let product in statistics) {
         if (!isNaN(statistics[product])) {
-            let status = "";
-            let color = "";
-    
-            if (statistics[product] >= 20) {
-            status = "Top-selling";
-            color = "bg-success";
-            } else if (statistics[product] >= 10 && statistics[product] < 20) {
-            status = "Unpopular";
-            color = "bg-warning";
-            } else {
-            status = "Poor-selling";
-            color = "bg-danger";
-            }
-    
             var s1 = product.toString();
             var price;
             for (let iloop = 0; iloop < productArray.length; iloop++) {
             if (s1 == productArray[iloop].productName) {
                 price = productArray[iloop].price;
+                date = productArray[iloop].date ; 
             }
             }
             s +=
@@ -653,11 +638,7 @@ function statisticInfo(id) {
             "<td>" + product + "</td>" +
             "<td>" + statistics[product] + "</td>" +
             "<td>" + currency(price * statistics[product])    + "</td>" +
-            "<td>" +
-            '<span class="dot">' +
-            '<i class="' + color + '"></i>' +
-            status +
-            "</span>" +
+            "<td>" +date
             "</td>";
             i++;
 
@@ -726,3 +707,20 @@ function statisticInfo(id) {
 }
 runTable();
 // END STATISTIC TABLE
+
+function doanhso(){
+    var productArray = JSON.parse(localStorage.getItem("product")) ; 
+    var totalPriceProduct = 0 ; 
+    for( var i= 0 ; i<productArray.length ; i++)
+    {
+        totalPriceProduct += Number(currency(productArray[i].price));
+    }
+    document.getElementById("doanhthu").innerHTML = totalPriceProduct ;
+//     const time = new Date();
+//   var date =
+//     String(time.getDate()) +
+//     "-" +
+//     String(time.getMonth() + 1) +
+//     "-" +
+//     String(time.getFullYear());
+}
