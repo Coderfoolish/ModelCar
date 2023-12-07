@@ -39,6 +39,8 @@
             </li>
         </ul>
         <!-- end nav left -->
+        <!--nav middle -->
+        <!--nav middle -->
         <!-- nav right -->
         <ul class="navbar-nav nav-right">
             <li class="nav-item mode">
@@ -211,35 +213,28 @@
     <!--END TNONg KE-->
     <!--QUAN LI SAN PHAM-->
     <div class="wrapper" id="productSideBar">
-        <div class="row">
-            <div class="col-6 col-m-12 col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>
-                            TÌM KIẾM SẢN PHẨM
-                        </h3>
-                        <i class='bx bxs-user-detail'></i>
+        <div class="search">
+            <div class="subsectionn">
+                <form onkeyup="searchproduct()" onchange="searchproduct()">
+                    <label for="searchproductname"></label>
+                    <input type="text" id="searchproductname" placeholder="Tìm sản phẩm">
+                    <div class="subsectionn1">
+                        <label for="searchproductbrand">Tìm theo hãng:</label>
+                        <select id="searchproductbrand">
+                            <option value="all">Tất cả</option>
+                            <option value="Ferrari" selected>FERRARI</option>
+                            <option value="Toyota">TOYOTA</option>
+                            <option value="Lamborghini">LAMBORGHINI</option>
+                            <option value="McLaren">MCLAREN</option>
+                            <option value="Porsche">PORSCHE</option>
+                        </select>
                     </div>
-                    <div class="card-content">
-                        <div class="subsection">
-                            <form onkeyup="searchproduct()" onchange="searchproduct()">
-                                <label for="searchproductname">Tên sản phẩm</label>
-                                <input type="text" id="searchproductname">
-                                <label for="searchproductbrand">Thương hiệu</label>
-                                <select id="searchproductbrand">
-                                    <option value="all" selected>TẤT CẢ</option>
-                                    <option value="Ferrari">FERRARI</option>
-                                    <option value="Toyota">TOYOTA</option>
-                                    <option value="Lamborghini">LAMBORGHINI</option>
-                                    <option value="McLaren">MCLAREN</option>
-                                    <option value="Porsche">PORSCHE</option>
-                                </select>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                </form>
             </div>
-            <div class="col-6 col-m-12 col-sm-12">
+        <button id="addProductt">Thêm sản phẩm</button>
+        </div>
+        <div class="row">
+            <!-- <div class="col-12 col-m-12 col-sm-12">
                 <div class="card">
                     <div class="card-header">
                         <h3>
@@ -271,7 +266,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div>
             <div>

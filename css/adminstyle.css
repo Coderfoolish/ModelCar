@@ -662,6 +662,42 @@ button.delete{
     background-color: var(--red);
     color: var(--btn-color);
 }
+.search{
+    width: 100%;
+    height: 100px;
+    background-color: var(--main-bg-color);
+    border-radius: 20px;
+}
+.search input{
+    font-size: 13px;
+    height: 50px;
+    width: 100%;
+    background-color: var(--second-bg-color);
+    border: none;
+    border-radius: 20px;
+    padding-left: 20px;
+    transform: translateY(5px);
+}
+.search button#addProductt{
+    width: 200px;
+    height: 50px;
+    border: none;
+    color: var(--text-color);
+    background-color: #0083d6;
+    transform: translate3d(500px, -80px , 0);
+    margin: 0 650px;
+}
+.subsectionn1{
+    margin: 15px -350px;
+    font-size: 20px;
+}
+.subsectionn1 select{
+    font-size: 16px;
+}
+.subsectionn
+{
+    margin: 10px 400px;
+}
 .subsection form {
     width: 300px;
     margin: 0 auto;
