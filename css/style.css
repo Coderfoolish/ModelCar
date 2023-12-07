@@ -648,6 +648,7 @@ ul.devided > li:last-child {
 	height: 100%;
 	animation: topdown 0.7s;
 	position: relative;
+	background-color: white;
 }
 
 #login .close {
