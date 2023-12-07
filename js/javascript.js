@@ -87,23 +87,7 @@ function createUser(e) {
     );
     flag = false;
   } else {
-    if (isNaN(Number(phone.value))) {
-      document.getElementById("phoneerror").innerHTML = customAlert(
-        "Số điện thoại không hợp lệ",
-        "warning"
-      );
-      flag = false;
-    } else {
-      if (Number(phone.value) < 100000000 || Number(phone.value) > 999999999) {
-        document.getElementById("phoneerror").innerHTML = customAlert(
-          "Số điện thoại không hợp lệ",
-          "warning"
-        );
-        flag = false;
-      } else {
-        document.getElementById("phoneerror").style.display = "none";
-      }
-    }
+    document.getElementById("phoneerror").style.display = "none";
   }
   if (!usernameRegex.test(username.value)) {
     document.getElementById("usererror").innerHTML = customAlert(
@@ -173,7 +157,7 @@ function customAlert(message, type) {
   x.className = "show";
   setTimeout(function () {
     x.className = x.classList.remove("show");
-  }, 3500);
+  }, 3600);
 }
 function login(e) {
   e.preventDefault();
@@ -655,6 +639,7 @@ function Buy() {
   localStorage.removeItem("cart");
   showCartTable();
   showBill();
+  customAlert("Mua hàng thành công , hãy chờ xác nhận từ quản lí !" , "success")
 }
 
 function showBill() {
