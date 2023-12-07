@@ -643,6 +643,18 @@ table th {
     box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
 }
 
+#productlist th:nth-child(4){
+    width: 15%;
+}
+#productlist th:nth-child(5){
+    width: 10%;
+}
+#productlist th:nth-child(6){
+    width: 5%;
+}
+#productlist th:nth-child(7){
+    width: 5%;
+}
 /*TÌm kiếm user  */
 button.delete{
     font-size: 12px;
@@ -833,32 +845,19 @@ button.delete{
 #content #leftsection #maintable td:last-child{
     text-align: center;
 }
-#content #leftsection #maintable td .delete{
-    background-color: #c0392b;
-    font-size: 18pt;
+#content #leftsection #maintable td button{
+    font-size: 14px;
     color: #fff;
     cursor: pointer;
     width: 45px;
-    margin: 0px auto;
-    height: 20px;
+    margin: auto;
+    height: 30px;
     line-height: 22px;
     outline: none;
-    vertical-align: middle;
     display: block;
 }
-#content #leftsection #maintable td .change{
-    background-color: #2980b9;
-    font-size: 12pt;
-    color: #fff;
-    cursor: pointer;
-    padding: 0 5px;
-    margin: 5px auto 0;
-    height: 20px;
-    width: 45px;
-    line-height: 22px;
-    outline: none;
-    vertical-align: middle;
-    display: block;
+button.change{
+    background-color: rgb(40, 40, 148);
 }
 #content #leftsection #maintable #pagination{
     margin-top: 20px;
@@ -959,20 +958,20 @@ button.delete{
 	display: none;
 	z-index: 10;
 }
-#modal1{
+#modal{
     display: none;
 }
-#modal1 #changeproduct{
+#modal #changeproduct{
 	width: 50%;
 	height: 800px;
 	background-color:var(--second-bg-color);
 	margin: 70px auto;
 	position: relative;
-    top: -1100px;
+    top: -1000px;
 	padding: 12px;
 
 }
-#modal1 #changeproduct .close{
+#modal #changeproduct .close{
 	position: absolute;
 	right: 15px;
 	top: 15px;
@@ -982,16 +981,16 @@ button.delete{
 	outline: none;
 	cursor: pointer;
 }
-#modal1 #changeproduct .close:hover{
+#modal #changeproduct .close:hover{
 	color: var(--red);
 }
-#modal1 #changeproduct .image{
+#modal #changeproduct .image{
 	margin-top: 50px;
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-around;
 }
-#modal1 #changeproduct .image img{
+#modal #changeproduct .image img{
 	width: 20%;
 	padding: 10px;
 	border:  1px solid var(--third-bg-color);
@@ -1001,18 +1000,18 @@ button.delete{
 input#change-product-img {
     position: absolute;
 }
-#modal1 #changeproduct .info{
+#modal #changeproduct .info{
 	width: 600px;
 	margin: 50px auto;
 }
-#modal1 #changeproduct .info label{
+#modal #changeproduct .info label{
 	width: 100px;
 	font-size: 20px;
 	font-weight: bold;
 	display: inline-block;
 	margin-bottom: 10px;
 }
-#modal1 #changeproduct .info input{
+#modal #changeproduct .info input{
 	font-size: 20px;
 	width: 400px;
 	margin-bottom: 10px;
@@ -1020,17 +1019,17 @@ input#change-product-img {
     padding: 3px 10px;
 }
 
-#modal1 #changeproduct .info select{
+#modal #changeproduct .info select{
 	font-size: 20px;
 	width: 400px;
 	margin-bottom: 10px;
 }
-#modal1 #changeproduct .info option{
+#modal #changeproduct .info option{
 	font-size: 20px;
 	width: 400px;
 	margin-bottom: 10px;
 }
-#modal1 #changeproduct #save{
+#modal #changeproduct #save{
 	font-size: 20px;
 	width: 200px;
 	padding: 10px;
@@ -1041,7 +1040,7 @@ input#change-product-img {
 	display: block;
 	cursor: pointer;
 }
-#modal1 #changeproduct #save:hover{
+#modal #changeproduct #save:hover{
 	background-color: #fff;
 	color: var(--red);
 }
