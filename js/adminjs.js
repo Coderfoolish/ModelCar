@@ -49,20 +49,21 @@ function showBillSideBar()
 
 upDateThongKe();
 function upDateThongKe(){
-    tongdoanhthu();
+    // tongdoanhthu();
     souser();
     sodonhang();
     sosanpham();
+    tongchi();
 }
-function tongdoanhthu(){
-    var tong=0;
-    var billArray=JSON.parse(localStorage.getItem('bill'));
-    for(var i=0; i<billArray.length; i++){
-        tong += billArray[i].Totalprice;
-    }
+// function tongdoanhthu(){
+//     var tong=0;
+//     var billArray=JSON.parse(localStorage.getItem('bill'));
+//     for(var i=0; i<billArray.length; i++){
+//         tong += billArray[i].Totalprice;
+//     }
 
-    document.getElementById('tongdoanhthu').innerHTML=currency(tong);
-}
+//     document.getElementById('tongdoanhthu').innerHTML=currency(tong);
+// }
 
 function souser(){
     var userArray=JSON.parse(localStorage.getItem('user'));
@@ -230,13 +231,11 @@ function showProductList(vitri) {
 }
 function deleteproduct(productiddelete){
     var productArray = JSON.parse(localStorage.getItem('product'));
-    var vitri;
     for(var i=0;i<productArray.length;i++){
         if(productArray[i].productID == productiddelete){
             if(confirm('Bạn có muốn xóa sản phẩm này?')){
                 productArray.splice(i, 1);
             }
-            vitri=(Math.floor(i/10)*10);
         }
     }
     localStorage.setItem('product',JSON.stringify(productArray));
@@ -576,8 +575,30 @@ function statisticInfo(id) {
     if(option=="day"){
         day=document.getElementById('date').value;
     }
+    var a = new Date(day);
     for (let i = 0; i < billArray.length; i++) {
         if(option=="none"){
+            let id = billArray[i].ID;
+            let result = statisticInfo(id);
+    
+            for (let productName in result) {
+                if(!isNaN(productName) == false){
+                    // console.log(productName)
+                    if (statistics[productName]) {
+                    statistics[productName] += result[productName];
+                    } else {
+                    statistics[productName] = result[productName];
+                    }
+                    // console.log(statistics[productName])
+                }
+            }
+        }
+        
+        var b = new Date(billArray[i].Date);
+        if(option=="day"&&
+        a.getDate()==b.getDate()&&
+        a.getMonth()==b.getMonth()&&
+        a.getFullYear()==b.getFullYear()){
             let id = billArray[i].ID;
             let result = statisticInfo(id);
     
@@ -637,9 +658,7 @@ function statisticInfo(id) {
             "<td>" + i + "</td>" +
             "<td>" + product + "</td>" +
             "<td>" + statistics[product] + "</td>" +
-            "<td>" + currency(price * statistics[product])    + "</td>" +
-            "<td>" +date
-            "</td>";
+            "<td>" + currency(price * statistics[product])    + "</td>";
             i++;
 
             if(/ferrari/i.test(product)){
@@ -708,14 +727,14 @@ function statisticInfo(id) {
 runTable();
 // END STATISTIC TABLE
 
-function doanhso(){
+function tongchi(){
     var productArray = JSON.parse(localStorage.getItem("product")) ; 
     var totalPriceProduct = 0 ; 
     for( var i= 0 ; i<productArray.length ; i++)
     {
-        totalPriceProduct += Number(currency(productArray[i].price));
+        totalPriceProduct += Number(productArray[i].price);
     }
-    document.getElementById("doanhthu").innerHTML = totalPriceProduct ;
+    document.getElementById("tongchi").innerText = currency(totalPriceProduct) ;
 //     const time = new Date();
 //   var date =
 //     String(time.getDate()) +

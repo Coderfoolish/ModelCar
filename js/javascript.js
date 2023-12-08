@@ -598,9 +598,9 @@ function Buy() {
   var user = JSON.parse(localStorage.getItem("userlogin"));
   const time = new Date();
   var date =
-    String(time.getDate()) +
-    "-" +
     String(time.getMonth() + 1) +
+    "-" +
+    String(time.getDate()) +
     "-" +
     String(time.getFullYear());
   var billArray = JSON.parse(localStorage.getItem("bill"));
