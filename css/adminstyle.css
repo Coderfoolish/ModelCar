@@ -80,6 +80,35 @@ li {
 img {
     max-width: 100%;
 }
+img#imgproduct{
+    max-width: 250%;
+}
+div#changeproduct{
+    width: 100px;
+    height: 500px;
+    font-size: 19px;
+    margin: 20px 250px;
+    transform: translateY(20px);
+}
+button.close{
+    margin: 0 480px;
+    font-size: 20px;
+    color: var(--red);
+
+}
+input#change-product-name{
+    font-size: 16px;
+
+}
+input#change-product-price{
+    font-size: 16px;
+}
+select#change-product-brand{
+    font-size: 16px;
+}
+select#change-product-type{
+    font-size: 16px;
+}
 
 .light .logo-dark, .light .light-icon {
     display: none;
@@ -565,6 +594,46 @@ select#selectoptiondate{
 .couner i {
     font-size: 50px;
 }
+.cardd {
+    background: var(--main-bg-color);
+    color: var(--main-color);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    width: 50%;
+    margin: 100px 400px;
+}
+
+.cardd-header {
+    padding: 15px 30px;
+    border: solid 2px var(--red);
+    position: relative;
+
+}
+
+.cardd-header i {
+    color: var(--main-color);
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.cardd-header i:hover {
+    cursor: pointer;
+}
+
+.cardd-header h3 {
+    margin: 0;
+    text-align: center;
+    color: var(--purle-color2);
+}
+
+.cardd-content {
+    padding: 20px;
+    overflow-x: auto;
+    border: solid 2px var(--red);
+}
 
 .card {
     background: var(--main-bg-color);
@@ -749,7 +818,6 @@ button.delete{
 .subsection button {
     background-color: #fff;
     border: 2px solid #000;
-    border-radius: 20px;
     width: 80px;
     height: 30px;
     color: #000;
@@ -1173,7 +1241,10 @@ input#change-product-img {
 	background-color: #fff;
 	color: #000;
 }
-
+#searchBill{
+    margin: 0 1000px;
+    font-size: 1.8rem;
+}
 
 
 

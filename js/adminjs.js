@@ -318,7 +318,7 @@ function setPagination() {
   document.getElementById("pagination").innerHTML = button;
 }
 function showchangeproductbox(productid) {
-  document.getElementById("modal").style.display = "block";
+  document.getElementById("modall").style.display = "block";
   var productArray = JSON.parse(localStorage.getItem("product"));
   for (var i = 0; i < productArray.length; i++) {
     if (productArray[i].productID == productid) {
@@ -343,7 +343,7 @@ function showchangeproductbox(productid) {
   }
 }
 function changeproduct(productid) {
-  document.getElementById("modal").style.display = "none";
+  document.getElementById("modall").style.display = "none";
 
   var productArray = JSON.parse(localStorage.getItem("product"));
   for (var i = 0; i < productArray.length; i++) {
@@ -396,7 +396,7 @@ function deleteimgadd() {
   document.getElementById("imgadd").src = "../images/icon/temp2.jpg";
 }
 function closechangebox() {
-  document.getElementById("modal").style.display = "none";
+  document.getElementById("modall").style.display = "none";
 }
 function addProduct() {
   var productArray = JSON.parse(localStorage.getItem("product"));
@@ -861,38 +861,28 @@ function tongchi() {
   //     "-" +
   //     String(time.getFullYear());
 }
-function addProductt() {
-  list = ` <div class="card">
-    <div class="card-header">
-        <h3>
-            THÊM SẢN PHẨM
-        </h3>
-        <i class='bx bx-cart-add'></i>
-    </div>
-    <div class="card-content">
-        <div class="subsection">
-            <form>
-                <label for="productname">Tên sản phẩm</label>
-                <input type="text" id="productname">
-                <label for="brand">Thương hiệu:</label>
-                <select id="brand">
-                    <option value="Ferrari">FERRARI</option>
-                    <option value="Toyota">TOYOTA</option>
-                    <option value="Lamborghini">LAMBORGHINI</option>
-                    <option value="McLaren">MCLAREN</option>
-                    <option value="Porsche">PORSCHE</option>
-                </select><br>
-                <label for="productprice">Giá</label>
-                <input type="text" id="productprice">
-                <img id="imgadd" src="../images/icon/temp2.jpg">
-                <label>Ảnh</label>
-                <input type="file" id="addproductimg" onchange="changeimgadd(this)"><br>
-                <button type="reset" onclick="deleteimgadd()">Xóa</button>
-                <button type="button" onclick="addProduct()">Thêm</button>
-            </form>
-        </div>
-    </div>
-</div>
-    `;
-  document.getElementById("addProductt").innerHTML = list;
+function showAddProduct()
+{
+ document.getElementById('addProductBox').style.display = 'block' ;
+
+}
+
+function closeAddProduct()
+{
+  document.getElementById('addProductBox').style.display = 'none' ;
+}
+function showSeachUser()
+{
+  document.getElementById('seachUser').style.display = 'block' ;
+}
+function closeSeachUser()
+{
+  document.getElementById('seachUser').style.display = 'none' ;
+}
+function showSearchBill()
+{
+  document.getElementById('searchBilll').style.display= 'block'; 
+}
+function closeSearchBill(){
+  document.getElementById('searchBilll').style.display = 'none' ;
 }
