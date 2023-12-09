@@ -118,7 +118,7 @@
                         <i class='bx bx-gift'></i>
                     </p>
                     <h3 id="sosanpham"></h3>
-                    <p>Menu Items</p>
+                    <p>Items</p>
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
@@ -127,7 +127,7 @@
                         <i class='bx bx-task'></i>
                     </p>
                     <h3 id="sodonhang"></h3>
-                    <p>Order has been delivered</p>
+                    <p>Bill</p>
                 </div>
             </div>
             <div class="col-3 col-m-6 col-sm-6">
@@ -145,7 +145,7 @@
                         <i class='bx bx-money'></i>
                     </p>
                     <h3 id="tongchi"></h3>
-                    <p>Monthly revenue</p>
+                    <p>Finance</p>
                 </div>
             </div>
         </div>
@@ -154,13 +154,13 @@
                 <div class="card">
                     <div class="card-header">
                         <h3>
-                            Table
+                            DANH SÁCH SẢN PHẨM ĐÃ BÁN ĐƯỢC
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
                     <div class="card-content">
                         <input onchange="runTable()" type="date" id="date">
-                        
+
                         <select name="" id="selectoptiondate" onchange="runTable()">
                             <option value="none">Tất cả</option>
                             <option value="day">Theo ngày</option>
@@ -177,7 +177,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
+
                             </tbody>
                         </table>
                     </div>
@@ -187,7 +187,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h3>
-                            Tong Doanh Thu
+                            TỔNG DOANH THU
                         </h3>
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
@@ -230,57 +230,23 @@
                     </div>
                 </form>
             </div>
-        <button id="addProductt">Thêm sản phẩm</button>
+            <button id="addProductt" onclick="addProductt()">Thêm sản phẩm</button>
         </div>
-        <div class="row">
-            <!-- <div class="col-12 col-m-12 col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>
-                            THÊM SẢN PHẨM
-                        </h3>
-                        <i class='bx bx-cart-add'></i>
-                    </div>
-                    <div class="card-content">
-                        <div class="subsection">
-                            <form>
-                                <label for="productname">Tên sản phẩm</label>
-                                <input type="text" id="productname">
-                                <label for="brand">Thương hiệu:</label>
-                                <select id="brand">
-                                    <option value="Ferrari">FERRARI</option>
-                                    <option value="Toyota">TOYOTA</option>
-                                    <option value="Lamborghini">LAMBORGHINI</option>
-                                    <option value="McLaren">MCLAREN</option>
-                                    <option value="Porsche">PORSCHE</option>
-                                </select><br>
-                                <label for="productprice">Giá</label>
-                                <input type="text" id="productprice">
-                                <img id="imgadd" src="../images/icon/temp2.jpg">
-                                <label>Ảnh</label>
-                                <input type="file" id="addproductimg" onchange="changeimgadd(this)"><br>
-                                <button type="reset" onclick="deleteimgadd()">Xóa</button>
-                                <button type="button" onclick="addProduct()">Thêm</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-        </div>
+    </div>
+    <div>
         <div>
-            <div>
-                <div id="content">
-                    <div id="leftsection">
-                        <div id="maintable">
-                            <h3>DANH SÁCH SẢN PHẨM</h3>
-                            <table id="productlist">
-                            </table>
-                            <div id="pagination"></div>
-                        </div>
+            <div id="content">
+                <div id="leftsection">
+                    <div id="maintable">
+                        <h3>DANH SÁCH SẢN PHẨM</h3>
+                        <table id="productlist">
+                        </table>
+                        <div id="pagination"></div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <div class="cap">
         <div id="modal" class="madal">
