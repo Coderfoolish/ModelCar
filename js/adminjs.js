@@ -465,10 +465,10 @@ function searchproduct() {
                     <td>currency(${productArray[i].price})</td>
                     <td><button class="delete" onClick="deleteproduct('${
                       productArray[i].productID
-                    }')">Xóa</button></td>
+                    }')">Xóa</div></td>
                     <td><button class="change" onClick="showchangeproductbox('${
                       productArray[i].productID
-                    }')">Sửa</button></td>
+                    }')">Sửa</div></td>
                     
                     </tr>`;
         }
@@ -871,14 +871,14 @@ function closeAddProduct()
 {
   document.getElementById('addProductBox').style.display = 'none' ;
 }
-function showSeachUser()
-{
-  document.getElementById('seachUser').style.display = 'block' ;
-}
-function closeSeachUser()
-{
-  document.getElementById('seachUser').style.display = 'none' ;
-}
+// function showSeachUser()
+// {
+//   document.getElementById('seachUser').style.display = 'block' ;
+// }
+// function closeSeachUser()
+// {
+//   document.getElementById('seachUser').style.display = 'none' ;
+// }
 function showSearchBill()
 {
   document.getElementById('searchBilll').style.display= 'block'; 

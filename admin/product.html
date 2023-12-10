@@ -160,7 +160,6 @@
                     </div>
                     <div class="card-content">
                         <input onchange="runTable()" type="date" id="date">
-
                         <select name="" id="selectoptiondate" onchange="runTable()">
                             <option value="none">Tất cả</option>
                             <option value="day">Theo ngày</option>
@@ -325,13 +324,12 @@
     <!--QUAN LI KHANH HANG-->
     <div class="wrapper" id="userSideBar">
         <div class="row">
-            <div class="col-10 col-m-12 col-sm-12">
+            <div class="col-8 col-m-12 col-sm-12">
                 <div class="card">
                     <div class="card-header">
                         <h3>
                             DANH SÁCH KHÁCH HÀNG
                         </h3>
-                        <i onclick="showSeachUser()" class='bx bx-search' style="font-size: 1.8rem;"></i>
                     </div>
                     <div class="card-content">
                         <table id="userlist">
@@ -339,23 +337,20 @@
                     </div>
                 </div>
             </div>
-            <div class="modal" id="seachUser">
-                <div class="cardd">
-                    <div class="cardd-header">
+            <div class="col-4 col-m-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
                         <h3>
-                            TÌM KIẾM KHÁCH HÀNG
+                            TÌM KIẾM
                         </h3>
-                        <i onclick="closeSeachUser()" class='bx bx-x'></i>
                     </div>
-                    <div class="cardd-content">
+                    <div id="rightsection">
                         <div class="subsection">
                             <form>
-                                <label for="username">Tên đăng nhập</label>
-                                <input type="text" id="username">
-                                <label for="fullname">Tên khách hàng</label>
-                                <input type="text" id="fullname">
-                                <label for="datesign">Ngày đăng ký</label>
-                                <input type="date" id="datesign">
+                                <label for="username">Username</label>
+                                <input type="text" id="usernamee">
+                                <label for="datesignup">Date</label>
+                                <input type="date" id="datesignupp">
                                 <button type="reset">Xóa</button>
                                 <button type="button">Tìm</button>
                             </form>
@@ -375,7 +370,7 @@
                         <div id="maintable">
                             <i onclick="showSearchBill()" id="searchBill" class='bx bx-search'></i>
                             <h3>QUẢN LÝ ĐƠN HÀNG</h3>
-                            <table  id="billlist">
+                            <table id="billlist">
                                 <tr>
                                 </tr>
                             </table>
