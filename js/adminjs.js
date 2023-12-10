@@ -465,10 +465,10 @@ function searchproduct() {
                     <td>currency(${productArray[i].price})</td>
                     <td><button class="delete" onClick="deleteproduct('${
                       productArray[i].productID
-                    }')">Xóa</div></td>
+                    }')">Xóa</button></td>
                     <td><button class="change" onClick="showchangeproductbox('${
                       productArray[i].productID
-                    }')">Sửa</div></td>
+                    }')">Sửa</button></td>
                     
                     </tr>`;
         }
