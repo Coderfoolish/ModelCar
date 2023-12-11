@@ -137,7 +137,7 @@ function showbilllist() {
 function closebillinfo(){
   document.getElementById('productinbill-container').style.display='none';
 }
-function showinfobill(ID){
+function showinfobill(ID,selectPage=0){
   var billArray = JSON.parse(localStorage.getItem("bill"));
   var s=`<button id='closeproductinbill' type="button" onclick="closebillinfo()">x</button>`;
   for(var i=0; i<billArray.length; i++){
@@ -151,7 +151,11 @@ function showinfobill(ID){
         s+=`<div><span id="status" style="color:blue">Đã xử lý</span><label><input type="checkbox" checked onchange="changeStatus(this,'${billArray[i].ID}')" ><span class="slider"></span></label></div></div>`;
       }
       s+=`<div id="productinbill-contain"><ul>`;
-      for(var j=0;j<billArray[i].Info.length; j++){
+      var numProductBill = 5;
+      var numPage = Math.ceil(billArray[i].Info.length / numProductBill);
+      for(var j = numProductBill * selectPage;
+        j < numProductBill * (selectPage + 1) && j < billArray[i].Info.length;
+        j++){
         s+=`<li><div class="productinbill-card">
             <div class="img-container"><img src="../images/product/${billArray[i].Info[j].productIMG}"></div>
             <p class="name">${billArray[i].Info[j].productName}</p>
@@ -162,10 +166,28 @@ function showinfobill(ID){
       }
       s+=`</ul></div>`;
       s+='<button class="printbtn" onclick="window.print()">In đơn hàng</button>';
+      var reSultPage='<ul>';
+      if (numPage != 1) {
+        for (var j = 0; j < numPage; j++) {
+          if (j == selectPage) {
+            reSultPage +=
+              `<li><button class='pageBillInfo' onclick="showinfobill('${ID}',${j})" style="background-color: #C70039;color: #fff">
+              ${j+1}
+              </button></li>`;
+          } else {
+            reSultPage +=
+              `<li><button class='pageBillInfo' onclick="showinfobill('${ID}',${j})">
+              ${j+1}
+              </button></li>`;
+          }
+        }
+      }
+      reSultPage+='</ul>';
       break;
     }
   }
   document.getElementById('productinbill').innerHTML=s;
+  document.getElementById('billInfoPage').innerHTML=reSultPage;
   document.getElementById('productinbill-container').style.display='block';
 }
 function searchBill() {

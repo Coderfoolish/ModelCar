@@ -400,6 +400,7 @@ function showSearchResult(selectPage) {
       }
     }
   }
+  reSultPage+='</ul>';
   document.getElementById("searchPage").innerHTML = reSultPage;
   document.querySelector("#searchresult ul").innerHTML = result;
 }
@@ -643,7 +644,7 @@ function Buy() {
 function closeproductinbill(){
   document.getElementById('productinbill-container').style.display='none';
 }
-function showproductinbill(ID){
+function showproductinbill(ID,selectPage){
   var billArray = JSON.parse(localStorage.getItem("bill"));
   var s=`<button id='closeproductinbill' type="button" onclick="closeproductinbill()">x</button>`;
   for(var i=0; i<billArray.length; i++){
@@ -657,7 +658,11 @@ function showproductinbill(ID){
         s+=`<div><p style="color: blue;">Trạng thái: ${billArray[i].Status}</p></div></div>`;
       }
       s+=`<div id="productinbill-contain"><ul>`;
-      for(var j=0;j<billArray[i].Info.length; j++){
+      var numProductBill = 5;
+      var numPage = Math.ceil(billArray[i].Info.length / numProductBill);
+      for(var j = numProductBill * selectPage;
+        j < numProductBill * (selectPage + 1) && j < billArray[i].Info.length;
+        j++){
         s+=`<li><div class="productinbill-card">
             <div class="img-container"><img src="../images/product/${billArray[i].Info[j].productIMG}"></div>
             <p class="name">${billArray[i].Info[j].productName}</p>
@@ -667,10 +672,28 @@ function showproductinbill(ID){
             </div><li>`;
       }
       s+=`</ul></div>`;
+      var reSultPage='<ul>';
+      if (numPage != 1) {
+        for (var j = 0; j < numPage; j++) {
+          if (j == selectPage) {
+            reSultPage +=
+              `<li><button class='pageBillInfo' onclick="showproductinbill('${ID}',${j})" style="background-color: #C70039;color: #fff">
+              ${j+1}
+              </button></li>`;
+          } else {
+            reSultPage +=
+              `<li><button class='pageBillInfo' onclick="showproductinbill('${ID}',${j})">
+              ${j+1}
+              </button></li>`;
+          }
+        }
+      }
+      reSultPage+='</ul>';
       break;
     }
   }
   document.getElementById('productinbill').innerHTML=s;
+  document.getElementById('billInfoPage').innerHTML=reSultPage;
   document.getElementById('productinbill-container').style.display='block';
 }
 function showBill() {
@@ -686,7 +709,7 @@ function showBill() {
           s +=
             `<div class="billcontent">
             <div>
-            <button id="showproductinbill" type="button" onclick="showproductinbill('${billArray[i].ID}')">Thông tin chi tiết</button>
+            <button id="showproductinbill" type="button" onclick="showproductinbill('${billArray[i].ID}',0)">Thông tin chi tiết</button>
             </div>
             <div>
             ${currency(billArray[i].Totalprice)}

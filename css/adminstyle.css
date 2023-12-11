@@ -1208,6 +1208,20 @@ button.change{
 	background-color: #fff;
 	color: #000;
 }
+#billInfoPage{
+	position: fixed;
+	bottom: 120px;
+	left: 20%;
+}
+#billInfoPage ul{
+	display: flex;
+	height: 80px;
+}
+#billInfoPage .pageBillInfo{
+	font-size: 24px;
+	padding: 10px;
+	margin: 0;
+}
 /*END Quản lí đơn hàng*/
 .modal{
 	height: 100%;
