@@ -1058,6 +1058,156 @@ button.change{
     border: 2px solid var(--red);
     color: var(--red);
 }
+
+#productinbill-container{
+	display: none;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+#productinbill{
+	width: 70%;
+	height: 70%;
+	margin-left: 15%;
+	background-color: #f0f0f0;
+	position: fixed;
+	top: 150px;
+}
+
+#showproductinbill{
+	font-size: 18px;
+	font-weight: bold;
+	background-color: var(--red);
+	color: white;
+	padding: 12px;
+}
+
+#closeproductinbill{
+	width: 40px;
+	height: 40px;
+	font-size: 24px;
+	background-color: #f0f0f0;
+	color: black;
+	position: absolute;
+	right: 0;
+}
+#closeproductinbill:hover{
+	background-color: var(--red);
+	color: white;
+}
+#productinbill-head{
+	width: 100%;
+	height: 7%;
+	display: flex;
+}
+
+#productinbill-head p{
+	margin: 12px;
+	font-size: 18px;
+}
+#productinbill-head #status{
+    margin-left: 30px;
+	display: inline-block;
+	font-size: 18px;
+	height: 34px;
+	line-height: 34px;
+	width: 100px;
+}
+#productinbill-head label{
+    margin: 12px;
+    cursor: pointer;
+	display: inline-block;
+  	height: 34px;
+  	position: relative;
+ 	width: 60px;
+ 	vertical-align: middle;
+}
+#productinbill-head label input{
+	display: none;
+}
+#productinbill-head label .slider {
+	background-color: #ccc;
+	width: 100%;
+	height: 100%;
+	bottom: 0;
+	left: 0;
+	cursor: pointer;
+	position: absolute;
+	transition: 0.4s;
+	border-radius: 999px;
+}
+#productinbill-head label .slider:before {
+	content: "";
+	background-color: #fff;
+	height: 26px;
+	bottom: 4px;
+	left: 4px;
+	position: absolute;
+	transition: 0.4s;
+	width: 26px;
+	border-radius: 999px;
+}
+#productinbill-head label input:checked + .slider {
+  	background-color: #ff4700;
+}
+
+#productinbill-head label input:checked + .slider:before {
+  	left: 30px;
+}
+
+#productinbill-contain{
+	height: auto;
+}
+#productinbill-contain ul{
+	position: relative;
+	top: -20px;
+	display: flex;
+	flex-wrap: wrap;
+	padding: 30px;
+	list-style: none;
+}
+#productinbill-contain .productinbill-card{
+	position: relative;
+	width: 233px;
+	height: 233px;
+	margin: 5px;
+}
+#productinbill-contain .productinbill-card p{
+	font-size: 14px;
+}
+
+#productinbill-contain .productinbill-card .img-container{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+#productinbill-contain .productinbill-card img{
+	width: 80%;
+	margin: 0 10%;
+	z-index: 0;
+}
+
+#productinbill .printbtn{
+	width: 100px;
+	background-color: #000;
+	color: #fff;
+	height: 25px;
+	border: 2px solid #000;
+	line-height: 25px;
+	position: absolute;
+    bottom: 10px;
+    right: 10px;
+	cursor: pointer;
+}
+#productinbill .printbtn:hover{
+	background-color: #fff;
+	color: #000;
+}
 /*END Quản lí đơn hàng*/
 .modal{
 	height: 100%;
@@ -1155,7 +1305,7 @@ input#change-product-img {
 	background-color: #fff;
 	color: var(--red);
 }
-#billinfo #info{
+/* #billinfo #info{
 	width: 600px;
 	height: 700px;
 	background-color: #fff;
@@ -1174,7 +1324,7 @@ input#change-product-img {
 	cursor: pointer;
 }
 #billinfo #info h4{
-	/*font-size: 14pt;*/
+	font-size: 14pt;
 	margin-top: 20px;
 }
 #billinfo #info p{
@@ -1242,7 +1392,7 @@ input#change-product-img {
 #billinfo #info .printbtn:hover{
 	background-color: #fff;
 	color: #000;
-}
+} */
 #searchBill{
     margin: 0 1000px;
     font-size: 1.8rem;

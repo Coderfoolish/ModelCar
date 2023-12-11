@@ -1,7 +1,7 @@
 createAdmin();
 
 // localStorage.removeItem('cart');
-//localStorage.removeItem('product');
+// localStorage.removeItem('product');
 // localStorage.removeItem('bill');
 // định dạng số tiền thành $
 function currency(num) {
@@ -239,9 +239,9 @@ function checklogin() {
 //login
 //banner slideshow begin
 var slideIndex = 0;
-automaticSlideshow();
+Slideshow();
 
-function automaticSlideshow() {
+function Slideshow() {
   var i;
   var slide = document.getElementsByClassName("slideShow");
   for (i = 0; i < slide.length; i++) {
@@ -252,7 +252,7 @@ function automaticSlideshow() {
     slideIndex = 1;
   }
   slide[slideIndex - 1].style.display = "block";
-  setTimeout(automaticSlideshow, 2000);
+  setTimeout(Slideshow, 2000);
 }
 
 //banner slideshow end
@@ -589,10 +589,10 @@ function Buy() {
     showform();
   }
   var cartArray = JSON.parse(localStorage.getItem("cart"));
-  var info = "";
+  var info = [];
   var totalprice = 0;
   for (var i = 0; i < cartArray.length; i++) {
-    info += `${cartArray[i].productName}*${cartArray[i].quantity};`
+    info.push(cartArray[i]);
     totalprice += Number(currency(cartArray[i].price * cartArray[i].quantity));
   }
   var user = JSON.parse(localStorage.getItem("userlogin"));
@@ -607,7 +607,7 @@ function Buy() {
   if (billArray === null) {
     var billArray = [];
     var bill = {
-      ID: billArray.length,
+      ID: 'bill'+billArray.length,
       Info: info,
       Totalprice: totalprice,
       Ctmusername: user.username,
@@ -620,7 +620,7 @@ function Buy() {
     billArray.unshift(bill);
   } else {
     var bill = {
-      ID: billArray.length,
+      ID: 'bill'+billArray.length,
       Info: info,
       Totalprice: totalprice,
       Ctmusername: user.username,
@@ -639,6 +639,40 @@ function Buy() {
   customAlert("Mua hàng thành công , hãy chờ xác nhận từ quản lí !" , "success")
 }
 
+
+function closeproductinbill(){
+  document.getElementById('productinbill-container').style.display='none';
+}
+function showproductinbill(ID){
+  var billArray = JSON.parse(localStorage.getItem("bill"));
+  var s=`<button id='closeproductinbill' type="button" onclick="closeproductinbill()">x</button>`;
+  for(var i=0; i<billArray.length; i++){
+    if(billArray[i].ID==ID){
+      s+=`<div id='productinbill-head'><div><p>ID: ${billArray[i].ID}</p></div>
+          <div><p>Ngày mua: ${billArray[i].Date}</p></div>
+          <div><p>Tổng tiền: ${billArray[i].Totalprice}$</p></div>`;
+      if(billArray[i].Status=='unprocessed'){
+        s+=`<div><p style="color: red;">Trạng thái: ${billArray[i].Status}</p></div></div>`;
+      } else {
+        s+=`<div><p style="color: blue;">Trạng thái: ${billArray[i].Status}</p></div></div>`;
+      }
+      s+=`<div id="productinbill-contain"><ul>`;
+      for(var j=0;j<billArray[i].Info.length; j++){
+        s+=`<li><div class="productinbill-card">
+            <div class="img-container"><img src="../images/product/${billArray[i].Info[j].productIMG}"></div>
+            <p class="name">${billArray[i].Info[j].productName}</p>
+            <p class="price">giá: ${billArray[i].Info[j].price}$</p>
+            <p class="quantity">số lượng: ${billArray[i].Info[j].quantity}</p>
+            <p class="totalprice">tổng tiền: ${currency(billArray[i].Info[j].quantity*billArray[i].Info[j].price)}$</p>
+            </div><li>`;
+      }
+      s+=`</ul></div>`;
+      break;
+    }
+  }
+  document.getElementById('productinbill').innerHTML=s;
+  document.getElementById('productinbill-container').style.display='block';
+}
 function showBill() {
   if (localStorage.getItem("bill" === null)) {
     document.getElementById("bill").style.display = "none";
@@ -649,29 +683,27 @@ function showBill() {
       var s = "<h2>Đơn hàng đã đặt</h2>";
       for (var i = 0; i < billArray.length; i++) {
         if (user.username === billArray[i].Ctmusername) {
-          document.getElementById("bill").style.display = "block";
           s +=
-            '<div class="billcontent">' +
-            "<div>" +
-            billArray[i].Info +
-            "</div>" +
-            "<div>" +
-            billArray[i].Totalprice +
-            "$</div>" +
-            "<div>" +
-            billArray[i].Date +
-            "</div>" +
-            "<div>" +
-            billArray[i].Status +
-            "</div>" +
-            '<div><button onclick="deleteBill(' +
-            billArray[i].ID +
-            ')">X</button></div>' +
-            "</div>";
+            `<div class="billcontent">
+            <div>
+            <button id="showproductinbill" type="button" onclick="showproductinbill('${billArray[i].ID}')">Thông tin chi tiết</button>
+            </div>
+            <div>
+            ${currency(billArray[i].Totalprice)}
+            $</div>
+            <div>
+            ${billArray[i].Date}
+            </div>
+            <div>
+            ${billArray[i].Status}
+            </div>
+            <div><button type="button" onclick="deleteBill('${billArray[i].ID}')">X</button></div>
+            </div>`;
         }
       }
     }
     document.getElementById("bill").innerHTML = s;
+    document.getElementById("bill").style.display = "block";
   }
 }
 
@@ -1268,7 +1300,7 @@ function loadproduct() {
         type: "bestselling",
       },
     ];
-    productArray = shuffle(productArray);
+    // productArray = shuffle(productArray);
     localStorage.setItem("product", JSON.stringify(productArray));
   }
 }
@@ -1566,51 +1598,65 @@ function pagination(type) {
   }
 }
 //post
-const preventDefaultLinks = document.querySelectorAll(".hoverimage");
-preventDefaultLinks.forEach((link) => {
-  link.addEventListener("click", function (event) {
-    event.preventDefault();
+
+function footerjs(){
+  const preventDefaultLinks = document.querySelectorAll(".hoverimage");
+  preventDefaultLinks.forEach((link) => {
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
+    });
   });
-});
 
-var post = document.querySelector(".post-main__detail");
-var cancelButton = document.querySelector(".post-main__detail__bar__right");
-var imgMain = document.querySelector(".post-main-img");
+  var post = document.querySelector(".post-main__detail");
+  var cancelButton = document.querySelector(".post-main__detail__bar__right");
+  var imgMain = document.querySelector(".post-main-img");
 
-cancelButton.addEventListener("click", function () {
-  post.style.display = "none";
-});
+  cancelButton.addEventListener("click", function () {
+    post.style.display = "none";
+  });
 
-imgMain.addEventListener("click", function () {
-  post.style.display = "block";
-});
+  imgMain.addEventListener("click", function () {
+    post.style.display = "block";
+  });
 
-var post1 = document.querySelector(".post-sub1__detail");
-var cancelButton1 = document.querySelector(".post-sub1__detail__bar__right");
-var imgMain1 = document.querySelector(".post-sub1-img");
-var postSub2Hide = document.querySelector(".post-sub2");
+  var post1 = document.querySelector(".post-sub1__detail");
+  var cancelButton1 = document.querySelector(".post-sub1__detail__bar__right");
+  var imgMain1 = document.querySelector(".post-sub1-img");
+  var postSub2Hide = document.querySelector(".post-sub2");
 
-cancelButton1.addEventListener("click", function () {
-  post1.style.display = "none";
-  postSub2Hide.style.display = "block";
-});
+  cancelButton1.addEventListener("click", function () {
+    post1.style.display = "none";
+    postSub2Hide.style.display = "block";
+  });
 
-imgMain1.addEventListener("click", function () {
-  post1.style.display = "block";
-  postSub2Hide.style.display = "none";
-});
+  imgMain1.addEventListener("click", function () {
+    post1.style.display = "block";
+    postSub2Hide.style.display = "none";
+  });
 
-var post2 = document.querySelector(".post-sub2__detail");
-var cancelButton2 = document.querySelector(".post-sub2__detail__bar__right");
-var imgMain2 = document.querySelector(".post-sub2-img");
+  var post2 = document.querySelector(".post-sub2__detail");
+  var cancelButton2 = document.querySelector(".post-sub2__detail__bar__right");
+  var imgMain2 = document.querySelector(".post-sub2-img");
 
-cancelButton2.addEventListener("click", function () {
-  post2.style.display = "none";
-});
+  cancelButton2.addEventListener("click", function () {
+    post2.style.display = "none";
+  });
 
-imgMain2.addEventListener("click", function () {
-  post2.style.display = "block";
-});
+  imgMain2.addEventListener("click", function () {
+    post2.style.display = "block";
+  });
+  const container = document.getElementById("container");
+  const registerBtn = document.getElementById("register");
+  const loginBtn = document.getElementById("login");
+
+  registerBtn.addEventListener("click", () => {
+    container.classList.add("active");
+  });
+
+  loginBtn.addEventListener("click", () => {
+    container.classList.remove("active");
+  });
+}
 
 //footer
 
@@ -1620,14 +1666,4 @@ function crolltop(namebrand) {
   document.documentElement.scrollTop = 0;
 }
 
-const container = document.getElementById("container");
-const registerBtn = document.getElementById("register");
-const loginBtn = document.getElementById("login");
 
-registerBtn.addEventListener("click", () => {
-  container.classList.add("active");
-});
-
-loginBtn.addEventListener("click", () => {
-  container.classList.remove("active");
-});

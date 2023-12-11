@@ -133,58 +133,40 @@ function showbilllist() {
   }
   document.getElementById("billlist").innerHTML = s;
 }
-function showinfobill(id) {
-  document.getElementById("billinfo").style.display = "block";
+
+function closebillinfo(){
+  document.getElementById('productinbill-container').style.display='none';
+}
+function showinfobill(ID){
   var billArray = JSON.parse(localStorage.getItem("bill"));
-  var s = '<button class="close" onClick="closeinfobill()">&times;</button>';
-  for (var i = 0; i < billArray.length; i++) {
-    if (billArray[i].ID == id) {
-      s +=
-        "<h4>Thông tin đơn hàng:</h4>" +
-        "<p>" +
-        billArray[i].Info +
-        "</p>" +
-        "<h4>Ngày tạo đơn hàng:</h4>" +
-        "<p>" +
-        billArray[i].Date +
-        "</p>" +
-        "<h4>Tên khách hàng:</h4>" +
-        "<p>" +
-        billArray[i].Ctmfullname +
-        "</p>" +
-        "<h4>Địa chỉ:</h4>" +
-        "<p>" +
-        billArray[i].Ctmaddress +
-        "</p>" +
-        "<h4>Số điện thoại liên lạc:</h4>" +
-        "<p>" +
-        billArray[i].Ctmphone +
-        "</p>" +
-        "<h4>Tổng giá tiền:</h4>" +
-        "<p>" +
-        currency(billArray[i].Totalprice) +
-        "</p>";
-      if (billArray[i].Status == "unprocessed") {
-        s +=
-          "<h4>Tình trạng:</h4>" +
-          '<div><span id="status" style="color:red">Chưa xử lý</span><label><input type="checkbox" onchange="changeStatus(this,' +
-          billArray[i].ID +
-          ')" ><span class="slider"></span></label></div>';
+  var s=`<button id='closeproductinbill' type="button" onclick="closebillinfo()">x</button>`;
+  for(var i=0; i<billArray.length; i++){
+    if(billArray[i].ID==ID){
+      s+=`<div id='productinbill-head'><div><p>ID: ${billArray[i].ID}</p></div>
+          <div><p>Ngày mua: ${billArray[i].Date}</p></div>
+          <div><p>Tổng tiền: ${billArray[i].Totalprice}$</p></div>`;
+      if(billArray[i].Status=='unprocessed'){
+        s+=`<div><span id="status" style="color:red">Chưa xử lý</span><label><input type="checkbox" onchange="changeStatus(this,'${billArray[i].ID}')" ><span class="slider"></span></label></div></div>`;
       } else {
-        s +=
-          "<h4>Tình trạng:</h4>" +
-          '<div><span id="status" style="color:blue">Đã xử lý</span><label><input type="checkbox" checked onchange="changeStatus(this,' +
-          billArray[i].ID +
-          ')" ><span class="slider"></span></label></div>';
+        s+=`<div><span id="status" style="color:blue">Đã xử lý</span><label><input type="checkbox" checked onchange="changeStatus(this,'${billArray[i].ID}')" ><span class="slider"></span></label></div></div>`;
       }
-      s +=
-        '<button class="printbtn" onClick="window.print()">In đơn hàng</button>';
+      s+=`<div id="productinbill-contain"><ul>`;
+      for(var j=0;j<billArray[i].Info.length; j++){
+        s+=`<li><div class="productinbill-card">
+            <div class="img-container"><img src="../images/product/${billArray[i].Info[j].productIMG}"></div>
+            <p class="name">${billArray[i].Info[j].productName}</p>
+            <p class="price">giá: ${billArray[i].Info[j].price}$</p>
+            <p class="quantity">số lượng: ${billArray[i].Info[j].quantity}</p>
+            <p class="totalprice">tổng tiền: ${currency(billArray[i].Info[j].quantity*billArray[i].Info[j].price)}$</p>
+            </div><li>`;
+      }
+      s+=`</ul></div>`;
+      s+='<button class="printbtn" onclick="window.print()">In đơn hàng</button>';
+      break;
     }
   }
-  document.querySelector("#billinfo #info").innerHTML = s;
-}
-function closeinfobill() {
-  document.getElementById("billinfo").style.display = "none";
+  document.getElementById('productinbill').innerHTML=s;
+  document.getElementById('productinbill-container').style.display='block';
 }
 function searchBill() {
   var billArray = JSON.parse(localStorage.getItem("bill"));
@@ -275,10 +257,10 @@ function showProductList(vitri) {
             <td>${currency(productArray[i].price)}</td>
             <td><button class="delete" onClick="deleteproduct('${
               productArray[i].productID
-            }')">Xóa</div></td>
+            }')">Xóa</button></td>
             <td><button class="change" onClick="showchangeproductbox('${
               productArray[i].productID
-            }')">Sửa</div></td>
+            }')">Sửa</button></td>
             
             </tr>`;
     dem++;
@@ -643,207 +625,207 @@ function customAlert(message, type) {
 }
 
 // STATISTIC TABLE
-function statisticInfo(id) {
-  let statistics = {};
-  var billArray = JSON.parse(localStorage.getItem("bill"));
+// function statisticInfo(id) {
+//   let statistics = {};
+//   var billArray = JSON.parse(localStorage.getItem("bill"));
 
-  for (let i = 0; i < billArray.length; i++) {
-    let bill = billArray[i];
+//   for (let i = 0; i < billArray.length; i++) {
+//     let bill = billArray[i];
 
-    if (bill.ID === id) {
-      let info = bill.Info.split(";");
+//     if (bill.ID === id) {
+//       let info = bill.Info.split(";");
 
-      for (let j = 0; j < info.length; j++) {
-        info[j].trim();
-        let productInfo = info[j].trim().split("*");
-        let productName = productInfo[0].trim();
-        let quantity = parseInt(productInfo[1]);
+//       for (let j = 0; j < info.length; j++) {
+//         info[j].trim();
+//         let productInfo = info[j].trim().split("*");
+//         let productName = productInfo[0].trim();
+//         let quantity = parseInt(productInfo[1]);
 
-        if (statistics[productName]) {
-          statistics[productName] += quantity;
-        } else {
-          statistics[productName] = quantity;
-        }
-      }
-      break;
-    }
-  }
+//         if (statistics[productName]) {
+//           statistics[productName] += quantity;
+//         } else {
+//           statistics[productName] = quantity;
+//         }
+//       }
+//       break;
+//     }
+//   }
 
-  return statistics;
-}
+//   return statistics;
+// }
 
-function runStatistics() {
-  let statistics = {};
-  var billArray = JSON.parse(localStorage.getItem("bill"));
-  var option = document.getElementById("selectoptiondate").value;
-  var day;
-  if (option == "day") {
-    day = document.getElementById("date").value;
-  }
-  var a = new Date(day);
-  for (let i = 0; i < billArray.length; i++) {
-    if (option == "none") {
-      let id = billArray[i].ID;
-      let result = statisticInfo(id);
+// function runStatistics() {
+//   let statistics = {};
+//   var billArray = JSON.parse(localStorage.getItem("bill"));
+//   var option = document.getElementById("selectoptiondate").value;
+//   var day;
+//   if (option == "day") {
+//     day = document.getElementById("date").value;
+//   }
+//   var a = new Date(day);
+//   for (let i = 0; i < billArray.length; i++) {
+//     if (option == "none") {
+//       let id = billArray[i].ID;
+//       let result = statisticInfo(id);
 
-      for (let productName in result) {
-        if (!isNaN(productName) == false) {
-          // console.log(productName)
-          if (statistics[productName]) {
-            statistics[productName] += result[productName];
-          } else {
-            statistics[productName] = result[productName];
-          }
-          // console.log(statistics[productName])
-        }
-      }
-    }
+//       for (let productName in result) {
+//         if (!isNaN(productName) == false) {
+//           // console.log(productName)
+//           if (statistics[productName]) {
+//             statistics[productName] += result[productName];
+//           } else {
+//             statistics[productName] = result[productName];
+//           }
+//           // console.log(statistics[productName])
+//         }
+//       }
+//     }
 
-    var b = new Date(billArray[i].Date);
-    if (
-      option == "day" &&
-      a.getDate() == b.getDate() &&
-      a.getMonth() == b.getMonth() &&
-      a.getFullYear() == b.getFullYear()
-    ) {
-      let id = billArray[i].ID;
-      let result = statisticInfo(id);
+//     var b = new Date(billArray[i].Date);
+//     if (
+//       option == "day" &&
+//       a.getDate() == b.getDate() &&
+//       a.getMonth() == b.getMonth() &&
+//       a.getFullYear() == b.getFullYear()
+//     ) {
+//       let id = billArray[i].ID;
+//       let result = statisticInfo(id);
 
-      for (let productName in result) {
-        if (!isNaN(productName) == false) {
-          // console.log(productName)
-          if (statistics[productName]) {
-            statistics[productName] += result[productName];
-          } else {
-            statistics[productName] = result[productName];
-          }
-          // console.log(statistics[productName])
-        }
-      }
-    }
-  }
+//       for (let productName in result) {
+//         if (!isNaN(productName) == false) {
+//           // console.log(productName)
+//           if (statistics[productName]) {
+//             statistics[productName] += result[productName];
+//           } else {
+//             statistics[productName] = result[productName];
+//           }
+//           // console.log(statistics[productName])
+//         }
+//       }
+//     }
+//   }
 
-  let tempArray = [];
-  for (let productName in statistics) {
-    tempArray.push({ name: productName, value: statistics[productName] });
-    // console.log(statistics[productName]+"tmpArray")
-  }
+//   let tempArray = [];
+//   for (let productName in statistics) {
+//     tempArray.push({ name: productName, value: statistics[productName] });
+//     // console.log(statistics[productName]+"tmpArray")
+//   }
 
-  tempArray.sort((a, b) => b.value - a.value);
+//   tempArray.sort((a, b) => b.value - a.value);
 
-  statistics = {};
-  for (let i = 0; i < tempArray.length; i++) {
-    let productName = tempArray[i].name;
-    let value = tempArray[i].value;
-    statistics[productName] = value;
-    // console.log(statistics[productName]+"sort")
-  }
+//   statistics = {};
+//   for (let i = 0; i < tempArray.length; i++) {
+//     let productName = tempArray[i].name;
+//     let value = tempArray[i].value;
+//     statistics[productName] = value;
+//     // console.log(statistics[productName]+"sort")
+//   }
 
-  return statistics;
-}
-function runTable() {
-  let statistics = runStatistics();
-  var productArray = JSON.parse(localStorage.getItem("product"));
-  var table = document.querySelector("#tungsanpham tbody");
-  var s = "";
-  var i = 1;
-  var ferrarisold = 0,
-    toyotasold = 0,
-    mclarensold = 0,
-    lamborghinisold = 0,
-    porschesold = 0,
-    allsold = 0;
-  var ferrariprofit = 0,
-    toyotaprofit = 0,
-    mclarenprofit = 0,
-    lamborghiniprofit = 0,
-    porscheprofit = 0,
-    allprofit = 0;
+//   return statistics;
+// }
+// function runTable() {
+//   let statistics = runStatistics();
+//   var productArray = JSON.parse(localStorage.getItem("product"));
+//   var table = document.querySelector("#tungsanpham tbody");
+//   var s = "";
+//   var i = 1;
+//   var ferrarisold = 0,
+//     toyotasold = 0,
+//     mclarensold = 0,
+//     lamborghinisold = 0,
+//     porschesold = 0,
+//     allsold = 0;
+//   var ferrariprofit = 0,
+//     toyotaprofit = 0,
+//     mclarenprofit = 0,
+//     lamborghiniprofit = 0,
+//     porscheprofit = 0,
+//     allprofit = 0;
 
-  for (let product in statistics) {
-    if (!isNaN(statistics[product])) {
-      var s1 = product.toString();
-      var price;
-      for (let iloop = 0; iloop < productArray.length; iloop++) {
-        if (s1 == productArray[iloop].productName) {
-          price = productArray[iloop].price;
-          date = productArray[iloop].date;
-        }
-      }
-      s +=
-        "<tr>" +
-        "<td>" +
-        i +
-        "</td>" +
-        "<td>" +
-        product +
-        "</td>" +
-        "<td>" +
-        statistics[product] +
-        "</td>" +
-        "<td>" +
-        currency(price * statistics[product]) +
-        "</td>";
-      i++;
+//   for (let product in statistics) {
+//     if (!isNaN(statistics[product])) {
+//       var s1 = product.toString();
+//       var price;
+//       for (let iloop = 0; iloop < productArray.length; iloop++) {
+//         if (s1 == productArray[iloop].productName) {
+//           price = productArray[iloop].price;
+//           date = productArray[iloop].date;
+//         }
+//       }
+//       s +=
+//         "<tr>" +
+//         "<td>" +
+//         i +
+//         "</td>" +
+//         "<td>" +
+//         product +
+//         "</td>" +
+//         "<td>" +
+//         statistics[product] +
+//         "</td>" +
+//         "<td>" +
+//         currency(price * statistics[product]) +
+//         "</td>";
+//       i++;
 
-      if (/ferrari/i.test(product)) {
-        ferrariprofit += price * statistics[product];
-        ferrarisold += statistics[product];
-      } else if (/PORSCHE/i.test(product)) {
-        porscheprofit += price * statistics[product];
-        porschesold += statistics[product];
-      } else if (/MCLAREN/i.test(product)) {
-        mclarenprofit += price * statistics[product];
-        mclarensold += statistics[product];
-      } else if (/LAMBORGHINI/i.test(product)) {
-        lamborghiniprofit += price * statistics[product];
-        lamborghinisold += statistics[product];
-      } else {
-        toyotaprofit += price * statistics[product];
-        toyotasold += statistics[product];
-      }
+//       if (/ferrari/i.test(product)) {
+//         ferrariprofit += price * statistics[product];
+//         ferrarisold += statistics[product];
+//       } else if (/PORSCHE/i.test(product)) {
+//         porscheprofit += price * statistics[product];
+//         porschesold += statistics[product];
+//       } else if (/MCLAREN/i.test(product)) {
+//         mclarenprofit += price * statistics[product];
+//         mclarensold += statistics[product];
+//       } else if (/LAMBORGHINI/i.test(product)) {
+//         lamborghiniprofit += price * statistics[product];
+//         lamborghinisold += statistics[product];
+//       } else {
+//         toyotaprofit += price * statistics[product];
+//         toyotasold += statistics[product];
+//       }
 
-      allprofit += price * statistics[product];
-      allsold += statistics[product];
-    }
-  }
+//       allprofit += price * statistics[product];
+//       allsold += statistics[product];
+//     }
+//   }
 
-  s2 = `<tr>
-        <td>Ferrari</td>
-        <td>${ferrarisold}</td>
-        <td>${currency(ferrariprofit)}</td>
-    </tr>
-    <tr>
-        <td>Lamborghini</td>
-        <td>${lamborghinisold}</td>
-        <td>${currency(lamborghiniprofit)}</td>
-    </tr>
-    <tr>
-        <td>Mclaren</td>
-        <td>${mclarensold}</td>
-        <td>${currency(mclarenprofit)}</td>
-    </tr>
-    <tr>
-        <td>Porsche</td>
-        <td>${porschesold}</td>
-        <td>${currency(porscheprofit)}</td>
-    </tr>
-    <tr>
-        <td>Toyota</td>
-        <td>${toyotasold}</td>
-        <td>${currency(toyotaprofit)}</td>
-    </tr>
-    <tr>
-        <td>All</td>
-        <td>${allsold}</td>
-        <td>${currency(allprofit)}</td>
-    </tr>`;
+//   s2 = `<tr>
+//         <td>Ferrari</td>
+//         <td>${ferrarisold}</td>
+//         <td>${currency(ferrariprofit)}</td>
+//     </tr>
+//     <tr>
+//         <td>Lamborghini</td>
+//         <td>${lamborghinisold}</td>
+//         <td>${currency(lamborghiniprofit)}</td>
+//     </tr>
+//     <tr>
+//         <td>Mclaren</td>
+//         <td>${mclarensold}</td>
+//         <td>${currency(mclarenprofit)}</td>
+//     </tr>
+//     <tr>
+//         <td>Porsche</td>
+//         <td>${porschesold}</td>
+//         <td>${currency(porscheprofit)}</td>
+//     </tr>
+//     <tr>
+//         <td>Toyota</td>
+//         <td>${toyotasold}</td>
+//         <td>${currency(toyotaprofit)}</td>
+//     </tr>
+//     <tr>
+//         <td>All</td>
+//         <td>${allsold}</td>
+//         <td>${currency(allprofit)}</td>
+//     </tr>`;
 
-  document.querySelector("#theobrand tbody").innerHTML = s2;
+//   document.querySelector("#theobrand tbody").innerHTML = s2;
 
-  table.innerHTML = s;
-}
-runTable();
+//   table.innerHTML = s;
+// }
+// runTable();
 // END STATISTIC TABLE
 
 function tongchi() {
