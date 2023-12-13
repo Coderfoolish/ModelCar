@@ -498,7 +498,6 @@ function showProductList(vitri) {
             <td><button class="change" onClick="showchangeproductbox('${
               productArray[i].productID
             }')">Sửa</button></td>
-            
             </tr>`;
     dem++;
     if (dem == 5) {
@@ -763,7 +762,7 @@ function searchUser(){
   var tr='';
   if(d){
     var date = new Date(d);
-    for(var i=0; i<userArray.length; i++){
+    for(var i=1; i<userArray.length; i++){
       var datesignup=new Date(userArray[i].datesignup)
       if((userArray[i].username.toLowerCase().search(name)>=0
         ||userArray[i].fullname.toLowerCase().search(name)>=0)
@@ -801,7 +800,7 @@ function searchUser(){
       }
     }
   } else {
-    for(var i=0; i<userArray.length; i++){
+    for(var i=1; i<userArray.length; i++){
       if(userArray[i].username.toLowerCase().search(name)>=0
         ||userArray[i].fullname.toLowerCase().search(name)>=0){
           tr +=
