@@ -26,12 +26,10 @@ function createAdmin() {
 }
 
 function showform() {
-  var userform = document.getElementById("user");
-  userform.style.display = "block";
+  document.getElementById("user").style.display = "block";
 }
 function closeform() {
-  var userform = document.getElementById("user");
-  userform.style.display = "none";
+  document.getElementById("user").style.display = "none";
 }
 
 function showSignUp() {
