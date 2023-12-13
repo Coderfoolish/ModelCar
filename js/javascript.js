@@ -117,7 +117,7 @@ function createUser(e) {
   }
   var d = new Date();
   var datesignup =
-    d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear();
+  (d.getMonth() + 1) + "-" + d.getDate() + "-" + d.getFullYear();
   var user = {
     username: username.value,
     password: password.value,

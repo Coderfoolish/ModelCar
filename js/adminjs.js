@@ -79,573 +79,6 @@ function sosanpham() {
   var product = JSON.parse(localStorage.getItem("product"));
   document.getElementById("sosanpham").innerHTML = product.length;
 }
-
-/*ADMIN*/
-function logout() {
-  localStorage.removeItem("userlogin");
-  localStorage.removeItem("cart");
-  location.href = "../index.html";
-}
-
-function showbilllist() {
-  if (localStorage.getItem("bill") === null) {
-    s = "<tr><td>Khong co don hang nao</td></tr>";
-    document.getElementById("billlist").innerHTML = s;
-    return false;
-  }
-  var s =
-    "<tr><th>NGÀY</th><th>KHÁCH HÀNG</th><th>GIÁ($)</th><th>TRẠNG THÁI</th></tr>";
-  var billArray = JSON.parse(localStorage.getItem("bill"));
-  for (var i = 0; i < billArray.length; i++) {
-    if (billArray[i].Status == "unprocessed") {
-      s +=
-        "<tr onclick=\"showinfobill('" +
-        billArray[i].ID +
-        "')\">" +
-        "<td>" +
-        billArray[i].Date +
-        "</td>" +
-        "<td>" +
-        billArray[i].Ctmfullname +
-        "</td>" +
-        "<td>" +
-        currency(billArray[i].Totalprice) +
-        "</td>" +
-        '<td style="color: red">Chưa xử lý</td>' +
-        "</tr>";
-    } else {
-      s +=
-        "<tr onclick=\"showinfobill('" +
-        billArray[i].ID +
-        "')\">" +
-        "<td>" +
-        billArray[i].Date +
-        "</td>" +
-        "<td>" +
-        billArray[i].Ctmfullname +
-        "</td>" +
-        "<td>" +
-        currency(billArray[i].Totalprice) +
-        "</td>" +
-        '<td style="color: blue">Đã xử lý</td>' +
-        "</tr>";
-    }
-  }
-  document.getElementById("billlist").innerHTML = s;
-}
-
-function closebillinfo(){
-  document.getElementById('productinbill-container').style.display='none';
-}
-function showinfobill(ID,selectPage=0){
-  var billArray = JSON.parse(localStorage.getItem("bill"));
-  var s=`<button id='closeproductinbill' type="button" onclick="closebillinfo()">x</button>`;
-  for(var i=0; i<billArray.length; i++){
-    if(billArray[i].ID==ID){
-      s+=`<div id='productinbill-head'><div><p>ID: ${billArray[i].ID}</p></div>
-          <div><p>Ngày mua: ${billArray[i].Date}</p></div>
-          <div><p>Tổng tiền: ${billArray[i].Totalprice}$</p></div>`;
-      if(billArray[i].Status=='unprocessed'){
-        s+=`<div><span id="status" style="color:red">Chưa xử lý</span><label><input type="checkbox" onchange="changeStatus(this,'${billArray[i].ID}')" ><span class="slider"></span></label></div></div>`;
-      } else {
-        s+=`<div><span id="status" style="color:blue">Đã xử lý</span><label><input type="checkbox" checked onchange="changeStatus(this,'${billArray[i].ID}')" ><span class="slider"></span></label></div></div>`;
-      }
-      s+=`<div id="productinbill-contain"><ul>`;
-      var numProductBill = 5;
-      var numPage = Math.ceil(billArray[i].Info.length / numProductBill);
-      for(var j = numProductBill * selectPage;
-        j < numProductBill * (selectPage + 1) && j < billArray[i].Info.length;
-        j++){
-        s+=`<li><div class="productinbill-card">
-            <div class="img-container"><img src="../images/product/${billArray[i].Info[j].productIMG}"></div>
-            <p class="name">${billArray[i].Info[j].productName}</p>
-            <p class="price">giá: ${billArray[i].Info[j].price}$</p>
-            <p class="quantity">số lượng: ${billArray[i].Info[j].quantity}</p>
-            <p class="totalprice">tổng tiền: ${currency(billArray[i].Info[j].quantity*billArray[i].Info[j].price)}$</p>
-            </div><li>`;
-      }
-      s+=`</ul></div>`;
-      s+='<button class="printbtn" onclick="window.print()">In đơn hàng</button>';
-      var reSultPage='<ul>';
-      if (numPage != 1) {
-        for (var j = 0; j < numPage; j++) {
-          if (j == selectPage) {
-            reSultPage +=
-              `<li><button class='pageBillInfo' onclick="showinfobill('${ID}',${j})" style="background-color: #C70039;color: #fff">
-              ${j+1}
-              </button></li>`;
-          } else {
-            reSultPage +=
-              `<li><button class='pageBillInfo' onclick="showinfobill('${ID}',${j})">
-              ${j+1}
-              </button></li>`;
-          }
-        }
-      }
-      reSultPage+='</ul>';
-      break;
-    }
-  }
-  document.getElementById('productinbill').innerHTML=s;
-  document.getElementById('billInfoPage').innerHTML=reSultPage;
-  document.getElementById('productinbill-container').style.display='block';
-}
-function searchBill() {
-  var billArray = JSON.parse(localStorage.getItem("bill"));
-  var status = document.getElementById("statussearch").value;
-  var name = document.getElementById("name").value.toLowerCase();
-  var billArrayTemp = [];
-  for (var i = 0; i < billArray.length; i++) {
-    if (
-      status == billArray[i].Status &&
-      billArray[i].Ctmfullname.toLowerCase().search(name) >= 0
-    ) {
-      billArrayTemp.push(billArray[i]);
-    }
-  }
-  var s = "<th>NGÀY</th><th>KHÁCH HÀNG</th><th>GIÁ($)</th><th>TRẠNG THÁI</th>";
-  for (var i = 0; i < billArrayTemp.length; i++) {
-    if (billArrayTemp[i].Status == "unprocessed") {
-      s +=
-        '<tr onClick="showinfobill(' +
-        billArrayTemp[i].ID +
-        ')">' +
-        "<td>" +
-        billArrayTemp[i].Date +
-        "</td>" +
-        "<td>" +
-        billArrayTemp[i].Ctmfullname +
-        "</td>" +
-        "<td>" +
-        currency(billArrayTemp[i].Totalprice) +
-        "</td>" +
-        '<td style="color: red">Chưa xử lý</td>' +
-        "</tr>";
-    } else {
-      s +=
-        '<tr onClick="showinfobill(' +
-        billArrayTemp[i].ID +
-        ')">' +
-        "<td>" +
-        billArrayTemp[i].Date +
-        "</td>" +
-        "<td>" +
-        billArrayTemp[i].Ctmfullname +
-        "</td>" +
-        "<td>" +
-        currency(billArrayTemp[i].Totalprice) +
-        "</td>" +
-        '<td style="color: blue">Đã xử lý</td>' +
-        "</tr>";
-    }
-  }
-  document.getElementById("billlist").innerHTML = s;
-}
-function changeStatus(checkbox, id) {
-  var billArray = JSON.parse(localStorage.getItem("bill"));
-  if (checkbox.checked == true) {
-    for (var i = 0; i < billArray.length; i++) {
-      if (billArray[i].ID == id) {
-        billArray[i].Status = "processed";
-      }
-    }
-    document.getElementById("status").innerHTML = "Đã xử lý";
-    document.getElementById("status").style.color = "blue";
-  } else {
-    for (var i = 0; i < billArray.length; i++) {
-      if (billArray[i].ID == id) {
-        billArray[i].Status = "unprocessed";
-      }
-    }
-    document.getElementById("status").innerHTML = "Chưa xử lý";
-    document.getElementById("status").style.color = "red";
-  }
-  localStorage.setItem("bill", JSON.stringify(billArray));
-  showbilllist();
-}
-//BILL
-//PRODUCT
-function showProductList(vitri) {
-  var productArray = JSON.parse(localStorage.getItem("product"));
-  var s =
-    "<tr><th>#ID</th><th>Ảnh</th><th>TÊN SẢN PHẨM</th><th>THƯƠNG HIỆU</th><th>GIÁ($)</th><th>Xóa</th><th>Sửa</th></tr>";
-  var dem = 0;
-  for (var i = vitri; i < productArray.length; i++) {
-    s += `<tr>
-            <td>${productArray[i].productID}</td>
-            <td><img src="../images/product/${productArray[i].productIMG}"></td>
-            <td>${productArray[i].productName}</td>
-            <td>${productArray[i].brand.toUpperCase()}</td>
-            <td>${currency(productArray[i].price)}</td>
-            <td><button class="delete" onClick="deleteproduct('${
-              productArray[i].productID
-            }')">Xóa</button></td>
-            <td><button class="change" onClick="showchangeproductbox('${
-              productArray[i].productID
-            }')">Sửa</button></td>
-            
-            </tr>`;
-    dem++;
-    if (dem == 5) {
-      break;
-    }
-  }
-  document.getElementById("productlist").innerHTML = s;
-  setPagination();
-}
-function deleteproduct(productiddelete) {
-  var productArray = JSON.parse(localStorage.getItem("product"));
-  for (var i = 0; i < productArray.length; i++) {
-    if (productArray[i].productID == productiddelete) {
-      if (confirm("Bạn có muốn xóa sản phẩm này?")) {
-        productArray.splice(i, 1);
-      }
-    }
-  }
-  localStorage.setItem("product", JSON.stringify(productArray));
-  showProductList(0);
-  upDateThongKe();
-}
-function setPagination() {
-  var productArray = JSON.parse(localStorage.getItem("product"));
-  var sotrang = Math.ceil(productArray.length / 5);
-  var button = "";
-  for (var i = 1; i <= sotrang; i++) {
-    vitri = (i - 1) * 5;
-    button +=
-      '<button class="pageNumber" onclick="showProductList(' +
-      vitri +
-      ')">' +
-      i +
-      "</button>";
-  }
-  document.getElementById("pagination").innerHTML = button;
-}
-function showchangeproductbox(productid) {
-  document.getElementById("modall").style.display = "block";
-  var productArray = JSON.parse(localStorage.getItem("product"));
-  for (var i = 0; i < productArray.length; i++) {
-    if (productArray[i].productID == productid) {
-      document.getElementById("imgproduct").src =
-        "../images/product/" + productArray[i].productIMG;
-      document.getElementById("change-product-name").value =
-        productArray[i].productName;
-      document.getElementById("change-product-brand").value =
-        productArray[i].brand;
-      document.getElementById("change-product-type").value =
-        productArray[i].type;
-      document.getElementById("change-product-price").value =
-        productArray[i].price;
-      document
-        .getElementById("save")
-        .setAttribute(
-          "onclick",
-          'changeproduct("' + productArray[i].productID + '")'
-        );
-      break;
-    }
-  }
-}
-function changeproduct(productid) {
-  document.getElementById("modall").style.display = "none";
-
-  var productArray = JSON.parse(localStorage.getItem("product"));
-  for (var i = 0; i < productArray.length; i++) {
-    if (productArray[i].productID == productid) {
-      var pdid = productArray[i].productID;
-      var productName = document.getElementById("change-product-name").value;
-      var brand = document.getElementById("change-product-brand").value;
-      var type = document.getElementById("change-product-type").value;
-      var price = document.getElementById("change-product-price").value;
-      var imgsrc = document.getElementById("change-product-img");
-      if ("files" in imgsrc) {
-        if (imgsrc.files.length != 0) {
-          var productimg = brand.toLowerCase() + "/" + imgsrc.files[0].name;
-          productArray[i].productIMG = productimg;
-          productArray[i].brand = brand;
-          productArray[i].productName = productName;
-          productArray[i].price = price;
-          productArray[i].type = type;
-          localStorage.setItem("product", JSON.stringify(productArray));
-          showProductList(0);
-        } else {
-          productArray[i].productName = productName;
-          productArray[i].brand = brand;
-          productArray[i].price = price;
-          productArray[i].type = type;
-          localStorage.setItem("product", JSON.stringify(productArray));
-          showProductList(0);
-        }
-      }
-      break;
-    }
-  }
-}
-function changeimg(file) {
-  var reader = new FileReader();
-  reader.onload = () => {
-    document.getElementById("imgproduct").src = reader.result;
-  };
-  reader.readAsDataURL(file.files[0]);
-}
-function changeimgadd(input) {
-  var reader = new FileReader();
-  reader.onload = function (e) {
-    document.getElementById("imgadd").src = reader.result;
-  };
-  reader.readAsDataURL(input.files[0]);
-}
-
-function deleteimgadd() {
-  document.getElementById("imgadd").src = "../images/icon/temp2.jpg";
-}
-function closechangebox() {
-  document.getElementById("modall").style.display = "none";
-}
-function addProduct() {
-  var productArray = JSON.parse(localStorage.getItem("product"));
-  var productid = "P" + productArray.length;
-  var productname = document.getElementById("productname");
-  var brand = document.getElementById("brand");
-  var price = document.getElementById("productprice");
-
-  if (!brand.value || !productname.value || !price.value) {
-    customAlert("Bạn chưa nhập đủ thông tin sản phẩm", "warning");
-    return false;
-  }
-  if (isNaN(Number(price.value))) {
-    customAlert("Giá không hợp lệ", "warning");
-    return false;
-  }
-
-  var imgsrc = document.getElementById("addproductimg");
-  if ("files" in imgsrc) {
-    if (imgsrc.files.length != 0) {
-      var productimg = brand.value.toLowerCase() + "/" + imgsrc.files[0].name;
-      var producttemp = {
-        productID: productid,
-        productName: productname.value,
-        productIMG: productimg,
-        brand: brand.value,
-        price: price.value,
-        type: "",
-      };
-    } else {
-      var producttemp = {
-        productID: productid,
-        productName: productname.value,
-        productIMG: "tmp.jpg",
-        brand: brand.value,
-        price: price.value,
-        type: "",
-      };
-    }
-  }
-  productArray.unshift(producttemp);
-  localStorage.setItem("product", JSON.stringify(productArray));
-  showProductList(0);
-  customAlert("Thêm sản phẩm thành công", "success");
-  upDateThongKe();
-}
-function searchproduct() {
-  var productArray = JSON.parse(localStorage.getItem("product"));
-  var name = document.getElementById("searchproductname").value.toLowerCase();
-  var brand = document.getElementById("searchproductbrand").value.toLowerCase();
-  var s =
-    "<tr><th>#ID</th><th>Ảnh</th><th>TÊN SẢN PHẨM</th><th>THƯƠNG HIỆU</th><th>GIÁ</th><th>Xóa</th><th>Sửa</th></tr>";
-  if (brand == "all") {
-    if (!name) {
-      showProductList(0);
-    } else {
-      for (var i = 0; i < productArray.length; i++) {
-        if (productArray[i].productName.toLowerCase().search(name) >= 0) {
-          s += `<tr>
-                    <td>${productArray[i].productID}</td>
-                    <td><img src="../images/product/${
-                      productArray[i].productIMG
-                    }"></td>
-                    <td>${productArray[i].productName}</td>
-                    <td>${productArray[i].brand.toUpperCase()}</td>
-                    <td>currency(${productArray[i].price})</td>
-                    <td><button class="delete" onClick="deleteproduct('${
-                      productArray[i].productID
-                    }')">Xóa</div></td>
-                    <td><button class="change" onClick="showchangeproductbox('${
-                      productArray[i].productID
-                    }')">Sửa</div></td>
-                    
-                    </tr>`;
-        }
-      }
-      document.getElementById("productlist").innerHTML = s;
-    }
-  } else {
-    for (var i = 0; i < productArray.length; i++) {
-      if (
-        productArray[i].productName.toLowerCase().search(name) >= 0 &&
-        productArray[i].brand.toLowerCase() == brand
-      ) {
-        s +=
-          "<tr>" +
-          "<td>" +
-          productArray[i].productID +
-          "</td>" +
-          '<td><img src="../images/product/' +
-          productArray[i].productIMG +
-          '"></td>' +
-          "<td>" +
-          productArray[i].productName +
-          "</td>" +
-          "<td>" +
-          productArray[i].brand +
-          "</td>" +
-          "<td>" +
-          currency(productArray[i].price) +
-          "</td>" +
-          "<td>" +
-          '<button class="delete" onClick="deleteproduct(\'' +
-          productArray[i].productID +
-          "')\">&times;</div>" +
-          '<button class="change" onClick="showchangeproductbox(\'' +
-          productArray[i].productID +
-          "')\">Sửa</div>" +
-          "</td>" +
-          "</tr>";
-      }
-    }
-    document.getElementById("productlist").innerHTML = s;
-  }
-}
-//PRODUCT
-//user
-function showUserList() {
-  if (localStorage.getItem("user") === null) {
-    return false;
-  }
-  var userArray = JSON.parse(localStorage.getItem("user"));
-  var tr =
-    "<tr><th>STT</th><th>HỌ TÊN KH</th><th>TÊN ĐĂNG NHẬP</th><th>NGÀY ĐĂNG KÝ</th><th>Xóa</th></tr>";
-  for (var i = 1; i < userArray.length; i++) {
-    tr +=
-      "<tr><td>" +
-      i +
-      "</td><td>" +
-      userArray[i].fullname +
-      "</td><td>" +
-      userArray[i].username +
-      "</td><td>" +
-      userArray[i].datesignup +
-      '</td><td><button class="delete" onClick="deleteuser(\'' +
-      userArray[i].username +
-      "')\">&times;</button></td></tr>";
-  }
-  document.getElementById("userlist").innerHTML = tr;
-}
-function deleteuser(usernamedelete) {
-  var userArray = JSON.parse(localStorage.getItem("user"));
-  for (var i = 0; i < userArray.length; i++) {
-    if (userArray[i].username == usernamedelete) {
-      if (confirm("Bạn có muốn xóa tài khoản này?")) {
-        userArray.splice(i, 1);
-      }
-    }
-  }
-  localStorage.setItem("user", JSON.stringify(userArray));
-  showUserList();
-  upDateThongKe();
-}
-
-const body = document.getElementsByTagName("body")[0];
-
-function setCookie(cname, cvalue, exdays) {
-  var d = new Date();
-  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-  var expires = "expires=" + d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
-function getCookie(cname) {
-  var name = cname + "=";
-  var ca = document.cookie.split(";");
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == " ") {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
-
-loadTheme();
-
-function loadTheme() {
-  var theme = getCookie(themeCookieName);
-  body.classList.add(theme === "" ? themeLight : theme);
-}
-
-function switchTheme() {
-  if (body.classList.contains(themeLight)) {
-    body.classList.remove(themeLight);
-    body.classList.add(themeDark);
-    setCookie(themeCookieName, themeDark);
-  } else {
-    body.classList.remove(themeDark);
-    body.classList.add(themeLight);
-    setCookie(themeCookieName, themeLight);
-  }
-}
-
-function collapseSidebar() {
-  body.classList.toggle("sidebar-expand");
-}
-
-window.onclick = function (event) {
-  openCloseDropdown(event);
-};
-
-function closeAllDropdown() {
-  var dropdowns = document.getElementsByClassName("dropdown-expand");
-  for (var i = 0; i < dropdowns.length; i++) {
-    dropdowns[i].classList.remove("dropdown-expand");
-  }
-}
-
-function openCloseDropdown(event) {
-  if (!event.target.matches(".dropdown-toggle")) {
-    //
-    // Close dropdown when click out of dropdown menu
-    //
-    closeAllDropdown();
-  } else {
-    var toggle = event.target.dataset.toggle;
-    var content = document.getElementById(toggle);
-    if (content.classList.contains("dropdown-expand")) {
-      closeAllDropdown();
-    } else {
-      closeAllDropdown();
-      content.classList.add("dropdown-expand");
-    }
-  }
-}
-
-function customAlert(message, type) {
-  if (type === "success") {
-    document.getElementById("customalert").style.backgroundColor = "#4CAF50";
-  }
-  if (type === "warning") {
-    document.getElementById("customalert").style.backgroundColor = "#f44336";
-  }
-  document.getElementById("customalert").innerHTML = message;
-  var x = document.getElementById("customalert");
-  x.className = "show";
-  setTimeout(function () {
-    x.className = x.classList.remove("show");
-  }, 3500);
-}
-
 // STATISTIC TABLE
 function statisticInfo(id) {
   let statistics = {};
@@ -842,7 +275,6 @@ function runTable() {
 }
 runTable();
 // END STATISTIC TABLE
-
 function tongchi() {
   var productArray = JSON.parse(localStorage.getItem("product"));
   var totalPriceProduct = 0;
@@ -858,24 +290,640 @@ function tongchi() {
   //     "-" +
   //     String(time.getFullYear());
 }
+//thong ke
+/*ADMIN*/
+
+//Bill start
+function logout() {
+  localStorage.removeItem("userlogin");
+  localStorage.removeItem("cart");
+  location.href = "../index.html";
+}
+
+function showbilllist() {
+  if (localStorage.getItem("bill") === null) {
+    s = "<tr><td>Khong co don hang nao</td></tr>";
+    document.getElementById("billlist").innerHTML = s;
+    return false;
+  }
+  var s =
+    "<tr><th>NGÀY</th><th>KHÁCH HÀNG</th><th>GIÁ($)</th><th>TRẠNG THÁI</th></tr>";
+  var billArray = JSON.parse(localStorage.getItem("bill"));
+  for (var i = 0; i < billArray.length; i++) {
+    if (billArray[i].Status == "unprocessed") {
+      s +=
+        "<tr onclick=\"showinfobill('" +
+        billArray[i].ID +
+        "')\">" +
+        "<td>" +
+        billArray[i].Date +
+        "</td>" +
+        "<td>" +
+        billArray[i].Ctmfullname +
+        "</td>" +
+        "<td>" +
+        currency(billArray[i].Totalprice) +
+        "</td>" +
+        '<td style="color: red">Chưa xử lý</td>' +
+        "</tr>";
+    } else {
+      s +=
+        "<tr onclick=\"showinfobill('" +
+        billArray[i].ID +
+        "')\">" +
+        "<td>" +
+        billArray[i].Date +
+        "</td>" +
+        "<td>" +
+        billArray[i].Ctmfullname +
+        "</td>" +
+        "<td>" +
+        currency(billArray[i].Totalprice) +
+        "</td>" +
+        '<td style="color: blue">Đã xử lý</td>' +
+        "</tr>";
+    }
+  }
+  document.getElementById("billlist").innerHTML = s;
+}
+
+function closebillinfo(){
+  document.getElementById('productinbill-container').style.display='none';
+}
+function showinfobill(ID,selectPage=0){
+  var billArray = JSON.parse(localStorage.getItem("bill"));
+  var s=`<button id='closeproductinbill' type="button" onclick="closebillinfo()">x</button>`;
+  for(var i=0; i<billArray.length; i++){
+    if(billArray[i].ID==ID){
+      s+=`<div id='productinbill-head'><div><p>ID: ${billArray[i].ID}</p></div>
+          <div><p>Khách hàng: ${billArray[i].Ctmfullname}</p></div>
+          <div><p>Ngày mua: ${billArray[i].Date}</p></div>
+          <div><p>Tổng tiền: ${billArray[i].Totalprice}$</p></div>`;
+      if(billArray[i].Status=='unprocessed'){
+        s+=`<div><span id="status" style="color:red">Chưa xử lý</span><label><input type="checkbox" onchange="changeStatus(this,'${billArray[i].ID}')" ><span class="slider"></span></label></div></div>`;
+      } else {
+        s+=`<div><span id="status" style="color:blue">Đã xử lý</span><label><input type="checkbox" checked onchange="changeStatus(this,'${billArray[i].ID}')" ><span class="slider"></span></label></div></div>`;
+      }
+      s+=`<div id="productinbill-contain"><ul>`;
+      var numProductBill = 5;
+      var numPage = Math.ceil(billArray[i].Info.length / numProductBill);
+      for(var j = numProductBill * selectPage;
+        j < numProductBill * (selectPage + 1) && j < billArray[i].Info.length;
+        j++){
+        s+=`<li><div class="productinbill-card">
+            <div class="img-container"><img src="../images/product/${billArray[i].Info[j].productIMG}"></div>
+            <p class="name">${billArray[i].Info[j].productName}</p>
+            <p class="price">giá: ${billArray[i].Info[j].price}$</p>
+            <p class="quantity">số lượng: ${billArray[i].Info[j].quantity}</p>
+            <p class="totalprice">tổng tiền: ${currency(billArray[i].Info[j].quantity*billArray[i].Info[j].price)}$</p>
+            </div><li>`;
+      }
+      s+=`</ul></div>`;
+      s+='<button class="printbtn" onclick="window.print()">In đơn hàng</button>';
+      var reSultPage='<ul>';
+      if (numPage != 1) {
+        for (var j = 0; j < numPage; j++) {
+          if (j == selectPage) {
+            reSultPage +=
+              `<li><button class='pageBillInfo' onclick="showinfobill('${ID}',${j})" style="background-color: #C70039;color: #fff">
+              ${j+1}
+              </button></li>`;
+          } else {
+            reSultPage +=
+              `<li><button class='pageBillInfo' onclick="showinfobill('${ID}',${j})">
+              ${j+1}
+              </button></li>`;
+          }
+        }
+      }
+      reSultPage+='</ul>';
+      break;
+    }
+  }
+  document.getElementById('productinbill').innerHTML=s;
+  document.getElementById('billInfoPage').innerHTML=reSultPage;
+  document.getElementById('productinbill-container').style.display='block';
+}
+function searchBill() {
+  var billArray = JSON.parse(localStorage.getItem("bill"));
+  var status = document.getElementById("statussearch").value;
+  var name = document.getElementById("name").value.toLowerCase();
+  var billArrayTemp = [];
+  for (var i = 0; i < billArray.length; i++) {
+    if (
+      status == billArray[i].Status &&
+      billArray[i].Ctmfullname.toLowerCase().search(name) >= 0
+    ) {
+      billArrayTemp.push(billArray[i]);
+    }
+  }
+  var s =
+    "<tr><th>NGÀY</th><th>KHÁCH HÀNG</th><th>GIÁ($)</th><th>TRẠNG THÁI</th></tr>";
+  for (var i = 0; i < billArrayTemp.length; i++) {
+    if (billArrayTemp[i].Status == "unprocessed") {
+      s +=
+        "<tr onclick=\"showinfobill('" +
+        billArrayTemp[i].ID +
+        "')\">" +
+        "<td>" +
+        billArrayTemp[i].Date +
+        "</td>" +
+        "<td>" +
+        billArrayTemp[i].Ctmfullname +
+        "</td>" +
+        "<td>" +
+        currency(billArrayTemp[i].Totalprice) +
+        "</td>" +
+        '<td style="color: red">Chưa xử lý</td>' +
+        "</tr>";
+    } else {
+      s +=
+        "<tr onclick=\"showinfobill('" +
+        billArrayTemp[i].ID +
+        "')\">" +
+        "<td>" +
+        billArrayTemp[i].Date +
+        "</td>" +
+        "<td>" +
+        billArrayTemp[i].Ctmfullname +
+        "</td>" +
+        "<td>" +
+        currency(billArrayTemp[i].Totalprice) +
+        "</td>" +
+        '<td style="color: blue">Đã xử lý</td>' +
+        "</tr>";
+    }
+  }
+  document.getElementById("billlist").innerHTML = s;
+}
+function changeStatus(checkbox, id) {
+  var billArray = JSON.parse(localStorage.getItem("bill"));
+  if (checkbox.checked == true) {
+    for (var i = 0; i < billArray.length; i++) {
+      if (billArray[i].ID == id) {
+        billArray[i].Status = "processed";
+      }
+    }
+    document.getElementById("status").innerHTML = "Đã xử lý";
+    document.getElementById("status").style.color = "blue";
+  } else {
+    for (var i = 0; i < billArray.length; i++) {
+      if (billArray[i].ID == id) {
+        billArray[i].Status = "unprocessed";
+      }
+    }
+    document.getElementById("status").innerHTML = "Chưa xử lý";
+    document.getElementById("status").style.color = "red";
+  }
+  localStorage.setItem("bill", JSON.stringify(billArray));
+  showbilllist();
+}
+//BILL
+//PRODUCT
+function showProductList(vitri) {
+  var productArray = JSON.parse(localStorage.getItem("product"));
+  var s =
+    "<tr><th>#ID</th><th>Ảnh</th><th>TÊN SẢN PHẨM</th><th>THƯƠNG HIỆU</th><th>GIÁ($)</th><th>Xóa</th><th>Sửa</th></tr>";
+  var dem = 0;
+  for (var i = vitri; i < productArray.length; i++) {
+    s += `<tr>
+            <td>${productArray[i].productID}</td>
+            <td><img src="../images/product/${productArray[i].productIMG}"></td>
+            <td>${productArray[i].productName}</td>
+            <td>${productArray[i].brand.toUpperCase()}</td>
+            <td>${currency(productArray[i].price)}</td>
+            <td><button class="delete" onClick="deleteproduct('${
+              productArray[i].productID
+            }')">Xóa</button></td>
+            <td><button class="change" onClick="showchangeproductbox('${
+              productArray[i].productID
+            }')">Sửa</button></td>
+            
+            </tr>`;
+    dem++;
+    if (dem == 5) {
+      break;
+    }
+  }
+  document.getElementById("productlist").innerHTML = s;
+  setPagination();
+}
+function deleteproduct(productiddelete) {
+  var productArray = JSON.parse(localStorage.getItem("product"));
+  for (var i = 0; i < productArray.length; i++) {
+    if (productArray[i].productID == productiddelete) {
+      if (confirm("Bạn có muốn xóa sản phẩm này?")) {
+        productArray.splice(i, 1);
+      }
+    }
+  }
+  localStorage.setItem("product", JSON.stringify(productArray));
+  showProductList(0);
+  upDateThongKe();
+}
+function setPagination() {
+  var productArray = JSON.parse(localStorage.getItem("product"));
+  var sotrang = Math.ceil(productArray.length / 5);
+  var button = "";
+  for (var i = 1; i <= sotrang; i++) {
+    vitri = (i - 1) * 5;
+    button +=
+      '<button class="pageNumber" onclick="showProductList(' +
+      vitri +
+      ')">' +
+      i +
+      "</button>";
+  }
+  document.getElementById("pagination").innerHTML = button;
+}
+function showchangeproductbox(productid) {
+  document.getElementById("modal").style.display = "block";
+  var productArray = JSON.parse(localStorage.getItem("product"));
+  for (var i = 0; i < productArray.length; i++) {
+    if (productArray[i].productID == productid) {
+      document.getElementById("imgproduct").src =
+        "../images/product/" + productArray[i].productIMG;
+      document.getElementById("change-product-name").value =
+        productArray[i].productName;
+      document.getElementById("change-product-brand").value =
+        productArray[i].brand;
+      document.getElementById("change-product-type").value =
+        productArray[i].type;
+      document.getElementById("change-product-price").value =
+        productArray[i].price;
+      document
+        .getElementById("save")
+        .setAttribute(
+          "onclick",
+          'changeproduct("' + productArray[i].productID + '")'
+        );
+      break;
+    }
+  }
+}
+function changeproduct(productid) {
+  document.getElementById("modal").style.display = "none";
+
+  var productArray = JSON.parse(localStorage.getItem("product"));
+  for (var i = 0; i < productArray.length; i++) {
+    if (productArray[i].productID == productid) {
+      var pdid = productArray[i].productID;
+      var productName = document.getElementById("change-product-name").value;
+      var brand = document.getElementById("change-product-brand").value;
+      var type = document.getElementById("change-product-type").value;
+      var price = document.getElementById("change-product-price").value;
+      var imgsrc = document.getElementById("change-product-img");
+      if ("files" in imgsrc) {
+        if (imgsrc.files.length != 0) {
+          var productimg = brand.toLowerCase() + "/" + imgsrc.files[0].name;
+          productArray[i].productIMG = productimg;
+          productArray[i].brand = brand;
+          productArray[i].productName = productName;
+          productArray[i].price = price;
+          productArray[i].type = type;
+          localStorage.setItem("product", JSON.stringify(productArray));
+          showProductList(0);
+        } else {
+          productArray[i].productName = productName;
+          productArray[i].brand = brand;
+          productArray[i].price = price;
+          productArray[i].type = type;
+          localStorage.setItem("product", JSON.stringify(productArray));
+          showProductList(0);
+        }
+      }
+      break;
+    }
+  }
+}
+function changeimg(file) {
+  var reader = new FileReader();
+  reader.onload = () => {
+    document.getElementById("imgproduct").src = reader.result;
+  };
+  reader.readAsDataURL(file.files[0]);
+}
+function changeimgadd(input) {
+  var reader = new FileReader();
+  reader.onload = function (e) {
+    document.getElementById("imgadd").src = reader.result;
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+
+function deleteimgadd() {
+  document.getElementById("imgadd").src = "../images/icon/temp2.jpg";
+}
+function closechangebox() {
+  document.getElementById("modal").style.display = "none";
+}
+function addProduct() {
+  var productArray = JSON.parse(localStorage.getItem("product"));
+  var productid = "P" + productArray.length;
+  var productname = document.getElementById("productname");
+  var brand = document.getElementById("brand");
+  var price = document.getElementById("productprice");
+
+  if (!brand.value || !productname.value || !price.value) {
+    customAlert("Bạn chưa nhập đủ thông tin sản phẩm", "warning");
+    return false;
+  }
+  if (isNaN(Number(price.value))) {
+    customAlert("Giá không hợp lệ", "warning");
+    return false;
+  }
+
+  var imgsrc = document.getElementById("addproductimg");
+  if ("files" in imgsrc) {
+    if (imgsrc.files.length != 0) {
+      var productimg = brand.value.toLowerCase() + "/" + imgsrc.files[0].name;
+      var producttemp = {
+        productID: productid,
+        productName: productname.value,
+        productIMG: productimg,
+        brand: brand.value,
+        price: price.value,
+        type: "",
+      };
+    } else {
+      var producttemp = {
+        productID: productid,
+        productName: productname.value,
+        productIMG: "tmp.jpg",
+        brand: brand.value,
+        price: price.value,
+        type: "",
+      };
+    }
+  }
+  productArray.unshift(producttemp);
+  localStorage.setItem("product", JSON.stringify(productArray));
+  showProductList(0);
+  customAlert("Thêm sản phẩm thành công", "success");
+  upDateThongKe();
+}
+function searchproduct() {
+  var productArray = JSON.parse(localStorage.getItem("product"));
+  var name = document.getElementById("searchproductname").value.toLowerCase();
+  var brand = document.getElementById("searchproductbrand").value.toLowerCase();
+  var s =
+  "<tr><th>#ID</th><th>Ảnh</th><th>TÊN SẢN PHẨM</th><th>THƯƠNG HIỆU</th><th>GIÁ($)</th><th>Xóa</th><th>Sửa</th></tr>";
+  if (brand == "all") {
+    if (!name) {
+      showProductList(0);
+    } else {
+      for (var i = 0; i < productArray.length; i++) {
+        if (productArray[i].productName.toLowerCase().search(name) >= 0) {
+          s += `<tr>
+                  <td>${productArray[i].productID}</td>
+                  <td><img src="../images/product/${productArray[i].productIMG}"></td>
+                  <td>${productArray[i].productName}</td>
+                  <td>${productArray[i].brand.toUpperCase()}</td>
+                  <td>${currency(productArray[i].price)}</td>
+                  <td><button class="delete" onClick="deleteproduct('${
+                    productArray[i].productID
+                  }')">Xóa</button></td>
+                  <td><button class="change" onClick="showchangeproductbox('${
+                    productArray[i].productID
+                  }')">Sửa</button></td>
+                  
+                </tr>`;
+        }
+      }
+      document.getElementById("productlist").innerHTML = s;
+    }
+  } else {
+    for (var i = 0; i < productArray.length; i++) {
+      if (
+        productArray[i].productName.toLowerCase().search(name) >= 0 &&
+        productArray[i].brand.toLowerCase() == brand
+      ) {
+        s +=
+            `<tr>
+              <td>${productArray[i].productID}</td>
+              <td><img src="../images/product/${productArray[i].productIMG}"></td>
+              <td>${productArray[i].productName}</td>
+              <td>${productArray[i].brand.toUpperCase()}</td>
+              <td>${currency(productArray[i].price)}</td>
+              <td><button class="delete" onClick="deleteproduct('${
+                productArray[i].productID
+              }')">Xóa</button></td>
+              <td><button class="change" onClick="showchangeproductbox('${
+                productArray[i].productID
+              }')">Sửa</button></td>
+            </tr>`;
+      }
+    }
+    document.getElementById("productlist").innerHTML = s;
+  }
+}
+//PRODUCT
+//user
+function showUserList() {
+  if (localStorage.getItem("user") === null) {
+    return false;
+  }
+  var userArray = JSON.parse(localStorage.getItem("user"));
+  var tr =
+    "<tr><th>STT</th><th>HỌ TÊN KH</th><th>TÊN ĐĂNG NHẬP</th><th>NGÀY ĐĂNG KÝ</th><th>Xóa</th></tr>";
+  for (var i = 1; i < userArray.length; i++) {
+    tr +=
+      "<tr><td>" +
+      i +
+      "</td><td>" +
+      userArray[i].fullname +
+      "</td><td>" +
+      userArray[i].username +
+      "</td><td>" +
+      userArray[i].datesignup +
+      '</td><td><button class="delete" onClick="deleteuser(\'' +
+      userArray[i].username +
+      "')\">&times;</button></td></tr>";
+  }
+  document.getElementById("userlist").innerHTML = tr;
+}
+function deleteuser(usernamedelete) {
+  var userArray = JSON.parse(localStorage.getItem("user"));
+  for (var i = 0; i < userArray.length; i++) {
+    if (userArray[i].username == usernamedelete) {
+      if (confirm("Bạn có muốn xóa tài khoản này?")) {
+        userArray.splice(i, 1);
+      }
+    }
+  }
+  localStorage.setItem("user", JSON.stringify(userArray));
+  showUserList();
+  upDateThongKe();
+}
+
+function searchUser(){
+  var d=document.getElementById('searchuserdate').value;
+  var name=document.getElementById('searchusername').value.toLowerCase();
+  var userArray=JSON.parse(localStorage.getItem('user'));
+  var tr='';
+  if(d){
+    var date = new Date(d);
+    for(var i=0; i<userArray.length; i++){
+      var datesignup=new Date(userArray[i].datesignup)
+      if((userArray[i].username.toLowerCase().search(name)>=0
+        ||userArray[i].fullname.toLowerCase().search(name)>=0)
+          &&(date.getFullYear()==datesignup.getFullYear()
+          &&date.getMonth()==datesignup.getMonth()
+          &&date.getDate()==datesignup.getDate())){
+          tr +=
+          "<tr><td>" +
+          i +
+          "</td><td>" +
+          userArray[i].fullname +
+          "</td><td>" +
+          userArray[i].username +
+          "</td><td>" +
+          userArray[i].datesignup +
+          '</td><td><button class="delete" onClick="deleteuser(\'' +
+          userArray[i].username +
+          "')\">&times;</button></td></tr>";
+      } else if(name==''
+        &&date.getFullYear()==datesignup.getFullYear()
+        &&date.getMonth()==datesignup.getMonth()
+        &&date.getDate()==datesignup.getDate()){
+          tr +=
+          "<tr><td>" +
+          i +
+          "</td><td>" +
+          userArray[i].fullname +
+          "</td><td>" +
+          userArray[i].username +
+          "</td><td>" +
+          userArray[i].datesignup +
+          '</td><td><button class="delete" onClick="deleteuser(\'' +
+          userArray[i].username +
+          "')\">&times;</button></td></tr>";
+      }
+    }
+  } else {
+    for(var i=0; i<userArray.length; i++){
+      if(userArray[i].username.toLowerCase().search(name)>=0
+        ||userArray[i].fullname.toLowerCase().search(name)>=0){
+          tr +=
+          "<tr><td>" +
+          i +
+          "</td><td>" +
+          userArray[i].fullname +
+          "</td><td>" +
+          userArray[i].username +
+          "</td><td>" +
+          userArray[i].datesignup +
+          '</td><td><button class="delete" onClick="deleteuser(\'' +
+          userArray[i].username +
+          "')\">&times;</button></td></tr>";
+      }
+    }
+  }
+  document.getElementById("userlist").innerHTML = tr;
+}
+
+//user
+
+const body = document.getElementsByTagName("body")[0];
+
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+  var expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var ca = document.cookie.split(";");
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+loadTheme();
+
+function loadTheme() {
+  var theme = getCookie(themeCookieName);
+  body.classList.add(theme === "" ? themeLight : theme);
+}
+function switchTheme() {
+  if (body.classList.contains(themeLight)) {
+    body.classList.remove(themeLight);
+    body.classList.add(themeDark);
+    setCookie(themeCookieName, themeDark);
+  } else {
+    body.classList.remove(themeDark);
+    body.classList.add(themeLight);
+    setCookie(themeCookieName, themeLight);
+  }
+}
+function collapseSidebar() {
+  body.classList.toggle("sidebar-expand");
+}
+window.onclick = function (event) {
+  openCloseDropdown(event);
+};
+function closeAllDropdown() {
+  var dropdowns = document.getElementsByClassName("dropdown-expand");
+  for (var i = 0; i < dropdowns.length; i++) {
+    dropdowns[i].classList.remove("dropdown-expand");
+  }
+}
+function openCloseDropdown(event) {
+  if (!event.target.matches(".dropdown-toggle")) {
+    //
+    // Close dropdown when click out of dropdown menu
+    //
+    closeAllDropdown();
+  } else {
+    var toggle = event.target.dataset.toggle;
+    var content = document.getElementById(toggle);
+    if (content.classList.contains("dropdown-expand")) {
+      closeAllDropdown();
+    } else {
+      closeAllDropdown();
+      content.classList.add("dropdown-expand");
+    }
+  }
+}
+function customAlert(message, type) {
+  if (type === "success") {
+    document.getElementById("customalert").style.backgroundColor = "#4CAF50";
+  }
+  if (type === "warning") {
+    document.getElementById("customalert").style.backgroundColor = "#f44336";
+  }
+  document.getElementById("customalert").innerHTML = message;
+  var x = document.getElementById("customalert");
+  x.className = "show";
+  setTimeout(function () {
+    x.className = x.classList.remove("show");
+  }, 3500);
+}
 function showAddProduct()
 {
  document.getElementById('addProductBox').style.display = 'block' ;
-
 }
-
 function closeAddProduct()
 {
   document.getElementById('addProductBox').style.display = 'none' ;
 }
-// function showSeachUser()
-// {
-//   document.getElementById('seachUser').style.display = 'block' ;
-// }
-// function closeSeachUser()
-// {
-//   document.getElementById('seachUser').style.display = 'none' ;
-// }
+function showSeachUser()
+{
+  document.getElementById('seachUser').style.display = 'block' ;
+}
+function closeSeachUser()
+{
+  document.getElementById('seachUser').style.display = 'none' ;
+}
 function showSearchBill()
 {
   document.getElementById('searchBilll').style.display= 'block'; 

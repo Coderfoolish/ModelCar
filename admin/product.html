@@ -267,7 +267,7 @@
         <div>
             <div>
                 <div id="content">
-                    <div id="leftsection">
+                    <div id="section">
                         <div id="maintable">
                             <h3>DANH SÁCH SẢN PHẨM</h3>
                             <table id="productlist">
@@ -279,128 +279,104 @@
             </div>
         </div>
     </div>
-    <div id="modall" class="modal">
-        <div class="cardd">
-            <div id="changeproduct">
-                <button class="close" onclick="closechangebox()">x</button>
-                <div class="image">
-                    <label for="change-product-img"></label>
-                    <img src="" alt="" id="imgproduct">
-                    <input type="file" name="" id="change-product-img" onchange="changeimg(this)">
-                </div>
-                <div class="info">
-                    <label for="change-product-name">Name</label>
-                    <input type="text" id="change-product-name">
-                </div>
-                <div class="info">
-                    <label for="change-product-brand">Brand</label>
-                    <select name="" id="change-product-brand">
-                        <option value="Ferrari">FERRARI</option>
-                        <option value="Toyota">TOYOTA</option>
-                        <option value="Lamborghini">LAMBORGHINI</option>
-                        <option value="McLaren">MCLAREN</option>
-                        <option value="Porsche">PORSCHE</option>
-                    </select>
-                </div>
-                <div class="info">
-                    <label for="change-product-type">Type</label>
-                    <select name="" id="change-product-type">
-                        <option value="">None</option>
-                        <option value="featured">featured</option>
-                        <option value="bestselling">bestselling</option>
-                        <option value="new">new</option>>
-                    </select>
-                </div>
-                <div class="info">
-                    <label for="change-product-price">Price</label>
-                    <input type="text" id="change-product-price">
-                </div>
-                <button id="save">Save</button>
+    <div id="modal" class="modal">
+        <div id="changeproduct">
+            <button class="close" onclick="closechangebox()">x</button>
+            <div class="image">
+                <label for="change-product-img"></label>
+                <img src="" alt="" id="imgproduct">
+                <input type="file" name="" id="change-product-img" onchange="changeimg(this)">
             </div>
+            <div class="info">
+                <label for="change-product-name">Name</label>
+                <input type="text" id="change-product-name">
+            </div>
+            <div class="info">
+                <label for="change-product-brand">Brand</label>
+                <select name="" id="change-product-brand">
+                    <option value="Ferrari">FERRARI</option>
+                    <option value="Toyota">TOYOTA</option>
+                    <option value="Lamborghini">LAMBORGHINI</option>
+                    <option value="McLaren">MCLAREN</option>
+                    <option value="Porsche">PORSCHE</option>
+                </select>
+            </div>
+            <div class="info">
+                <label for="change-product-type">Type</label>
+                <select name="" id="change-product-type">
+                    <option value="">None</option>
+                    <option value="featured">featured</option>
+                    <option value="bestselling">bestselling</option>
+                    <option value="new">new</option>>
+                </select>
+            </div>
+            <div class="info">
+                <label for="change-product-price">Price</label>
+                <input type="text" id="change-product-price">
+            </div>
+            <button id="save">Save</button>
         </div>
-    </div>
     </div>
     <!-- END QUAN LI SAN PHAM-->
     <!--QUAN LI KHANH HANG-->
     <div class="wrapper" id="userSideBar">
-        <div class="row">
-            <div class="col-8 col-m-12 col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>
-                            DANH SÁCH KHÁCH HÀNG
-                        </h3>
-                    </div>
-                    <div class="card-content">
-                        <table id="userlist">
-                        </table>
-                    </div>
-                </div>
+        <div id="searchUser-container">
+            <div id="searchUser">
+                <form onkeyup="searchUser()" onchange="searchUser()">
+                    <label for="searchusername">Tên đăng nhập hoặc tên người dùng</label>
+                    <input type="text" id="searchusername">
+                    <label for="searchuserdate">Ngày đăng ký</label>
+                    <input type="date" name="" id="searchuserdate">
+                </form>
             </div>
-            <div class="col-4 col-m-12 col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>
-                            TÌM KIẾM
-                        </h3>
-                    </div>
-                    <div id="rightsection">
-                        <div class="subsection">
-                            <form>
-                                <label for="username">Username</label>
-                                <input type="text" id="usernamee">
-                                <label for="datesignup">Date</label>
-                                <input type="date" id="datesignupp">
-                                <button type="reset">Xóa</button>
-                                <button type="button">Tìm</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h3>
+                    DANH SÁCH KHÁCH HÀNG
+                </h3>
+            </div>
+            <div class="card-content">
+                <table id="userlist">
+                </table>
             </div>
         </div>
     </div>
     <!--END QUAN LI KHANH HANG-->
     <!--QUAN LI DON HANG-->
     <div class="wrapper" id="billSideBar">
-        <div class="row">
-            <div class="col-10 col-m-12 col-sm-12">
-                <div id="content">
-                    <div id="leftsection">
-                        <div id="maintable">
-                            <i onclick="showSearchBill()" id="searchBill" class='bx bx-search'></i>
-                            <h3>QUẢN LÝ ĐƠN HÀNG</h3>
-                            <table id="billlist">
-                                <tr>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
+        <div id="content">
+            <div id="section">
+                <div id="maintable">
+                    <i onclick="showSearchBill()" id="searchBill" class='bx bx-search'></i>
+                    <h3>QUẢN LÝ ĐƠN HÀNG</h3>
+                    <table id="billlist">
+                        <tr>
+                        </tr>
+                    </table>
                 </div>
             </div>
-            <div class="modal" id="searchBilll">
-                <div class="cardd">
-                    <div class="cardd-header">
-                        <h3>
-                            TÌM KIẾM ĐƠN HÀNG
-                        </h3>
-                        <i onclick="closeSearchBill()" class='bx bx-x' style="font-size: 1.8rem;"></i>
-                    </div>
-                    <div class="cardd-content">
-                        <div class="subsection">
-                            <form>
-                                <label for="name">Tên khách hàng</label>
-                                <input type="text" id="name">
-                                <label for="date">Ngày</label>
-                                <input type="date" id="date">
-                                <label for="statussearch">Trạng thái</label>
-                                <select id="statussearch">
-                                    <option value="unprocessed">Chưa xử lý</option>
-                                    <option value="processed">Đã xử lý</option>
-                                </select>
-                                <button type="button" onclick="searchBill()">Tìm</button>
-                            </form>
-                        </div>
+        </div>
+        <div class="modal" id="searchBilll">
+            <div class="cardd">
+                <div class="cardd-header">
+                    <h3>
+                        TÌM KIẾM ĐƠN HÀNG
+                    </h3>
+                    <i onclick="closeSearchBill()" class='bx bx-x' style="font-size: 1.8rem;"></i>
+                </div>
+                <div class="cardd-content">
+                    <div class="subsection">
+                        <form>
+                            <label for="name">Tên khách hàng</label>
+                            <input type="text" id="name">
+                            <label for="statussearch">Trạng thái</label>
+                            <select id="statussearch">
+                                <option value="unprocessed">Chưa xử lý</option>
+                                <option value="processed">Đã xử lý</option>
+                            </select>
+                            <button type="button" onclick="searchBill()">Tìm</button>
+                        </form>
                     </div>
                 </div>
             </div>

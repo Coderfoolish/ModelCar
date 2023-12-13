@@ -90,12 +90,12 @@ div#changeproduct{
     margin: 20px 250px;
     transform: translateY(20px);
 }
-button.close{
+/* button.close{
     margin: 0 480px;
     font-size: 20px;
     color: var(--red);
 
-}
+} */
 input#change-product-name{
     font-size: 16px;
 
@@ -230,7 +230,7 @@ select#selectoptiondate{
     width: 100%;
     outline: none;
     color: var(--main-color);
-    border-radius: 20px;
+    border-radius: 5px;
 }
 
 .navbar-search i {
@@ -731,9 +731,10 @@ table th {
     width: 5%;
 }
 /*TÌm kiếm user  */
-button.delete{
+#userlist button.delete{    
     font-size: 12px;
     width: 50%;
+    height: 30px;
     background-color: var(--red);
     color: var(--btn-color);
 }
@@ -741,15 +742,15 @@ button.delete{
     width: 100%;
     height: 100px;
     background-color: var(--main-bg-color);
-    border-radius: 20px;
+    border-radius: 5px;
 }
 .search input{
     font-size: 13px;
     height: 50px;
-    width: 100%;
+    width: 80%;
     background-color: var(--second-bg-color);
     border: none;
-    border-radius: 20px;
+    border-radius: 5px;
     padding-left: 20px;
     transform: translateY(5px);
 }
@@ -760,7 +761,8 @@ button.delete{
     color: var(--text-color);
     background-color: #0083d6;
     transform: translate3d(500px, -80px , 0);
-    margin: 0 650px;
+    margin-top: 0;
+    margin-left: 700px;
 }
 .subsectionn1{
     margin: 15px -350px;
@@ -793,7 +795,7 @@ button.delete{
     padding: 0 20px;
     border: 1px solid rgba(0, 0, 0, .2);
     border-bottom: 2px solid #000;
-    border-radius: 20px;
+    border-radius: 5px;
     margin: 5px 0 20px 0;
 }
 
@@ -833,73 +835,16 @@ button.delete{
     color: var(--red);
 }
 
-/*Kết thúc user  */
-
-.rightsection {
-    width: 35%;
+#searchUser{
     display: flex;
-    flex-wrap: wrap;
-    padding: 30px 80px 0;
-    border: solid 2px var(--danger-color);
 }
-
-.rightsection .subsection form {
-    width: 300px;
-    margin: 0 auto;
-    height: 300px;
+#searchUser input{
+    height: 40px;
+    font-size: 20px;
+    margin: 10px;
+    padding: 10px;
 }
-
-.rightsection .subsection label {
-    font-size: 14pt;
-    cursor: pointer;
-}
-
-.rightsection .subsection input {
-    display: block;
-    width: 300px;
-    height: 30px;
-    line-height: 30px;
-    font-size: 13pt;
-    border: 1px solid rgba(0, 0, 0, .2);
-    border-bottom: 2px solid #000;
-    margin: 5px 0 20px 0;
-}
-
-.rightsection .subsection input:focus {
-    outline: none;
-    border-bottom: 2px solid var(--red)
-}
-
-.rightsection .subsection select {
-    height: 30px;
-    width: 173px;
-    border: 1px solid rgba(0, 0, 0, .2);
-    border-bottom: 2px solid #000;
-    margin: 5px 0 20px 20px;
-}
-
-.rightsection .subsection {
-    width: 150px;
-    margin: 0 auto;
-    display: block;
-}
-
-.rightsection .subsection button {
-    background-color: #fff;
-    border: 2px solid #000;
-    width: 80px;
-    height: 30px;
-    color: #000;
-    font-size: 14pt;
-    cursor: pointer;
-    box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.3);
-}
-
-.rightsection .subsection button:hover {
-    border: 2px solid var(--red);
-    color: var(--red);
-}
-
+/*Kết thúc user  */
 
 #content{
     width: 150%;
@@ -908,11 +853,11 @@ button.delete{
     flex-wrap: wrap;
     align-items: flex-start;
 }
-#content #leftsection{
+#content #section{
     width: 65%;
     /*padding: 40px 40px 0px;*/
 }
-#content #leftsection #maintable{
+#content #section #maintable{
     width: 100%;
     min-height: 830px;
     background-color: var(--main-bg-color);
@@ -922,41 +867,41 @@ button.delete{
     overflow-x: auto;
 }
 
-#content #leftsection #maintable h3 {
+#content #section #maintable h3 {
     text-align: center;
     margin-bottom: 20px;
 }
-#content #leftsection #maintable table,th,td{
+#content #section #maintable table,th,td{
     border: 1px solid rgba(0,0,0,0.4);
 }
-#content #leftsection #maintable table{
+#content #section #maintable table{
     width: 100%;
     border-collapse: collapse;
 }
-#content #leftsection #maintable table#billlist tr:not(:first-child){
+#content #section #maintable table#billlist tr:not(:first-child){
     cursor: pointer;
 }
-#content #leftsection #maintable table#billlist tr:not(:first-child):hover{
+#content #section #maintable table#billlist tr:not(:first-child):hover{
     background-color: #ced6e0;
 }
-#content #leftsection #maintable th{
+#content #section #maintable th{
     color: white;
     height: 35px;
     padding: 0 5px;
 }
-#content #leftsection #maintable td{
+#content #section #maintable td{
     height: 30px;
     line-height: 30px;
     padding: 0px 10px;
 }
-#content #leftsection #maintable img{
+#content #section #maintable img{
     height: 60px;
     margin: 5px;
 }
-#content #leftsection #maintable td:last-child{
+#content #section #maintable td:last-child{
     text-align: center;
 }
-#content #leftsection #maintable td button{
+#content #section #maintable td button{
     font-size: 14px;
     color: #fff;
     cursor: pointer;
@@ -967,17 +912,20 @@ button.delete{
     outline: none;
     display: block;
 }
-button.change{
+#productlist button.change{
     background-color: rgb(40, 40, 148);
 }
-#content #leftsection #maintable #pagination{
+#productlist button.delete{
+    background-color: var(--red);
+}
+#content #section #maintable #pagination{
     margin-top: 20px;
     width: 100%;
     height: 25px;
     display: flex;
     justify-content: center;
 }
-#content #leftsection #maintable #pagination .pageNumber{
+#content #section #maintable #pagination .pageNumber{
     width: 25px;
     height: 25px;
     background-color: var(--red);
@@ -989,73 +937,8 @@ button.change{
     margin-right: 10px;
     cursor: pointer;
 }
-#content #leftsection #maintable #pagination .pageNumber:hover{
+#content #section #maintable #pagination .pageNumber:hover{
     background-color: #fff;
-    color: var(--red);
-}
-#content #rightsection{
-    width: 35%;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 40px 40px 0px;
-}
-#content #rightsection .subsection{
-    width: 100%;
-    background-color: #fff;
-    box-shadow: 0 0 20px 2px rgba(0,0,0,0.5);
-    margin-bottom: 40px;
-    padding: 20px 50px;
-}
-#content #rightsection .subsection h1{
-    text-align: center;
-    margin-bottom: 20px;
-}
-#content #rightsection .subsection form{
-    width: 300px;
-    margin: 0 auto;
-}
-#content #rightsection .subsection label{
-    font-size: 14pt;
-    cursor: pointer;
-}
-#content #rightsection .subsection input{
-    display: block;
-    width: 300px;
-    height: 30px;
-    line-height: 30px;
-    font-size: 13pt;
-    border: 1px solid rgba(0,0,0,.2);
-    border-bottom: 2px solid #000;
-    margin: 5px 0 20px 0px;
-}
-#content #rightsection .subsection input:focus{
-    outline: none;
-    border-bottom: 2px solid var(--red);
-}
-#content #rightsection .subsection select{
-    height: 30px;
-    width: 173px;
-    border: 1px solid rgba(0,0,0,.2);
-    border-bottom: 2px solid #000;
-    margin: 5px 0 20px 20px;
-}
-#content #rightsection .subsection #imgadd{
-    width: 150px;
-    margin: 0 auto;
-    display: block;
-}
-#content #rightsection .subsection button{
-    background-color: #fff;
-    border: 2px solid #000;
-    width: 80px;
-    height: 30px;
-    color: #000;
-    font-size: 14pt;
-    cursor: pointer;
-    box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.3);
-}
-#content #rightsection .subsection button:hover{
-    border: 2px solid var(--red);
     color: var(--red);
 }
 
@@ -1228,10 +1111,8 @@ button.change{
 	width: 100%;
 	background-color: rgba(0,0,0,0.6);
 	position: fixed;
-	top:0;
-	left: 0;
+    top: 0;
 	display: none;
-	z-index: 10;
 }
 #modal{
     display: none;
@@ -1239,17 +1120,16 @@ button.change{
 #modal #changeproduct{
 	width: 50%;
 	height: 800px;
-	background-color:var(--second-bg-color);
-	margin: 70px auto;
-	position: relative;
-    top: -1000px;
+	background-color: white;
+	position: fixed;
+    left: 15%;
+    top: 50px;
 	padding: 12px;
 
 }
 #modal #changeproduct .close{
 	position: absolute;
 	right: 15px;
-	top: 15px;
     width: 35px;
 	font-size: 30px;
 	background: none;
@@ -1257,7 +1137,8 @@ button.change{
 	cursor: pointer;
 }
 #modal #changeproduct .close:hover{
-	color: var(--red);
+	color: white;
+    background-color: var(--red);
 }
 #modal #changeproduct .image{
 	margin-top: 50px;
@@ -1290,7 +1171,7 @@ input#change-product-img {
 	font-size: 20px;
 	width: 400px;
 	margin-bottom: 10px;
-    border-radius: 20px;
+    border-radius: 5px;
     padding: 3px 10px;
 }
 
@@ -1319,94 +1200,6 @@ input#change-product-img {
 	background-color: #fff;
 	color: var(--red);
 }
-/* #billinfo #info{
-	width: 600px;
-	height: 700px;
-	background-color: #fff;
-	margin: 70px auto;
-	position: relative;
-	padding: 6px;
-}
-
-#billinfo #info .close{
-	position: absolute;
-	right: 2px;
-	top: 0px;
-	font-size: 30pt;
-	background: none;
-	outline: none;
-	cursor: pointer;
-}
-#billinfo #info h4{
-	font-size: 14pt;
-	margin-top: 20px;
-}
-#billinfo #info p{
-	font-size: 12pt;
-	margin-top: 5px;
-}
-#billinfo #info #status{
-	display: inline-block;
-	font-size: 14pt;
-	height: 34px;
-	line-height: 34px;
-	width: 200px;
-}
-#billinfo #info label{
-	margin-left: 50px;
-	cursor: pointer;
-	display: inline-block;
-  	height: 34px;
-  	position: relative;
- 	width: 60px;
- 	vertical-align: middle;
-}
-#billinfo #info label input{
-	display: none;
-}
-#billinfo #info label .slider {
-	background-color: #ccc;
-	width: 100%;
-	height: 100%;
-	bottom: 0;
-	left: 0;
-	cursor: pointer;
-	position: absolute;
-	transition: 0.4s;
-	border-radius: 999px;
-}
-#billinfo #info label .slider:before {
-	content: "";
-	background-color: #fff;
-	height: 26px;
-	bottom: 4px;
-	left: 4px;
-	position: absolute;
-	transition: 0.4s;
-	width: 26px;
-	border-radius: 999px;
-}
-#billinfo #info label input:checked + .slider {
-  	background-color: #ff4700;
-}
-
-#billinfo #info label input:checked + .slider:before {
-  	left: 30px;
-}
-#billinfo #info .printbtn{
-	width: 100px;
-	background-color: #000;
-	color: #fff;
-	height: 25px;
-	border: 2px solid #000;
-	line-height: 25px;
-	margin-top: 10px;
-	cursor: pointer;
-}
-#billinfo #info .printbtn:hover{
-	background-color: #fff;
-	color: #000;
-} */
 #searchBill{
     margin: 0 1000px;
     font-size: 1.8rem;
