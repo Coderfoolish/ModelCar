@@ -1012,7 +1012,7 @@ table th {
 	display: none;
 }
 #productinbill-head label .slider {
-	background-color: #ccc;
+	background-color: var(--red);
 	width: 100%;
 	height: 100%;
 	bottom: 0;
@@ -1034,7 +1034,7 @@ table th {
 	border-radius: 999px;
 }
 #productinbill-head label input:checked + .slider {
-  	background-color: #ff4700;
+  	background-color: blue;
 }
 
 #productinbill-head label input:checked + .slider:before {

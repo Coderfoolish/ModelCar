@@ -3,6 +3,7 @@ createAdmin();
 // localStorage.removeItem('cart');
 // localStorage.removeItem('product');
 // localStorage.removeItem('bill');
+// localStorage.removeItem('user');
 // định dạng số tiền thành $
 function currency(num) {
   return num.toString().replace(/(\d{11})$/g, "");
