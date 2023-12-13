@@ -498,7 +498,6 @@ function showProductList(vitri) {
             <td><button class="change" onClick="showchangeproductbox('${
               productArray[i].productID
             }')">Sửa</button></td>
-            
             </tr>`;
     dem++;
     if (dem == 5) {
