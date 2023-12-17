@@ -572,6 +572,14 @@ function changeproduct(productid) {
       var type = document.getElementById("change-product-type").value;
       var price = document.getElementById("change-product-price").value;
       var imgsrc = document.getElementById("change-product-img");
+      if (!brand || !productname || !price) {
+        customAlert("Bạn chưa nhập đủ thông tin sản phẩm", "warning");
+        return false;
+      }
+      if (isNaN(Number(price))) {
+        customAlert("Giá không hợp lệ", "warning");
+        return false;
+      }
       if ("files" in imgsrc) {
         if (imgsrc.files.length != 0) {
           var productimg = brand.toLowerCase() + "/" + imgsrc.files[0].name;

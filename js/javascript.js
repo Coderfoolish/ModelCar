@@ -847,38 +847,6 @@ function loadproduct() {
         price: 22.00,
         type: "featured",
       },
-      {
-        productID: "P0120",
-        productName: "Bburago Ferrari Race And Play 488 Pista 1/24 Model Car ",
-        productIMG: "ferrari/P0012.png",
-        brand: "Ferrari",
-        price: 22.00,
-        type: "featured",
-      },
-      {
-        productID: "P0120",
-        productName: "Bburago Ferrari Race And Play 488 Pista 1/24 Model Car ",
-        productIMG: "ferrari/P0012.png",
-        brand: "Ferrari",
-        price: 22.00,
-        type: "featured",
-      },
-      {
-        productID: "P0120",
-        productName: "Bburago Ferrari Race And Play 488 Pista 1/24 Model Car ",
-        productIMG: "ferrari/P0012.png",
-        brand: "Ferrari",
-        price: 22.00,
-        type: "featured",
-      },
-      {
-        productID: "P0120",
-        productName: "Bburago Ferrari Race And Play 488 Pista 1/24 Model Car ",
-        productIMG: "ferrari/P0012.png",
-        brand: "Ferrari",
-        price: 22.00,
-        type: "featured",
-      },
 
       // TOYOTAAAAAAAA
       {
